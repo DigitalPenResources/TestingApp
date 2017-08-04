@@ -1,0 +1,59 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding:0;
+}
+
+a {
+  text-decoration: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+#nav {
+  background-color: #5F6263;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 66px;
+  line-height: 66px;
+  position: fixed;
+}
+
+#nav a {
+  color: white;
+}
+
+#nav a:hover {
+  text-decoration: none;
+  color:lightgrey
+}
+
+.logo {
+  float: left;
+  padding: 0 20px;
+}
+
+.menu {
+  float: right;
+  padding: 0 20px;
+}
+
+.menu a {
+    padding: 0 10px;
+}
+
+.landing{
+  background-image: url(/app/images/landing.jpeg);
+  background-size: cover;
+  position: fixed;
+  top:66px;
+  bottom:0;
+  height:100%;
+}

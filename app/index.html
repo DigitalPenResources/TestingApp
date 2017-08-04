@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>DigitalPenResources</title>
+
+    <!--gets rid of favicon error-->
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+    <!-- STYLESSHEETS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/app/assets/css/styles.css">
+    <base href="/app/">
+
+  </head>
+  <body>
+    <div ui-view="headerNav"></div>
+    <div ui-view="pageContent" style="height:100%;"></div>
+
+    <!-- APPLICATION SCRIPTS -->
+    <!--inject bower components-->
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <!--inject js-->
+    <script src="/app/index.js"></script>
+    <script src="views/loginPage/loginPage.controller.js"></script>
+    <script src="views/loginPage/loginPage.route.js"></script>
+    <script src="views/headerNav/headerNav.controller.js"></script>
+    <script src="views/report/report.controller.js"></script>
+    <script src="views/report/report.route.js"></script>
+  </body>
+</html>
