@@ -16,6 +16,7 @@ button:focus {
     outline: none;
 }
 
+/*headerNav*/
 #nav {
   background-color: #5F6263;
   top: 0;
@@ -24,6 +25,7 @@ button:focus {
   height: 66px;
   line-height: 66px;
   position: fixed;
+  z-index: 10
 }
 
 #nav a {
@@ -32,7 +34,7 @@ button:focus {
 
 #nav a:hover {
   text-decoration: none;
-  color:lightgrey
+  color:lightgrey;
 }
 
 .logo {
@@ -49,6 +51,7 @@ button:focus {
     padding: 0 10px;
 }
 
+/*login*/
 .landing{
   background-image: url(/app/images/landing.jpeg);
   background-size: cover;
@@ -57,3 +60,14 @@ button:focus {
   bottom:0;
   height:100%;
 }
+
+/*.progress {
+  background: rgba(0, 219, 142, 1);
+  border: 0px
+  solid rgba(219, 33, 33, 1);
+  border-radius: 4px;
+  height: 20px;
+}
+.progress-bar-custom {
+  background: rgba(204, 25, 108, 1);
+}*/
