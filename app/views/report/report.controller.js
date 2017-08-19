@@ -41,7 +41,7 @@ app.controller('ReportController', function($scope, $http, $httpParamSerializerJ
     $scope.mathscoretotalpercentage=(($scope.totalScores.TotalMathScore-160)/(760-160))*100;
     $scope.readingTestScoretotalpercentage=(($scope.totalScores.TotalReadingScore-8)/(38-8))*100;
     $scope.writingTestScoretotalpercentage=(($scope.totalScores.TotalWritingScore-8)/(38-8))*100;
-    $scope.mathTestScoretotalpercentage=(($scope.totalScores.TotalPassportAdvMathScore-8)/(38-8))*100;
+    $scope.mathTestScoretotalpercentage=(($scope.totalScores.TotalPassportAdvMath-8)/(38-8))*100;
   });
 
   //get student sub scores
