@@ -1,1144 +1,1225 @@
-app.controller('ReportController', function($scope, $http, $httpParamSerializerJQLike) {
-  console.log('report controller');
+app.controller('ReportController', function($scope, $http, $httpParamSerializerJQLike, studentService, dataService, $filter) {
 
-  $http({
-      url: 'http://54.202.41.242/examApp/api.php?x=getStudents',
-      method: 'GET',
-      // params: {KEYID: 1},
-      // paramSerializer: '$httpParamSerializerJQLike',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+  //get id of student logged in
+  $scope.studentID=studentService.get();
+  console.log('$scope.studentID:', $scope.studentID);
+
+  // $http({
+  //     url: 'http://54.202.41.242/examApp/api.php?x=getStudents',
+  //     method: 'GET',
+  //     // params: {KEYID: 1},
+  //     // paramSerializer: '$httpParamSerializerJQLike',
+  //     headers: {
+  //       'Content-Type': 'application/x-www-form-urlencoded'
+  //     }
+  // }).then(function(response){
+  //   console.log(response);
+  // });
+
+  //get all student data
+  dataService.getAll('student').then(function (response) {
+    console.log('all students:', response.data);
+    var studentArr=response.data;
+
+    //find KEYID of logged in student
+    studentArr.forEach(function (student) {
+      // console.log(student)
+      if (student.studentid===$scope.studentID) {
+        $scope.studentKEYID=student.KEYID;
+        $scope.studentNAME=student.StudentName;
       }
-    }).then(function(response){
-      console.log(response);
     });
+    console.log('$scope.studentKEYID:', $scope.studentKEYID);
+    console.log('$scope.studentNAME:', $scope.studentNAME);
+  });
+
+  //get student total scores
+  dataService.getStudentTotalScores('student', {studentid: $scope.studentID}).then(function (response) {
+    console.log(response.data);
+    $scope.totalScores=response.data[0];
+    $scope.readingscoretotalpercentage=(($scope.totalScores.TotalEvidentScore-160)/(760-160))*100;
+    $scope.mathscoretotalpercentage=(($scope.totalScores.TotalMathScore-160)/(760-160))*100;
+    $scope.readingTestScoretotalpercentage=(($scope.totalScores.TotalReadingScore-8)/(38-8))*100;
+    $scope.writingTestScoretotalpercentage=(($scope.totalScores.TotalWritingScore-8)/(38-8))*100;
+    $scope.mathTestScoretotalpercentage=(($scope.totalScores.TotalPassportAdvMathScore-8)/(38-8))*100;
+  });
+
+  //get student sub scores
+  dataService.getStudentSubScores('student', {studentid: $scope.studentID}).then(function (response) {
+    console.log(response.data);
+    $scope.subScores=response.data[0];
+    $scope.commandOfEvidencePercentage=(($scope.subScores.TotalCommandOfEvidence-1)/(15-1))*100;
+    $scope.contextWordsPercentage=(($scope.subScores.TotalContextWords-1)/(15-1))*100;
+    $scope.expressionOfIdeasPercentage=(($scope.subScores.TotalExpressionOfIdeas-1)/(15-1))*100;
+    $scope.heartOfAlgebraPercentage=(($scope.subScores.TotalHeartOfAlgebra-1)/(15-1))*100;
+    $scope.passportAdvMathPercentage=(($scope.subScores.TotalPassportAdvMath-1)/(15-1))*100;
+    $scope.problemSolvingPercentage=(($scope.subScores.TotalProblemSolving-1)/(15-1))*100;
+    $scope.standardEngPercentage=(($scope.subScores.TotalStandardEngish-1)/(15-1))*100;
+  });
+
+  //get student answers
+  dataService.getStudentAnswers('student', {studentid: $scope.studentID, examVersion:1}).then(function (response) {
+    console.log(response.data);
+    $scope.answers=response.data;
+
+    $scope.readingScoresArr=[];
+    $scope.writingLangScoresArr=[];
+    $scope.mathCalScoresArr=[];
+    $scope.mathNoCalScoresArr=[];
+
+    $scope.answers.forEach(function (answer) {
+      if (answer.sectionName==='01') {
+        $scope.readingScoresArr.push(answer);
+      } else if (answer.sectionName==='02'){
+        $scope.writingLangScoresArr.push(answer);
+      } else if (answer.sectionName==='03'){
+        $scope.mathCalScoresArr.push(answer);
+      } else if (answer.sectionName==='04'){
+        $scope.mathNoCalScoresArr.push(answer);
+      }
+    });
+    // $scope.answers.find(function (answer) {
+    //   if (answer.sectionName==='01') {
+    //     console.log(answer.indexOf())
+    //     $scope.readingScoresArr.push(answer);
+    //   }
+    //   console.log($scope.readingScoresArr)
+    // })
+
+    // var readingScoresObj = $scope.answers.filter(function ( readingScoresObj ) {
+    //   return readingScoresObj.sectionName === "01";
+    // });
+    //
+    // console.log(readingScoresObj)
+    // $scope.readingScores=readingScoresObj
+  });
 
 
-  $scope.readingscoretotal=380;
-  $scope.readingscoretotalpercentage=((380-160)/(760-160))*100;
 
-  $scope.readingscores= [
-    {
-      QUESTION : "1",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY"
-    },
-    {
-      QUESTION : "2",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "HARD",
-      SUBSCORE: "COE",
-      CROSS:"HSS"
-    },
-    {
-      QUESTION : "3",
-      CORRECT : "B",
-      ANSWER: "C",
-      DIFFICULTY: "MEDIUM",
-      SUBSCORE: "COE, EOI",
-      CROSS:"HSS"
-    },
-    {
-      QUESTION : "4",
-      CORRECT : "A",
-      ANSWER: "B",
-      DIFFICULTY: "MEDIUM",
-      SUBSCORE: "WIC",
-      CROSS:"SCI"
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "",
-      CROSS:""
-    },
-  ];
+  // $scope.readingscoretotal=380;
 
-  $scope.writingscores= [
-    {
-      QUESTION : "1",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY"
-    },
-    {
-      QUESTION : "2",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "HARD",
-      SUBSCORE: "COE",
-      CROSS:"HSS"
-    },
-    {
-      QUESTION : "3",
-      CORRECT : "B",
-      ANSWER: "C",
-      DIFFICULTY: "MEDIUM",
-      SUBSCORE: "COE, EOI",
-      CROSS:"HSS"
-    },
-    {
-      QUESTION : "4",
-      CORRECT : "A",
-      ANSWER: "B",
-      DIFFICULTY: "MEDIUM",
-      SUBSCORE: "WIC",
-      CROSS:"SCI"
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-  ];
-
-  $scope.mathcalscores= [
-    {
-      QUESTION : "1",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY"
-    },
-    {
-      QUESTION : "2",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "HARD",
-      SUBSCORE: "COE",
-      CROSS:"HSS"
-    },
-    {
-      QUESTION : "3",
-      CORRECT : "B",
-      ANSWER: "C",
-      DIFFICULTY: "MEDIUM",
-      SUBSCORE: "COE, EOI",
-      CROSS:"HSS"
-    },
-    {
-      QUESTION : "4",
-      CORRECT : "A",
-      ANSWER: "B",
-      DIFFICULTY: "MEDIUM",
-      SUBSCORE: "WIC",
-      CROSS:"SCI"
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-  ];
-
-  $scope.mathnocalscores= [
-    {
-      QUESTION : "1",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY"
-    },
-    {
-      QUESTION : "2",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "HARD",
-      SUBSCORE: "COE",
-      CROSS:"HSS"
-    },
-    {
-      QUESTION : "3",
-      CORRECT : "B",
-      ANSWER: "C",
-      DIFFICULTY: "MEDIUM",
-      SUBSCORE: "COE, EOI",
-      CROSS:"HSS"
-    },
-    {
-      QUESTION : "4",
-      CORRECT : "A",
-      ANSWER: "B",
-      DIFFICULTY: "MEDIUM",
-      SUBSCORE: "WIC",
-      CROSS:"SCI"
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-    {
-      QUESTION : "5",
-      CORRECT : "A",
-      ANSWER: "A",
-      DIFFICULTY: "EASY",
-      SUBSCORE: "SEC",
-      CROSS:""
-    },
-  ]
+  // $scope.readingscores= [
+  //   {
+  //     QUESTION : "1",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY"
+  //   },
+  //   {
+  //     QUESTION : "2",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "HARD",
+  //     SUBSCORE: "COE",
+  //     CROSS:"HSS"
+  //   },
+  //   {
+  //     QUESTION : "3",
+  //     CORRECT : "B",
+  //     ANSWER: "C",
+  //     DIFFICULTY: "MEDIUM",
+  //     SUBSCORE: "COE, EOI",
+  //     CROSS:"HSS"
+  //   },
+  //   {
+  //     QUESTION : "4",
+  //     CORRECT : "A",
+  //     ANSWER: "B",
+  //     DIFFICULTY: "MEDIUM",
+  //     SUBSCORE: "WIC",
+  //     CROSS:"SCI"
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "",
+  //     CROSS:""
+  //   },
+  // ];
+  //
+  // $scope.writingscores= [
+  //   {
+  //     QUESTION : "1",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY"
+  //   },
+  //   {
+  //     QUESTION : "2",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "HARD",
+  //     SUBSCORE: "COE",
+  //     CROSS:"HSS"
+  //   },
+  //   {
+  //     QUESTION : "3",
+  //     CORRECT : "B",
+  //     ANSWER: "C",
+  //     DIFFICULTY: "MEDIUM",
+  //     SUBSCORE: "COE, EOI",
+  //     CROSS:"HSS"
+  //   },
+  //   {
+  //     QUESTION : "4",
+  //     CORRECT : "A",
+  //     ANSWER: "B",
+  //     DIFFICULTY: "MEDIUM",
+  //     SUBSCORE: "WIC",
+  //     CROSS:"SCI"
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  // ];
+  //
+  // $scope.mathcalscores= [
+  //   {
+  //     QUESTION : "1",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY"
+  //   },
+  //   {
+  //     QUESTION : "2",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "HARD",
+  //     SUBSCORE: "COE",
+  //     CROSS:"HSS"
+  //   },
+  //   {
+  //     QUESTION : "3",
+  //     CORRECT : "B",
+  //     ANSWER: "C",
+  //     DIFFICULTY: "MEDIUM",
+  //     SUBSCORE: "COE, EOI",
+  //     CROSS:"HSS"
+  //   },
+  //   {
+  //     QUESTION : "4",
+  //     CORRECT : "A",
+  //     ANSWER: "B",
+  //     DIFFICULTY: "MEDIUM",
+  //     SUBSCORE: "WIC",
+  //     CROSS:"SCI"
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  // ];
+  //
+  // $scope.mathnocalscores= [
+  //   {
+  //     QUESTION : "1",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY"
+  //   },
+  //   {
+  //     QUESTION : "2",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "HARD",
+  //     SUBSCORE: "COE",
+  //     CROSS:"HSS"
+  //   },
+  //   {
+  //     QUESTION : "3",
+  //     CORRECT : "B",
+  //     ANSWER: "C",
+  //     DIFFICULTY: "MEDIUM",
+  //     SUBSCORE: "COE, EOI",
+  //     CROSS:"HSS"
+  //   },
+  //   {
+  //     QUESTION : "4",
+  //     CORRECT : "A",
+  //     ANSWER: "B",
+  //     DIFFICULTY: "MEDIUM",
+  //     SUBSCORE: "WIC",
+  //     CROSS:"SCI"
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  //   {
+  //     QUESTION : "5",
+  //     CORRECT : "A",
+  //     ANSWER: "A",
+  //     DIFFICULTY: "EASY",
+  //     SUBSCORE: "SEC",
+  //     CROSS:""
+  //   },
+  // ]
 
 });

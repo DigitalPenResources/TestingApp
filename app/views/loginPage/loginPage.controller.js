@@ -1,10 +1,9 @@
-app.controller('LoginPageController', function($scope, $state) {
-  console.log('login page controller');
+app.controller('LoginPageController', function($scope, $state, studentService) {
 
-  $scope.login = function() {
-    console.log($scope.username);
-    console.log($scope.password);
-    $state.go('report')
+  $scope.login = function(username) {
+    console.log(username);
+    studentService.set(username);
+    $state.go('report');
   };
 
 });

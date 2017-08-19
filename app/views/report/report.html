@@ -1,13 +1,18 @@
 <div id="report" style="position:relative;top:66px">
   <div class="container" style="padding-top:50px;">
     <div class="row">
+      <div class="col-md-12" style="text-align:center;font-size:30px;margin-bottom:20px;font-weight:bold">
+        Welcome {{studentNAME}} ({{studentID}})
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-4" style="border-right:1px solid #ccc">
         <div style="height:150px">
           <div style="text-align:center">
             Your Evidence-Based</br>Reading and Writing Score
           </div>
           <div class="col-md-6" style="text-align:right;font-size:30px;padding:0 5px 0 0">
-            380
+            {{totalScores.TotalEvidentScore}}
           </div>
           <div class="col-md-6" style="text-align:left;font-size:13px;padding:0 0 0 5px;line-height:42px;color:grey">
             <span style="font-size:20px;margin-right:3px">|</span>160 to 760
@@ -58,7 +63,7 @@
           </div>
           <div class="row" style="height:65px">
             <div class="col-md-6" style="text-align:right;font-size:45px;padding:0 5px 0 0">
-              860
+              {{totalScores.TotalPSATScore}}
             </div>
             <div class="col-md-6" style="text-align:left;font-size:13px;padding:0 0 0 5px;line-height:60px;color:grey">
               <span style="font-size:20px;margin-right:3px">|</span>320 to 1520
@@ -83,11 +88,11 @@
       </div>
       <div class="col-md-4" style="border-left:1px solid #ccc">
         <div style="height:150px">
-          <div style="text-align:center">
-            Your Evidence-Based</br>Reading and Writing Score
+          <div style="text-align:center;line-height:40px">
+            Your Math Score
           </div>
-          <div class="col-md-6" style="text-align:right;font-size:30px;padding:0 5px 0 0">
-            380
+          <div class="col-md-6" style="text-align:right;font-size:30px;padding:0 5px 0 0;">
+            {{totalScores.TotalMathScore}}
           </div>
           <div class="col-md-6" style="text-align:left;font-size:13px;padding:0 0 0 5px;line-height:42px;color:grey">
             <span style="font-size:20px;margin-right:3px">|</span>160 to 760
@@ -104,7 +109,23 @@
           <div class="col-md-12" style="display: block; height: 1px;border: 0;border-top: 3px solid #ccc;margin: 1em 0;padding: 0;"></div>
         </div>
         <div style="height:250px">
-          <div class="col-md-12">LINE</div>
+          <div class="row">
+            <div class="col-md-1" style="padding:0;margin:0;line-height:10px;text-align:right">160</div>
+            <div class="col-md-10" style="padding:0 5px;position:relative">
+              <div class="progress" style="height:10px;border-radius:0">
+                <div class="progress-bar" role="progressbar" style="width:20%;background-color:red"></div>
+                <div class="progress-bar" role="progressbar" style="width:10%;background-color:#EDC500"></div>
+                <div class="progress-bar" role="progressbar" style="width:70%;background-color:#00B867"></div>
+              </div>
+            </div>
+            <div class="col-md-10 col-md-offset-1" style="padding:0 5px;position:absolute">
+              <div  class="progress" style="height:30px;border-radius:0;background:none;box-shadow:none">
+                <div class="progress-bar" role="progressbar" style="background:none;box-shadow:none" ng-style="{'width': mathscoretotalpercentage + '%'}"></div>
+                <div class="progress-bar" role="progressbar" style="width:1%;background-color:black"></div>
+              </div>
+            </div>
+            <div class="col-md-1" style="padding:0;margin:0;line-height:10px">760</div>
+          </div>
           <div class="col-md-2">
             <i class="fa fa-check-circle fa-2x" aria-hidden="true" style="color:#00B867"></i>
           </div>
@@ -138,30 +159,77 @@
       <div class="col-md-6" style="">
         <div class="row">
           <span style="font-size:30px">Test Scores </span>8 to 38 range*
-          <div class="row" style="margin:10px 0 0 0;padding-left:50px">
-            <span style="font-size:25px;margin-right:5px">18</span> Reading
+          <div class="row" style="margin:10px 0 10px 0;padding-left:50px">
+            <span style="font-size:25px;margin-right:5px">{{totalScores.TotalReadingScore}}</span> Reading
           </div>
-          <div class="row" style="margin:0;padding-left:40px;display:flex;justify-content:left;align-items:center">
+          <!-- <div class="row" style="margin:0;padding-left:40px;display:flex;justify-content:left;align-items:center">
             <div style="color:grey">8</div>
             <div style="display: block; height: 1px;border: 0;border-top: 4px solid red;padding: 0; margin: 0 5px;width:70%"></div>
             <div style="color:grey">38</div>
+          </div> -->
+          <!--start progress bar-->
+          <div class="row" style="margin:0;display:flex;justify-content:left;align-items:center">
+            <div class="col-md-1" style="padding:0;margin:0;line-height:10px;text-align:right;height:30px;color:grey">8</div>
+            <div class="col-md-8" style="padding:0 5px;position:relative">
+              <div class="progress" style="height:10px;border-radius:0">
+                <div class="progress-bar" role="progressbar" style="width:20%;background-color:red"></div>
+                <div class="progress-bar" role="progressbar" style="width:10%;background-color:#EDC500"></div>
+                <div class="progress-bar" role="progressbar" style="width:70%;background-color:#00B867"></div>
+              </div>
+            </div>
+            <div class="col-md-8 col-md-offset-1" style="padding:0 5px;position:absolute">
+              <div  class="progress" style="height:30px;border-radius:0;background:none;box-shadow:none">
+                <div class="progress-bar" role="progressbar" style="background:none;box-shadow:none" ng-style="{'width': readingTestScoretotalpercentage + '%'}"></div>
+                <div class="progress-bar" role="progressbar" style="width:1%;background-color:black"></div>
+              </div>
+            </div>
+            <div class="col-md-1" style="padding:0;margin:0;line-height:10px;height:30px;color:grey">38</div>
           </div>
-          <div class="row" style="margin:10px 0 0 0;padding-left:50px">
-            <span style="font-size:25px;margin-right:5px">20</span> Writing and Language
+          <!--end progress bar-->
+          <div class="row" style="margin:10px 0 10px 0;padding-left:50px">
+            <span style="font-size:25px;margin-right:5px">{{totalScores.TotalWritingScore}}</span> Writing and Language
           </div>
-          <div class="row" style="margin:0;padding-left:40px;display:flex;justify-content:left;align-items:center">
-            <div style="color:grey">8</div>
-            <div style="display: block; height: 1px;border: 0;border-top: 4px solid red;padding: 0; margin: 0 5px;width:70%"></div>
-            <div style="color:grey">38</div>
+          <!--start progress bar-->
+          <div class="row" style="margin:0;display:flex;justify-content:left;align-items:center">
+            <div class="col-md-1" style="padding:0;margin:0;line-height:10px;text-align:right;height:30px;color:grey">8</div>
+            <div class="col-md-8" style="padding:0 5px;position:relative">
+              <div class="progress" style="height:10px;border-radius:0">
+                <div class="progress-bar" role="progressbar" style="width:20%;background-color:red"></div>
+                <div class="progress-bar" role="progressbar" style="width:10%;background-color:#EDC500"></div>
+                <div class="progress-bar" role="progressbar" style="width:70%;background-color:#00B867"></div>
+              </div>
+            </div>
+            <div class="col-md-8 col-md-offset-1" style="padding:0 5px;position:absolute">
+              <div  class="progress" style="height:30px;border-radius:0;background:none;box-shadow:none">
+                <div class="progress-bar" role="progressbar" style="background:none;box-shadow:none" ng-style="{'width': writingTestScoretotalpercentage + '%'}"></div>
+                <div class="progress-bar" role="progressbar" style="width:1%;background-color:black"></div>
+              </div>
+            </div>
+            <div class="col-md-1" style="padding:0;margin:0;line-height:10px;height:30px;color:grey">38</div>
           </div>
-          <div class="row" style="margin:10px 0 0 0;padding-left:50px">
-            <span style="font-size:25px;margin-right:5px">24.0</span> Math
+          <!--end progress bar-->
+          <div class="row" style="margin:10px 0 10px 0;padding-left:50px">
+            <span style="font-size:25px;margin-right:5px">{{totalScores.TotalPassportAdvMath}}</span> Math
           </div>
-          <div class="row" style="margin:0;padding-left:40px;display:flex;justify-content:left;align-items:center">
-            <div style="color:grey">8</div>
-            <div style="display: block; height: 1px;border: 0;border-top: 4px solid red;padding: 0; margin: 0 5px;width:70%"></div>
-            <div style="color:grey">38</div>
+          <!--start progress bar-->
+          <div class="row" style="margin:0;display:flex;justify-content:left;align-items:center">
+            <div class="col-md-1" style="padding:0;margin:0;line-height:10px;text-align:right;height:30px;color:grey">8</div>
+            <div class="col-md-8" style="padding:0 5px;position:relative">
+              <div class="progress" style="height:10px;border-radius:0">
+                <div class="progress-bar" role="progressbar" style="width:20%;background-color:red"></div>
+                <div class="progress-bar" role="progressbar" style="width:10%;background-color:#EDC500"></div>
+                <div class="progress-bar" role="progressbar" style="width:70%;background-color:#00B867"></div>
+              </div>
+            </div>
+            <div class="col-md-8 col-md-offset-1" style="padding:0 5px;position:absolute">
+              <div  class="progress" style="height:30px;border-radius:0;background:none;box-shadow:none">
+                <div class="progress-bar" role="progressbar" style="background:none;box-shadow:none" ng-style="{'width': mathTestScoretotalpercentage + '%'}"></div>
+                <div class="progress-bar" role="progressbar" style="width:1%;background-color:black"></div>
+              </div>
+            </div>
+            <div class="col-md-1" style="padding:0;margin:0;line-height:10px;height:30px;color:grey">38</div>
           </div>
+          <!--end progress bar-->
           <div class="row" style="margin:20px 0 0 0;padding-left:50px">
             <div style="display: block; height: 1px;border: 0;border-top: 2px solid #ccc;padding: 0; margin: 0 5px;width:71%"></div>
           </div>
@@ -188,62 +256,160 @@
       </div>
       <div class="col-md-6" style="">
         <span style="font-size:30px">Subscores </span>1 to 15 range*
-        <div class="row" style="margin:10px 0 0 0;padding-left:50px">
-          <span style="font-size:25px;margin-right:5px">6</span> Command of Evidence
+        <div class="row" style="margin:10px 0 10px 0;padding-left:50px">
+          <span style="font-size:25px;margin-right:5px">{{subScores.TotalCommandOfEvidence}}</span> Command of Evidence
         </div>
-        <div class="row" style="margin:0;padding-left:40px;display:flex;justify-content:left;align-items:center">
-          <div style="color:grey">1</div>
-          <div style="display: block; height: 1px;border: 0;border-top: 4px solid red;padding: 0; margin: 0 5px;width:70%"></div>
-          <div style="color:grey">15</div>
+        <!--start progress bar-->
+        <div class="row" style="margin:0;display:flex;justify-content:left;align-items:center">
+          <div class="col-md-1" style="padding:0;margin:0;line-height:10px;text-align:right;height:30px;color:grey">1</div>
+          <div class="col-md-8" style="padding:0 5px;position:relative">
+            <div class="progress" style="height:10px;border-radius:0">
+              <div class="progress-bar" role="progressbar" style="width:20%;background-color:red"></div>
+              <div class="progress-bar" role="progressbar" style="width:10%;background-color:#EDC500"></div>
+              <div class="progress-bar" role="progressbar" style="width:70%;background-color:#00B867"></div>
+            </div>
+          </div>
+          <div class="col-md-8 col-md-offset-1" style="padding:0;position:absolute">
+            <div  class="progress" style="height:30px;border-radius:0;background:none;box-shadow:none">
+              <div class="progress-bar" role="progressbar" style="background:none;box-shadow:none" ng-style="{'width': commandOfEvidencePercentage + '%'}"></div>
+              <div class="progress-bar" role="progressbar" style="width:1%;background-color:black"></div>
+            </div>
+          </div>
+          <div class="col-md-1" style="padding:0;margin:0;line-height:10px;height:30px;color:grey">15</div>
         </div>
-        <div class="row" style="margin:10px 0 0 0;padding-left:50px">
-          <span style="font-size:25px;margin-right:5px">7</span> Words in Context
+        <!--end progress bar-->
+        <div class="row" style="margin:10px 0 10px 0;padding-left:50px">
+          <span style="font-size:25px;margin-right:5px">{{subScores.TotalContextWords}}</span> Words in Context
         </div>
-        <div class="row" style="margin:0;padding-left:40px;display:flex;justify-content:left;align-items:center">
-          <div style="color:grey">1</div>
-          <div style="display: block; height: 1px;border: 0;border-top: 4px solid red;padding: 0; margin: 0 5px;width:70%"></div>
-          <div style="color:grey">15</div>
+        <!--start progress bar-->
+        <div class="row" style="margin:0;display:flex;justify-content:left;align-items:center">
+          <div class="col-md-1" style="padding:0;margin:0;line-height:10px;text-align:right;height:30px;color:grey">1</div>
+          <div class="col-md-8" style="padding:0 5px;position:relative">
+            <div class="progress" style="height:10px;border-radius:0">
+              <div class="progress-bar" role="progressbar" style="width:20%;background-color:red"></div>
+              <div class="progress-bar" role="progressbar" style="width:10%;background-color:#EDC500"></div>
+              <div class="progress-bar" role="progressbar" style="width:70%;background-color:#00B867"></div>
+            </div>
+          </div>
+          <div class="col-md-8 col-md-offset-1" style="padding:0;position:absolute">
+            <div  class="progress" style="height:30px;border-radius:0;background:none;box-shadow:none">
+              <div class="progress-bar" role="progressbar" style="background:none;box-shadow:none" ng-style="{'width': contextWordsPercentage + '%'}"></div>
+              <div class="progress-bar" role="progressbar" style="width:1%;background-color:black"></div>
+            </div>
+          </div>
+          <div class="col-md-1" style="padding:0;margin:0;line-height:10px;height:30px;color:grey">15</div>
         </div>
-        <div class="row" style="margin:10px 0 0 0;padding-left:50px">
-          <span style="font-size:25px;margin-right:5px">6</span> Expression of Ideas
+        <!--end progress bar-->
+        <div class="row" style="margin:10px 0 10px 0;padding-left:50px">
+          <span style="font-size:25px;margin-right:5px">{{subScores.TotalExpressionOfIdeas}}</span> Expression of Ideas
         </div>
-        <div class="row" style="margin:0;padding-left:40px;display:flex;justify-content:left;align-items:center">
-          <div style="color:grey">1</div>
-          <div style="display: block; height: 1px;border: 0;border-top: 4px solid red;padding: 0; margin: 0 5px;width:70%"></div>
-          <div style="color:grey">15</div>
+        <!--start progress bar-->
+        <div class="row" style="margin:0;display:flex;justify-content:left;align-items:center">
+          <div class="col-md-1" style="padding:0;margin:0;line-height:10px;text-align:right;height:30px;color:grey">1</div>
+          <div class="col-md-8" style="padding:0 5px;position:relative">
+            <div class="progress" style="height:10px;border-radius:0">
+              <div class="progress-bar" role="progressbar" style="width:20%;background-color:red"></div>
+              <div class="progress-bar" role="progressbar" style="width:10%;background-color:#EDC500"></div>
+              <div class="progress-bar" role="progressbar" style="width:70%;background-color:#00B867"></div>
+            </div>
+          </div>
+          <div class="col-md-8 col-md-offset-1" style="padding:0;position:absolute">
+            <div  class="progress" style="height:30px;border-radius:0;background:none;box-shadow:none">
+              <div class="progress-bar" role="progressbar" style="background:none;box-shadow:none" ng-style="{'width': expressionOfIdeasPercentage + '%'}"></div>
+              <div class="progress-bar" role="progressbar" style="width:1%;background-color:black"></div>
+            </div>
+          </div>
+          <div class="col-md-1" style="padding:0;margin:0;line-height:10px;height:30px;color:grey">15</div>
         </div>
-        <div class="row" style="margin:10px 0 0 0;padding-left:50px">
-          <span style="font-size:25px;margin-right:5px">8</span> Standard English Conventions
+        <!--end progress bar-->
+        <div class="row" style="margin:10px 0 10px 0;padding-left:50px">
+          <span style="font-size:25px;margin-right:5px">{{subScores.TotalStandardEngish}}</span> Standard English Conventions
         </div>
-        <div class="row" style="margin:0;padding-left:40px;display:flex;justify-content:left;align-items:center">
-          <div style="color:grey">1</div>
-          <div style="display: block; height: 1px;border: 0;border-top: 4px solid red;padding: 0; margin: 0 5px;width:70%"></div>
-          <div style="color:grey">15</div>
+        <!--start progress bar-->
+        <div class="row" style="margin:0;display:flex;justify-content:left;align-items:center">
+          <div class="col-md-1" style="padding:0;margin:0;line-height:10px;text-align:right;height:30px;color:grey">1</div>
+          <div class="col-md-8" style="padding:0 5px;position:relative">
+            <div class="progress" style="height:10px;border-radius:0">
+              <div class="progress-bar" role="progressbar" style="width:20%;background-color:red"></div>
+              <div class="progress-bar" role="progressbar" style="width:10%;background-color:#EDC500"></div>
+              <div class="progress-bar" role="progressbar" style="width:70%;background-color:#00B867"></div>
+            </div>
+          </div>
+          <div class="col-md-8 col-md-offset-1" style="padding:0;position:absolute">
+            <div  class="progress" style="height:30px;border-radius:0;background:none;box-shadow:none">
+              <div class="progress-bar" role="progressbar" style="background:none;box-shadow:none" ng-style="{'width': heartOfAlgebraPercentage + '%'}"></div>
+              <div class="progress-bar" role="progressbar" style="width:1%;background-color:black"></div>
+            </div>
+          </div>
+          <div class="col-md-1" style="padding:0;margin:0;line-height:10px;height:30px;color:grey">15</div>
         </div>
-        <div class="row" style="margin:10px 0 0 0;padding-left:50px">
-          <span style="font-size:25px;margin-right:5px">9</span> Heart of Algebra
+        <!--end progress bar-->
+        <div class="row" style="margin:10px 0 10px 0;padding-left:50px">
+          <span style="font-size:25px;margin-right:5px">{{subScores.TotalHeartOfAlgebra}}</span> Heart of Algebra
         </div>
-        <div class="row" style="margin:0;padding-left:40px;display:flex;justify-content:left;align-items:center">
-          <div style="color:grey">1</div>
-          <div style="display: block; height: 1px;border: 0;border-top: 4px solid red;padding: 0; margin: 0 5px;width:70%"></div>
-          <div style="color:grey">15</div>
+        <!--start progress bar-->
+        <div class="row" style="margin:0;display:flex;justify-content:left;align-items:center">
+          <div class="col-md-1" style="padding:0;margin:0;line-height:10px;text-align:right;height:30px;color:grey">1</div>
+          <div class="col-md-8" style="padding:0 5px;position:relative">
+            <div class="progress" style="height:10px;border-radius:0">
+              <div class="progress-bar" role="progressbar" style="width:20%;background-color:red"></div>
+              <div class="progress-bar" role="progressbar" style="width:10%;background-color:#EDC500"></div>
+              <div class="progress-bar" role="progressbar" style="width:70%;background-color:#00B867"></div>
+            </div>
+          </div>
+          <div class="col-md-8 col-md-offset-1" style="padding:0;position:absolute">
+            <div  class="progress" style="height:30px;border-radius:0;background:none;box-shadow:none">
+              <div class="progress-bar" role="progressbar" style="background:none;box-shadow:none" ng-style="{'width': passportAdvMathPercentage + '%'}"></div>
+              <div class="progress-bar" role="progressbar" style="width:1%;background-color:black"></div>
+            </div>
+          </div>
+          <div class="col-md-1" style="padding:0;margin:0;line-height:10px;height:30px;color:grey">15</div>
         </div>
-        <div class="row" style="margin:10px 0 0 0;padding-left:50px">
-          <span style="font-size:25px;margin-right:5px">8</span> Problem Solving and Data Analysis
+        <!--end progress bar-->
+        <div class="row" style="margin:10px 0 10px 0;padding-left:50px">
+          <span style="font-size:25px;margin-right:5px">{{subScores.TotalProblemSolving}}</span> Problem Solving and Data Analysis
         </div>
-        <div class="row" style="margin:0;padding-left:40px;display:flex;justify-content:left;align-items:center">
-          <div style="color:grey">1</div>
-          <div style="display: block; height: 1px;border: 0;border-top: 4px solid red;padding: 0; margin: 0 5px;width:70%"></div>
-          <div style="color:grey">15</div>
+        <!--start progress bar-->
+        <div class="row" style="margin:0;display:flex;justify-content:left;align-items:center">
+          <div class="col-md-1" style="padding:0;margin:0;line-height:10px;text-align:right;height:30px;color:grey">1</div>
+          <div class="col-md-8" style="padding:0 5px;position:relative">
+            <div class="progress" style="height:10px;border-radius:0">
+              <div class="progress-bar" role="progressbar" style="width:20%;background-color:red"></div>
+              <div class="progress-bar" role="progressbar" style="width:10%;background-color:#EDC500"></div>
+              <div class="progress-bar" role="progressbar" style="width:70%;background-color:#00B867"></div>
+            </div>
+          </div>
+          <div class="col-md-8 col-md-offset-1" style="padding:0;position:absolute">
+            <div  class="progress" style="height:30px;border-radius:0;background:none;box-shadow:none">
+              <div class="progress-bar" role="progressbar" style="background:none;box-shadow:none" ng-style="{'width': problemSolvingPercentage + '%'}"></div>
+              <div class="progress-bar" role="progressbar" style="width:1%;background-color:black"></div>
+            </div>
+          </div>
+          <div class="col-md-1" style="padding:0;margin:0;line-height:10px;height:30px;color:grey">15</div>
         </div>
-        <div class="row" style="margin:10px 0 0 0;padding-left:50px">
-          <span style="font-size:25px;margin-right:5px">7</span> Passport to Advanced Math
+        <!--end progress bar-->
+        <div class="row" style="margin:10px 0 10px 0;padding-left:50px">
+          <span style="font-size:25px;margin-right:5px">{{subScores.TotalPassportAdvMath}}</span> Passport to Advanced Math
         </div>
-        <div class="row" style="margin:0;padding-left:40px;display:flex;justify-content:left;align-items:center">
-          <div style="color:grey">1</div>
-          <div style="display: block; height: 1px;border: 0;border-top: 4px solid red;padding: 0; margin: 0 5px;width:70%"></div>
-          <div style="color:grey">15</div>
+        <!--start progress bar-->
+        <div class="row" style="margin:0;display:flex;justify-content:left;align-items:center">
+          <div class="col-md-1" style="padding:0;margin:0;line-height:10px;text-align:right;height:30px;color:grey">1</div>
+          <div class="col-md-8" style="padding:0 5px;position:relative">
+            <div class="progress" style="height:10px;border-radius:0">
+              <div class="progress-bar" role="progressbar" style="width:20%;background-color:red"></div>
+              <div class="progress-bar" role="progressbar" style="width:10%;background-color:#EDC500"></div>
+              <div class="progress-bar" role="progressbar" style="width:70%;background-color:#00B867"></div>
+            </div>
+          </div>
+          <div class="col-md-8 col-md-offset-1" style="padding:0;position:absolute">
+            <div  class="progress" style="height:30px;border-radius:0;background:none;box-shadow:none">
+              <div class="progress-bar" role="progressbar" style="background:none;box-shadow:none" ng-style="{'width': standardEngPercentage + '%'}"></div>
+              <div class="progress-bar" role="progressbar" style="width:1%;background-color:black"></div>
+            </div>
+          </div>
+          <div class="col-md-1" style="padding:0;margin:0;line-height:10px;height:30px;color:grey">15</div>
         </div>
+        <!--end progress bar-->
       </div>
     </div>
     <div class="row" style="margin-top:30px">
@@ -261,39 +427,39 @@
             <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:10px">Correct</div></div>
             <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:10px">Your Answer</div></div>
             <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:20px">Difficulty</div></div>
-            <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:30px">Subscore</div></div>
+            <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:17px">Subscore</div></div>
             <div style="display:table-cell;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:5px"> Cross-Test </br>Score</div></div>
           </div>
-          <div style="display:table-row;text-align:center" ng-repeat="readingscore in readingscores">
-            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey;padding-top:5px;padding-bottom:5px">{{readingscore.QUESTION}}</div>
-            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey">{{readingscore.CORRECT}}</div>
+          <div style="display:table-row;text-align:center" ng-repeat="readingScore in readingScoresArr">
+            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey;padding-top:5px;padding-bottom:5px">{{readingScore.questionNumber}}</div>
+            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey">{{readingScore.answerOne}}</div>
             <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey">
-              <span ng-if="readingscore.ANSWER===readingscore.CORRECT">
+              <span ng-if="readingScore.correctAnswer==='TRUE'">
                 <i class="fa fa-check"></i>
               </span>
-              <span ng-if="readingscore.ANSWER!==readingscore.CORRECT" style="color:red">
-                {{readingscore.ANSWER}}
+              <span ng-if="readingScore.correctAnswer==='FALSE'" style="color:red">
+                {{readingScore.StudentAnswer}}
               </span>
             </div>
             <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey">
-              <span ng-if="readingscore.DIFFICULTY==='EASY'" style="display:flex;justify-content:space-evenly">
+              <span ng-if="readingScore.diffLevel==='E'" style="display:flex;justify-content:space-evenly">
                 <div style="background:green;width:10px;height:10px;margin-left:5px"></div>
                 <div style="background:grey;width:10px;height:10px;margin-left:5px"></div>
                 <div style="background:grey;width:10px;height:10px;margin-left:5px;margin-right:5px"></div>
               </span>
-              <span ng-if="readingscore.DIFFICULTY==='MEDIUM'" style="display:flex;justify-content:space-evenly">
+              <span ng-if="readingScore.diffLevel==='M'" style="display:flex;justify-content:space-evenly">
                 <div style="background:yellow;width:10px;height:10px;"></div>
                 <div style="background:yellow;width:10px;height:10px;"></div>
                 <div style="background:grey;width:10px;height:10px;"></div>
               </span>
-              <span ng-if="readingscore.DIFFICULTY==='HARD'" style="display:flex;justify-content:space-evenly">
+              <span ng-if="readingScore.diffLevel==='H'" style="display:flex;justify-content:space-evenly">
                 <div style="background:red;width:10px;height:10px;"></div>
                 <div style="background:red;width:10px;height:10px;"></div>
                 <div style="background:red;width:10px;height:10px;"></div>
               </span>
             </div>
-            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey;padding: 0 5px">{{readingscore.SUBSCORE}}</div>
-            <div style="display:table-cell;border-top:2px solid lightgrey;padding: 0 5px">{{readingscore.CROSS}}</div>
+            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey;padding: 0 5px">COE</div>
+            <div style="display:table-cell;border-top:2px solid lightgrey;padding: 0 5px">HSS</div>
           </div>
         </div>
       </div>
@@ -354,39 +520,39 @@
             <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:10px">Correct</div></div>
             <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:10px">Your Answer</div></div>
             <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:20px">Difficulty</div></div>
-            <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:30px">Subscore</div></div>
+            <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:17px">Subscore</div></div>
             <div style="display:table-cell;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:5px"> Cross-Test </br>Score</div></div>
           </div>
-          <div style="display:table-row;text-align:center" ng-repeat="writingscore in writingscores">
-            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey;padding-top:5px;padding-bottom:5px">{{writingscore.QUESTION}}</div>
-            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey">{{writingscore.CORRECT}}</div>
+          <div style="display:table-row;text-align:center" ng-repeat="writingLangScore in writingLangScoresArr">
+            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey;padding-top:5px;padding-bottom:5px">{{writingLangScore.questionNumber}}</div>
+            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey">{{writingLangScore.answerOne}}</div>
             <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey">
-              <span ng-if="writingscore.ANSWER===writingscore.CORRECT">
+              <span ng-if="writingLangScore.correctAnswer==='TRUE'">
                 <i class="fa fa-check"></i>
               </span>
-              <span ng-if="writingscore.ANSWER!==writingscore.CORRECT" style="color:red">
-                {{writingscore.ANSWER}}
+              <span ng-if="writingLangScore.correctAnswer==='FALSE'" style="color:red">
+                {{writingLangScore.StudentAnswer}}
               </span>
             </div>
             <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey">
-              <span ng-if="writingscore.DIFFICULTY==='EASY'" style="display:flex;justify-content:space-evenly">
+              <span ng-if="writingLangScore.diffLevel==='E'" style="display:flex;justify-content:space-evenly">
                 <div style="background:green;width:10px;height:10px;margin-left:5px"></div>
                 <div style="background:grey;width:10px;height:10px;margin-left:5px"></div>
                 <div style="background:grey;width:10px;height:10px;margin-left:5px;margin-right:5px"></div>
               </span>
-              <span ng-if="writingscore.DIFFICULTY==='MEDIUM'" style="display:flex;justify-content:space-evenly">
+              <span ng-if="writingLangScore.diffLevel==='M'" style="display:flex;justify-content:space-evenly">
                 <div style="background:yellow;width:10px;height:10px;"></div>
                 <div style="background:yellow;width:10px;height:10px;"></div>
                 <div style="background:grey;width:10px;height:10px;"></div>
               </span>
-              <span ng-if="writingscore.DIFFICULTY==='HARD'" style="display:flex;justify-content:space-evenly">
+              <span ng-if="writingLangScore.diffLevel==='H'" style="display:flex;justify-content:space-evenly">
                 <div style="background:red;width:10px;height:10px;"></div>
                 <div style="background:red;width:10px;height:10px;"></div>
                 <div style="background:red;width:10px;height:10px;"></div>
               </span>
             </div>
-            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey;padding: 0 5px">{{writingscore.SUBSCORE}}</div>
-            <div style="display:table-cell;border-top:2px solid lightgrey;padding: 0 5px">{{writingscore.CROSS}}</div>
+            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey;padding: 0 5px">COE</div>
+            <div style="display:table-cell;border-top:2px solid lightgrey;padding: 0 5px">HSS</div>
           </div>
         </div>
       </div>
@@ -401,39 +567,39 @@
             <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:10px">Correct</div></div>
             <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:10px">Your Answer</div></div>
             <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:20px">Difficulty</div></div>
-            <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:30px">Subscore</div></div>
+            <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:17px">Subscore</div></div>
             <div style="display:table-cell;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:5px"> Cross-Test </br>Score</div></div>
           </div>
-          <div style="display:table-row;text-align:center" ng-repeat="mathcalscore in mathcalscores">
-            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey;padding-top:5px;padding-bottom:5px">{{mathcalscore.QUESTION}}</div>
-            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey">{{mathcalscore.CORRECT}}</div>
+          <div style="display:table-row;text-align:center" ng-repeat="mathCalScore in mathCalScoresArr">
+            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey;padding-top:5px;padding-bottom:5px">{{mathCalScore.questionNumber}}</div>
+            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey">{{mathCalScore.answerOne}}</div>
             <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey">
-              <span ng-if="mathcalscore.ANSWER===mathcalscore.CORRECT">
+              <span ng-if="mathCalScore.correctAnswer==='TRUE'">
                 <i class="fa fa-check"></i>
               </span>
-              <span ng-if="mathcalscore.ANSWER!==mathcalscore.CORRECT" style="color:red">
-                {{mathcalscore.ANSWER}}
+              <span ng-if="mathCalScore.correctAnswer==='FALSE'" style="color:red">
+                {{mathCalScore.StudentAnswer}}
               </span>
             </div>
             <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey">
-              <span ng-if="mathcalscore.DIFFICULTY==='EASY'" style="display:flex;justify-content:space-evenly">
+              <span ng-if="mathCalScore.diffLevel==='E'" style="display:flex;justify-content:space-evenly">
                 <div style="background:green;width:10px;height:10px;margin-left:5px"></div>
                 <div style="background:grey;width:10px;height:10px;margin-left:5px"></div>
                 <div style="background:grey;width:10px;height:10px;margin-left:5px;margin-right:5px"></div>
               </span>
-              <span ng-if="mathcalscore.DIFFICULTY==='MEDIUM'" style="display:flex;justify-content:space-evenly">
+              <span ng-if="mathCalScore.diffLevel==='M'" style="display:flex;justify-content:space-evenly">
                 <div style="background:yellow;width:10px;height:10px;"></div>
                 <div style="background:yellow;width:10px;height:10px;"></div>
                 <div style="background:grey;width:10px;height:10px;"></div>
               </span>
-              <span ng-if="mathcalscore.DIFFICULTY==='HARD'" style="display:flex;justify-content:space-evenly">
+              <span ng-if="mathCalScore.diffLevel==='H'" style="display:flex;justify-content:space-evenly">
                 <div style="background:red;width:10px;height:10px;"></div>
                 <div style="background:red;width:10px;height:10px;"></div>
                 <div style="background:red;width:10px;height:10px;"></div>
               </span>
             </div>
-            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey;padding: 0 5px">{{mathcalscore.SUBSCORE}}</div>
-            <div style="display:table-cell;border-top:2px solid lightgrey;padding: 0 5px">{{mathcalscore.CROSS}}</div>
+            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey;padding: 0 5px">COE</div>
+            <div style="display:table-cell;border-top:2px solid lightgrey;padding: 0 5px">HSS</div>
           </div>
         </div>
       </div>
@@ -448,39 +614,39 @@
             <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:10px">Correct</div></div>
             <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:10px">Your Answer</div></div>
             <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:20px">Difficulty</div></div>
-            <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:30px">Subscore</div></div>
+            <div style="display:table-cell;border-right:2px solid lightgrey;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:17px">Subscore</div></div>
             <div style="display:table-cell;white-space:nowrap;max-width:30px;height:85px;vertical-align:bottom"><div style="transform: rotate(-90deg);padding-left:5px"> Cross-Test </br>Score</div></div>
           </div>
-          <div style="display:table-row;text-align:center" ng-repeat="mathnocalscore in mathnocalscores">
-            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey;padding-top:5px;padding-bottom:5px">{{mathnocalscore.QUESTION}}</div>
-            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey">{{mathnocalscore.CORRECT}}</div>
+          <div style="display:table-row;text-align:center" ng-repeat="mathNoCalScore in mathNoCalScoresArr">
+            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey;padding-top:5px;padding-bottom:5px">{{mathNoCalScore.questionNumber}}</div>
+            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey">{{mathNoCalScore.answerOne}}</div>
             <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey">
-              <span ng-if="mathnocalscore.ANSWER===mathnocalscore.CORRECT">
+              <span ng-if="mathNoCalScore.correctAnswer==='TRUE'">
                 <i class="fa fa-check"></i>
               </span>
-              <span ng-if="mathnocalscore.ANSWER!==mathnocalscore.CORRECT" style="color:red">
-                {{mathnocalscore.ANSWER}}
+              <span ng-if="mathNoCalScore.correctAnswer==='FALSE'" style="color:red">
+                {{mathNoCalScore.StudentAnswer}}
               </span>
             </div>
             <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey">
-              <span ng-if="mathnocalscore.DIFFICULTY==='EASY'" style="display:flex;justify-content:space-evenly">
+              <span ng-if="mathNoCalScore.diffLevel==='E'" style="display:flex;justify-content:space-evenly">
                 <div style="background:green;width:10px;height:10px;margin-left:5px"></div>
                 <div style="background:grey;width:10px;height:10px;margin-left:5px"></div>
                 <div style="background:grey;width:10px;height:10px;margin-left:5px;margin-right:5px"></div>
               </span>
-              <span ng-if="mathnocalscore.DIFFICULTY==='MEDIUM'" style="display:flex;justify-content:space-evenly">
+              <span ng-if="mathNoCalScore.diffLevel==='M'" style="display:flex;justify-content:space-evenly">
                 <div style="background:yellow;width:10px;height:10px;"></div>
                 <div style="background:yellow;width:10px;height:10px;"></div>
                 <div style="background:grey;width:10px;height:10px;"></div>
               </span>
-              <span ng-if="mathnocalscore.DIFFICULTY==='HARD'" style="display:flex;justify-content:space-evenly">
+              <span ng-if="mathNoCalScore.diffLevel==='H'" style="display:flex;justify-content:space-evenly">
                 <div style="background:red;width:10px;height:10px;"></div>
                 <div style="background:red;width:10px;height:10px;"></div>
                 <div style="background:red;width:10px;height:10px;"></div>
               </span>
             </div>
-            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey;padding: 0 5px">{{mathnocalscore.SUBSCORE}}</div>
-            <div style="display:table-cell;border-top:2px solid lightgrey;padding: 0 5px">{{mathnocalscore.CROSS}}</div>
+            <div style="display:table-cell;border-top:2px solid lightgrey; border-right:2px solid lightgrey;padding: 0 5px">COE</div>
+            <div style="display:table-cell;border-top:2px solid lightgrey;padding: 0 5px">HSS</div>
           </div>
         </div>
         <div class="col-md-12" style="padding-left:30px">
