@@ -22,6 +22,39 @@ app.service('dataService', function($http, $q, CONSTANTS, $httpParamSerializerJQ
     // return deferred.promise;
   };
 
+  service.loginUser = function(dataType, dataObj) {
+    var action = CONSTANTS.api.actions[dataType].loginUser;
+    // var deferred = $q.defer();
+    return $http({
+      url: base + path + query + action,
+      method: 'GET',
+      params: dataObj,
+      paramSerializer: '$httpParamSerializerJQLike'
+    });
+  };
+
+  service.getScoringRange = function (dataType, dataObj) {
+    var action = CONSTANTS.api.actions[dataType].getScoringRange;
+    // var deferred = $q.defer();
+    return $http({
+      url: base + path + query + action,
+      method: 'GET',
+      params: dataObj,
+      paramSerializer: '$httpParamSerializerJQLike'
+    });
+  };
+
+  service.getStudentSectionData = function (dataType, dataObj) {
+    var action = CONSTANTS.api.actions[dataType].getStudentSectionData;
+    // var deferred = $q.defer();
+    return $http({
+      url: base + path + query + action,
+      method: 'GET',
+      params: dataObj,
+      paramSerializer: '$httpParamSerializerJQLike'
+    });
+  }
+
   service.getStudentTotalScores = function(dataType, dataObj) {
     var action = CONSTANTS.api.actions[dataType].getStudentTotalScores;
     // var deferred = $q.defer();
