@@ -25,7 +25,7 @@ app.controller('LoginPageController', function($scope, $state, dataService, stud
         $state.go('report');
       } else if (response.data[0].role==="admin") {
         adminService.set(response.data[0].userid);
-        $state.go('reportAdmin');
+        $state.go('studentListAdmin');
       }
     });
   };

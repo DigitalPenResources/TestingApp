@@ -90,6 +90,8 @@ app.controller('ReportController', function($scope, $http, $httpParamSerializerJ
         $scope.mathNoCalScoresArr.push(answer);
       }
     });
+    console.log($scope.mathNoCalScoresArr)
+    
 
     //get scoring range
     dataService.getScoringRange('score', {grade: $scope.studentGrade}).then(function (response) {

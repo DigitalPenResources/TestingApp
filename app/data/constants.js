@@ -16,7 +16,11 @@ app.constant('CONSTANTS', {
         loginUser: 'loginUser'
       },
       score: {
-        getScoringRange: 'getScoringRange'
+        getScoringRange: 'getScoringRange',
+        getProjectedScore: 'getProjectedScore'
+      },
+      answer: {
+        insertStudentAnswer: 'insertStudentAnswer'
       }
     }
   }
