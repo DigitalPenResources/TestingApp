@@ -475,7 +475,10 @@
       <!--reading-->
       <div class="col-md-3">
         <div class="col-md-12 question-icon">
-          <i class="fa fa-book fa-lg"></i>
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x" style="color:#9C27B0"></i>
+            <i class="fa fa-book fa-stack-1x fa-inverse" style="border-radius:50%;box-shadow: 0px 0px 5px 0px #9C27B0"></i>
+          </span>
         </div>
         <div >
           <div class="question-table">
@@ -494,14 +497,14 @@
               <div class="question-table-cell">{{readingScore.answerOne}}</div>
               <div class="question-table-cell-answer">
                 <div ng-if="readingScore.correctAnswer==='TRUE'">
-                  <input ng-hide="input" class="question-table-cell-input" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer">
-                  <span ng-show="input" ng-init="input=true" ng-click="input=false">{{readingScore.StudentAnswer}}</span>
+                  <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" placeholder="{{readingScore.StudentAnswer}}">
+                  <!-- <span ng-show="input" ng-init="input=true" ng-click="input=false">{{readingScore.StudentAnswer}}</span> -->
                 </div>
                 <div ng-if="readingScore.correctAnswer==='FALSE'">
-                  <input ng-hide="input" class="question-table-cell-input" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer">
-                  <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false">
-                    {{readingScore.StudentAnswer}}
-                  </span>
+                  <input class="question-table-cell-input-incorrect" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" placeholder="{{readingScore.StudentAnswer}}">
+                  <!-- <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false"> -->
+                    <!-- {{readingScore.StudentAnswer}} -->
+                  <!-- </span> -->
                 </div>
               </div>
               <div class="question-table-cell vertical-align">
@@ -526,7 +529,10 @@
       <!--WRITING-->
       <div class="col-md-3">
         <div class="col-md-12 question-icon">
-          <i class="fa fa-pencil fa-lg"></i>
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x" style="color:#00BCD4"></i>
+            <i class="fa fa-pencil fa-stack-1x fa-inverse" style="border-radius:50%;box-shadow: 0px 0px 5px 0px #00BCD4"></i>
+          </span>
         </div>
         <div class="question-table">
           <div class="question-table-rows">
@@ -544,14 +550,14 @@
             <div class="question-table-cell">{{writingLangScore.answerOne}}</div>
             <div class="question-table-cell-answer">
               <div ng-if="writingLangScore.correctAnswer==='TRUE'">
-                <input ng-hide="input" class="question-table-cell-input" type="text" ng-change="changeScore(writingLangScore)" ng-model="writingLangScore.adjustedAnswer">
-                <span ng-show="input" ng-init="input=true" ng-click="input=false">{{writingLangScore.StudentAnswer}}</span>
+                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(writingLangScore)" ng-model="writingLangScore.adjustedAnswer" placeholder="{{writingLangScore.StudentAnswer}}">
+                <!-- <span ng-show="input" ng-init="input=true" ng-click="input=false">{{writingLangScore.StudentAnswer}}</span> -->
               </div>
               <div ng-if="writingLangScore.correctAnswer==='FALSE'">
-                <input ng-hide="input" class="question-table-cell-input" type="text" ng-change="changeScore(writingLangScore)" ng-model="writingLangScore.adjustedAnswer">
-                <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false">
+                <input class="question-table-cell-input-incorrect" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(writingLangScore)" ng-model="writingLangScore.adjustedAnswer" placeholder="{{writingLangScore.StudentAnswer}}">
+                <!-- <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false">
                   {{writingLangScore.StudentAnswer}}
-                </span>
+                </span> -->
               </div>
             </div>
             <div class="question-table-cell vertical-align">
@@ -575,7 +581,10 @@
       <!--MATH CALCULATOR-->
       <div class="col-md-3">
         <div class="col-md-12 question-icon">
-          <i class="fa fa-calculator fa-lg"></i>
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x" style="color:#FF5722"></i>
+            <i class="fa fa-calculator fa-stack-1x fa-inverse" style="border-radius:50%;box-shadow: 0px 0px 5px 0px #FF5722"></i>
+          </span>
         </div>
         <div class="question-table">
           <div class="question-table-rows">
@@ -593,14 +602,14 @@
             <div class="question-table-cell">{{mathCalScore.answerOne}}</div>
             <div class="question-table-cell-answer">
               <div ng-if="mathCalScore.correctAnswer==='TRUE'">
-                <input ng-hide="input" class="question-table-cell-input" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer">
-                <span ng-show="input" ng-init="input=true" ng-click="input=false">{{mathCalScore.StudentAnswer}}</span>
+                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" placeholder="{{mathCalScore.StudentAnswer}}">
+                <!-- <span ng-show="input" ng-init="input=true" ng-click="input=false">{{mathCalScore.StudentAnswer}}</span> -->
               </div>
               <div ng-if="mathCalScore.correctAnswer==='FALSE'">
-                <input ng-hide="input" class="question-table-cell-input" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer">
-                <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false">
+                <input class="question-table-cell-input-incorrect" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true"type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" placeholder="{{mathCalScore.StudentAnswer}}">
+                <!-- <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false">
                   {{mathCalScore.StudentAnswer}}
-                </span>
+                </span> -->
               </div>
             </div>
             <div class="question-table-cell vertical-align">
@@ -637,14 +646,14 @@
             <div class="question-table-cell">{{mathCalScore.answerOne}}</div>
             <div class="question-table-cell-answer">
               <div ng-if="mathCalScore.correctAnswer==='TRUE'">
-                <input ng-hide="input" class="question-table-cell-input" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer">
-                <span ng-show="input" ng-init="input=true" ng-click="input=false">{{mathCalScore.StudentAnswer}}</span>
+                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" placeholder="{{mathCalScore.StudentAnswer}}">
+                <!-- <span ng-show="input" ng-init="input=true" ng-click="input=false">{{mathCalScore.StudentAnswer}}</span> -->
               </div>
               <div ng-if="mathCalScore.correctAnswer==='FALSE'">
-                <input ng-hide="input" class="question-table-cell-input" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer">
-                <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false">
+                <input class="question-table-cell-input-incorrect" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" placeholder="{{mathCalScore.StudentAnswer}}">
+                <!-- <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false">
                   {{mathCalScore.StudentAnswer}}
-                </span>
+                </span> -->
               </div>
             </div>
             <div class="question-table-cell vertical-align">
@@ -689,14 +698,14 @@
             <div class="question-table-cell">{{mathNoCalScore.answerOne}}</div>
             <div class="question-table-cell-answer">
               <div ng-if="mathNoCalScore.correctAnswer==='TRUE'">
-                <input ng-hide="input" class="question-table-cell-input" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer">
-                <span ng-show="input" ng-init="input=true" ng-click="input=false">{{mathNoCalScore.StudentAnswer}}</span>
+                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer" placeholder="{{mathNoCalScore.StudentAnswer}}">
+                <!-- <span ng-show="input" ng-init="input=true" ng-click="input=false">{{mathNoCalScore.StudentAnswer}}</span> -->
               </div>
-              <div ng-if="mathNoCalScore.correctAnswer==='FALSE'">
-                <input ng-hide="input" class="question-table-cell-input" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer">
-                <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false">
-                  {{mathNoCalScore.StudentAnswer}}
-                </span>
+              <div ng-if="mathNoCalScore.correctAnswer==='FALSE'" class="">
+                <input class="question-table-cell-input-incorrect" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer" placeholder="{{mathNoCalScore.StudentAnswer}}">
+                <!-- <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false"> -->
+                  <!-- {{mathNoCalScore.StudentAnswer}} -->
+                <!-- </span> -->
               </div>
             </div>
             <div class="question-table-cell vertical-align">
@@ -733,14 +742,14 @@
             <div class="question-table-cell">{{mathNoCalScore.answerOne}}</div>
             <div class="question-table-cell-answer">
               <div ng-if="mathNoCalScore.correctAnswer==='TRUE'">
-                <input ng-hide="input" class="question-table-cell-input" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer">
-                <span ng-show="input" ng-init="input=true" ng-click="input=false">{{mathNoCalScore.StudentAnswer}}</span>
+                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer" placeholder="{{mathNoCalScore.StudentAnswer}}">
+                <!-- <span ng-show="input" ng-init="input=true" ng-click="input=false">{{mathNoCalScore.StudentAnswer}}</span> -->
               </div>
               <div ng-if="mathNoCalScore.correctAnswer==='FALSE'">
-                <input ng-hide="input" class="question-table-cell-input" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer">
-                <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false">
+                <input class="question-table-cell-input-incorrect" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer" placeholder="{{mathNoCalScore.StudentAnswer}}">
+                <!-- <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false">
                   {{mathNoCalScore.StudentAnswer}}
-                </span>
+                </span> -->
               </div>
             </div>
             <div class="question-table-cell vertical-align">
