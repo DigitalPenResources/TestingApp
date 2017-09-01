@@ -222,4 +222,31 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
     //   }
   // };
 
+  $scope.printToPdf = function() {
+    html2canvas($('#print-section-1') , {
+      onrendered: function (canvas) {
+      var data1 = canvas.toDataURL();
+        html2canvas($('#print-section-2') , {
+          onrendered: function (canvas) {
+            var data2 = canvas.toDataURL();
+
+            var docDefinition = {
+              content: [
+                {
+                  image: data1,
+                  width: 500,
+                  pageBreak:'after',
+                },
+                {
+                  image: data2,
+                  width: 500,
+                }
+              ]
+            };
+            pdfMake.createPdf(docDefinition).download('Student (' + $scope.studentID + ') Report');
+          }
+        });
+       }
+     });
+   };
 });

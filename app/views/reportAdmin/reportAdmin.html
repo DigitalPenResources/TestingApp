@@ -1,5 +1,6 @@
 <div id="report">
   <div class="container page-padding admin-width">
+    <div id="print-section-1">
     <div class="row">
       <div class="col-md-12 page-header" style="margin-bottom:0">
         Welcome {{adminID}}
@@ -465,12 +466,15 @@
         <!--end progress bar-->
       </div>
     </div>
+    </div>
+    <div id="print-section-2">
     <div class="row section-margin">
       <div class="col-md-12 font-lg section-title">
         Your Question-Level Feedback
       </div>
       <div class="col-md-12 text-center font-md" style="margin-bottom:20px">
         Change answer input below and recalculate for projected score <br><button class="btn btn-danger" ng-click="calculate()">Recalculate</button>
+        <button class="btn btn-primary" ng-click="printToPdf()"><i class="fa fa-save"></i> Save as PDF</button>
       </div>
       <!--reading-->
       <div class="col-md-3">
@@ -863,6 +867,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </div>
