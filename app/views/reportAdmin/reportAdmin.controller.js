@@ -180,7 +180,7 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
                 console.log(response);
                 $scope.projectedScore=response.data[0];
                 $scope.recalc=true;
-                document.getElementById('report').scrollIntoView();
+                // document.getElementById('report').scrollIntoView();
               });
             }
           }
@@ -243,7 +243,7 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
                 }
               ]
             };
-            pdfMake.createPdf(docDefinition).download('Student (' + $scope.studentID + ') Report');
+            pdfMake.createPdf(docDefinition).download($scope.studentID + ' - ' + $scope.answers[0].examVersion);
           }
         });
        }

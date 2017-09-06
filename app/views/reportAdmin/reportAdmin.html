@@ -55,8 +55,8 @@
             <div class="col-md-6 psat-section-score-range-col">
               <span class="section-score-range">|</span>320 to 1520
             </div>
-            <div ng-show="recalc" class="col-md-12" style="color:red; text-align: center; font-size: 15px; font-weight: bold; line-height: 0;">
-              Projected Score: {{projectedScore.projectedscore}}</div>
+            <!-- <div ng-show="recalc" class="col-md-12" style="color:red; text-align: center; font-size: 15px; font-weight: bold; line-height: 0;">
+              Projected Score: {{projectedScore.projectedscore}}</div> -->
           </div>
           <div class="col-md-12 section-horizontal-bar"></div>
           <div class="col-md-12">
@@ -298,172 +298,176 @@
             <div class="subscore-score"></div>
           </div>
         </div>
-        <div id="test-score-wording" class="row">
-          When you take tests more than once, your scores may differ slightly upon each testing occasion. This expected variation is considered your score range, and reflects the range your scores will likely fall in upon retesting. For the PSAT/NMSQT®, these ranges are approximately:</br></br>
-          <span class="bold">Total:</span> Your score ± 40 points.</br>
-          <span class="bold">Section:</span> Your score ± 30 points.</br>
-          <span class="bold">Test Scores and Cross-Test Scores:</span> Your score ± 3 points. </br>
-          <span class="bold">Subscores:</span> Your score ± 2 points. </br></br>
-          Remember that you will receive scores in the same areas when you take the SAT.</br>
-          1. Beginning in March 2016
-        </div>
+
       </div>
       <div class="col-md-6">
-        <span class="font-lg">Subscores </span>{{scoreRange.commandofevidenceredmin}} to {{scoreRange.commandofevidencegreenmax}} range*
-        <div class="row subscore-title">
-          <span class="subscore-score">{{subScores.TotalCommandOfEvidence}}</span> Command of Evidence
-        </div>
-        <!--start progress bar-->
-        <div class="row test-score-bar">
-          <div class="col-md-1 score-min">{{scoreRange.commandofevidenceredmin}}</div>
-          <div class="col-md-8 score-bar">
-            <div class="progress progress-bar-height">
-              <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': commandofevidenceredpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': commandofevidenceyellowpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': commandofevidencegreenpercentage + '%'}"></div>
-            </div>
+        <div class="row">
+          <span class="font-lg">Subscores </span>{{scoreRange.commandofevidenceredmin}} to {{scoreRange.commandofevidencegreenmax}} range*
+          <div class="row subscore-title">
+            <span class="subscore-score">{{subScores.TotalCommandOfEvidence}}</span> Command of Evidence
           </div>
-          <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
-            <div  class="progress score-bar-indicator-no-margin">
-              <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': commandOfEvidencePercentage + '%'}"></div>
-              <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+          <!--start progress bar-->
+          <div class="row test-score-bar">
+            <div class="col-md-1 score-min">{{scoreRange.commandofevidenceredmin}}</div>
+            <div class="col-md-8 score-bar">
+              <div class="progress progress-bar-height">
+                <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': commandofevidenceredpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': commandofevidenceyellowpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': commandofevidencegreenpercentage + '%'}"></div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-1 score-max">{{scoreRange.commandofevidencegreenmax}}</div>
-        </div>
-        <!--end progress bar-->
-        <div class="row subscore-title">
-          <span class="subscore-score">{{subScores.TotalContextWords}}</span> Words in Context
-        </div>
-        <!--start progress bar-->
-        <div class="row test-score-bar">
-          <div class="col-md-1 score-min">{{scoreRange.wordsincontextredmin}}</div>
-          <div class="col-md-8 score-bar">
-            <div class="progress progress-bar-height">
-              <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': commandofevidenceredpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': commandofevidenceyellowpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': commandofevidencegreenpercentage + '%'}"></div>
+            <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
+              <div  class="progress score-bar-indicator-no-margin">
+                <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': commandOfEvidencePercentage + '%'}"></div>
+                <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+              </div>
             </div>
+            <div class="col-md-1 score-max">{{scoreRange.commandofevidencegreenmax}}</div>
           </div>
-          <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
-            <div  class="progress score-bar-indicator-no-margin">
-              <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': contextWordsPercentage + '%'}"></div>
-              <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+          <!--end progress bar-->
+          <div class="row subscore-title">
+            <span class="subscore-score">{{subScores.TotalContextWords}}</span> Words in Context
+          </div>
+          <!--start progress bar-->
+          <div class="row test-score-bar">
+            <div class="col-md-1 score-min">{{scoreRange.wordsincontextredmin}}</div>
+            <div class="col-md-8 score-bar">
+              <div class="progress progress-bar-height">
+                <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': commandofevidenceredpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': commandofevidenceyellowpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': commandofevidencegreenpercentage + '%'}"></div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-1 score-max">{{scoreRange.wordsincontextgreenmax}}</div>
-        </div>
-        <!--end progress bar-->
-        <div class="row subscore-title">
-          <span class="subscore-score">{{subScores.TotalExpressionOfIdeas}}</span> Expression of Ideas
-        </div>
-        <!--start progress bar-->
-        <div class="row test-score-bar">
-          <div class="col-md-1 score-min">{{scoreRange.expressionofideasredmin}}</div>
-          <div class="col-md-8 score-bar">
-            <div class="progress progress-bar-height">
-              <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': expressionofideasredpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': expressionofideasyellowpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': expressionofideasgreenpercentage + '%'}"></div>
+            <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
+              <div  class="progress score-bar-indicator-no-margin">
+                <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': contextWordsPercentage + '%'}"></div>
+                <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+              </div>
             </div>
+            <div class="col-md-1 score-max">{{scoreRange.wordsincontextgreenmax}}</div>
           </div>
-          <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
-            <div  class="progress score-bar-indicator-no-margin">
-              <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': expressionOfIdeasPercentage + '%'}"></div>
-              <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+          <!--end progress bar-->
+          <div class="row subscore-title">
+            <span class="subscore-score">{{subScores.TotalExpressionOfIdeas}}</span> Expression of Ideas
+          </div>
+          <!--start progress bar-->
+          <div class="row test-score-bar">
+            <div class="col-md-1 score-min">{{scoreRange.expressionofideasredmin}}</div>
+            <div class="col-md-8 score-bar">
+              <div class="progress progress-bar-height">
+                <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': expressionofideasredpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': expressionofideasyellowpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': expressionofideasgreenpercentage + '%'}"></div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-1 score-max">{{scoreRange.expressionofideasgreenmax}}</div>
-        </div>
-        <!--end progress bar-->
-        <div class="row subscore-title">
-          <span class="subscore-score">{{subScores.TotalStandardEngish}}</span> Standard English Conventions
-        </div>
-        <!--start progress bar-->
-        <div class="row test-score-bar">
-          <div class="col-md-1 score-min">{{scoreRange.englishconventionsredmin}}</div>
-          <div class="col-md-8 score-bar">
-            <div class="progress progress-bar-height">
-              <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': englishconventionsredpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': englishconventionsyellowpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': englishconventionsgreenpercentage + '%'}"></div>
+            <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
+              <div  class="progress score-bar-indicator-no-margin">
+                <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': expressionOfIdeasPercentage + '%'}"></div>
+                <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+              </div>
             </div>
+            <div class="col-md-1 score-max">{{scoreRange.expressionofideasgreenmax}}</div>
           </div>
-          <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
-            <div  class="progress score-bar-indicator-no-margin">
-              <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': standardEngPercentage + '%'}"></div>
-              <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+          <!--end progress bar-->
+          <div class="row subscore-title">
+            <span class="subscore-score">{{subScores.TotalStandardEngish}}</span> Standard English Conventions
+          </div>
+          <!--start progress bar-->
+          <div class="row test-score-bar">
+            <div class="col-md-1 score-min">{{scoreRange.englishconventionsredmin}}</div>
+            <div class="col-md-8 score-bar">
+              <div class="progress progress-bar-height">
+                <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': englishconventionsredpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': englishconventionsyellowpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': englishconventionsgreenpercentage + '%'}"></div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-1 score-max">{{scoreRange.englishconventionsgreenmax}}</div>
-        </div>
-        <!--end progress bar-->
-        <div class="row subscore-title">
-          <span class="subscore-score">{{subScores.TotalHeartOfAlgebra}}</span> Heart of Algebra
-        </div>
-        <!--start progress bar-->
-        <div class="row test-score-bar">
-          <div class="col-md-1 score-min">{{scoreRange.algebraredmin}}</div>
-          <div class="col-md-8 score-bar">
-            <div class="progress progress-bar-height">
-              <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': algebraredpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': algebrayellowpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': algebragreenpercentage + '%'}"></div>
+            <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
+              <div  class="progress score-bar-indicator-no-margin">
+                <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': standardEngPercentage + '%'}"></div>
+                <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+              </div>
             </div>
+            <div class="col-md-1 score-max">{{scoreRange.englishconventionsgreenmax}}</div>
           </div>
-          <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
-            <div  class="progress score-bar-indicator-no-margin">
-              <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': heartOfAlgebraPercentage + '%'}"></div>
-              <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+          <!--end progress bar-->
+          <div class="row subscore-title">
+            <span class="subscore-score">{{subScores.TotalHeartOfAlgebra}}</span> Heart of Algebra
+          </div>
+          <!--start progress bar-->
+          <div class="row test-score-bar">
+            <div class="col-md-1 score-min">{{scoreRange.algebraredmin}}</div>
+            <div class="col-md-8 score-bar">
+              <div class="progress progress-bar-height">
+                <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': algebraredpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': algebrayellowpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': algebragreenpercentage + '%'}"></div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-1 score-max">{{scoreRange.algebragreenmax}}</div>
-        </div>
-        <!--end progress bar-->
-        <div class="row subscore-title">
-          <span class="subscore-score">{{subScores.TotalProblemSolving}}</span> Problem Solving and Data Analysis
-        </div>
-        <!--start progress bar-->
-        <div class="row test-score-bar">
-          <div class="col-md-1 score-min">{{scoreRange.problemsolvingredmin}}</div>
-          <div class="col-md-8 score-bar">
-            <div class="progress progress-bar-height">
-              <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': problemsolvingredpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': problemsolvingyellowpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': problemsolvinggreenpercentage + '%'}"></div>
+            <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
+              <div  class="progress score-bar-indicator-no-margin">
+                <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': heartOfAlgebraPercentage + '%'}"></div>
+                <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+              </div>
             </div>
+            <div class="col-md-1 score-max">{{scoreRange.algebragreenmax}}</div>
           </div>
-          <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
-            <div  class="progress score-bar-indicator-no-margin">
-              <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': problemSolvingPercentage + '%'}"></div>
-              <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+          <!--end progress bar-->
+          <div class="row subscore-title">
+            <span class="subscore-score">{{subScores.TotalProblemSolving}}</span> Problem Solving and Data Analysis
+          </div>
+          <!--start progress bar-->
+          <div class="row test-score-bar">
+            <div class="col-md-1 score-min">{{scoreRange.problemsolvingredmin}}</div>
+            <div class="col-md-8 score-bar">
+              <div class="progress progress-bar-height">
+                <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': problemsolvingredpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': problemsolvingyellowpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': problemsolvinggreenpercentage + '%'}"></div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-1 score-max">{{scoreRange.problemsolvinggreenmax}}</div>
-        </div>
-        <!--end progress bar-->
-        <div class="row subscore-title">
-          <span class="subscore-score">{{subScores.TotalPassportAdvMath}}</span> Passport to Advanced Math
-        </div>
-        <!--start progress bar-->
-        <div class="row test-score-bar">
-          <div class="col-md-1 score-min">{{scoreRange.advancedmathredmin}}</div>
-          <div class="col-md-8 score-bar">
-            <div class="progress progress-bar-height">
-              <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': advancedmathredpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': advancedmathyellowpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': advancedmathgreenpercentage + '%'}"></div>
+            <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
+              <div  class="progress score-bar-indicator-no-margin">
+                <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': problemSolvingPercentage + '%'}"></div>
+                <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+              </div>
             </div>
+            <div class="col-md-1 score-max">{{scoreRange.problemsolvinggreenmax}}</div>
           </div>
-          <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
-            <div  class="progress score-bar-indicator-no-margin">
-              <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': passportAdvMathPercentage + '%'}"></div>
-              <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+          <!--end progress bar-->
+          <div class="row subscore-title">
+            <span class="subscore-score">{{subScores.TotalPassportAdvMath}}</span> Passport to Advanced Math
+          </div>
+          <!--start progress bar-->
+          <div class="row test-score-bar">
+            <div class="col-md-1 score-min">{{scoreRange.advancedmathredmin}}</div>
+            <div class="col-md-8 score-bar">
+              <div class="progress progress-bar-height">
+                <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': advancedmathredpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': advancedmathyellowpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': advancedmathgreenpercentage + '%'}"></div>
+              </div>
             </div>
+            <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
+              <div  class="progress score-bar-indicator-no-margin">
+                <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': passportAdvMathPercentage + '%'}"></div>
+                <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+              </div>
+            </div>
+            <div class="col-md-1 score-max">{{scoreRange.advancedmathgreenmax}}</div>
           </div>
-          <div class="col-md-1 score-max">{{scoreRange.advancedmathgreenmax}}</div>
+          <!--end progress bar-->
+          <div id="test-score-wording" class="col-md-8 col-md-offset-1">
+            <span class="bold">Student Name:</span> {{totalScores.studentName}}</br>
+            <span class="bold">Student ID:</span> {{totalScores.studentid}}</br>
+            <span class="bold">Grade:</span> {{totalScores.Grade}}</br>
+            <span class="bold">School Name:</span> {{totalScores.SchoolName}}</br>
+            <span class="bold">School Code:</span> {{totalScores.SchoolCode}}</br>
+            <span class="bold">Test #:</span> {{totalScores.testNumber}}</br>
+            <span class="bold">Test Score:</span> {{totalScores.TotalPSATScore}}</br>
+            <span class="bold">Test Date:</span> {{totalScores.testDate}}
+          </div>
         </div>
-        <!--end progress bar-->
       </div>
     </div>
     </div>
@@ -473,8 +477,13 @@
         Your Question-Level Feedback
       </div>
       <div class="col-md-12 text-center font-md" style="margin-bottom:20px">
-        Change answer input below and recalculate for projected score <br><button class="btn btn-danger" ng-click="calculate()">Recalculate</button>
+        Change answer input below and recalculate for projected score <br>
+        <span class="bold">Actual Score:</span> {{totalScores.TotalPSATScore}}
+        <button class="btn btn-danger" ng-click="calculate()">Recalculate</button>
         <button class="btn btn-primary" ng-click="printToPdf()"><i class="fa fa-save"></i> Save as PDF</button>
+        <span class="bold">
+          Projected Score:</span> <span ng-hide="recalc">N/A</span><span ng-show="recalc" style="color:red">{{projectedScore.projectedscore}}</span>
+        <!-- <span class="bold">Projected Score:</span> {{projectedScore.projectedscore}} -->
       </div>
       <!--reading-->
       <div class="col-md-3">
@@ -490,6 +499,7 @@
               <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Correct</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
+              <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
               <div class="question-table-header"><div class="question-table-header-text-budget">Budget Time</div></div>
               <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
@@ -501,15 +511,20 @@
               <div class="question-table-cell">{{readingScore.answerOne}}</div>
               <div class="question-table-cell-answer">
                 <div ng-if="readingScore.correctAnswer==='TRUE'">
-                  <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" placeholder="{{readingScore.StudentAnswer}}">
+                  <!-- <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" placeholder="{{readingScore.StudentAnswer}}"> -->
                   <!-- <span ng-show="input" ng-init="input=true" ng-click="input=false">{{readingScore.StudentAnswer}}</span> -->
+                  <span>{{readingScore.StudentAnswer}}</span>
                 </div>
                 <div ng-if="readingScore.correctAnswer==='FALSE'">
-                  <input class="question-table-cell-input-incorrect" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" placeholder="{{readingScore.StudentAnswer}}">
+                  <!-- <input class="question-table-cell-input-incorrect" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" placeholder="{{readingScore.StudentAnswer}}"> -->
                   <!-- <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false"> -->
                     <!-- {{readingScore.StudentAnswer}} -->
                   <!-- </span> -->
+                  <span class="question-answer-false bold">{{readingScore.StudentAnswer}}</span>
                 </div>
+              </div>
+              <div class="question-table-cell">
+                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer">
               </div>
               <div class="question-table-cell vertical-align">
                 <span class="question-difficulty" ng-if="readingScore.diffLevel==='E'">
@@ -523,7 +538,14 @@
                 </span>
               </div>
               <div class="question-table-cell question-subscore">{{readingScore.BudgetTime}}</div>
-              <div class="question-table-cell question-subscore">{{readingScore.duration}}</div>
+              <div class="question-table-cell-duration">
+                <div ng-if="readingScore.budgetTimeFlag==='TRUE'">
+                  <div class="bold" style="color:blue">{{readingScore.duration}}</div>
+                </div>
+                <div ng-if="readingScore.budgetTimeFlag!=='TRUE'">
+                  <div class="">{{readingScore.duration}}</div>
+                </div>
+              </div>
               <div class="question-table-cell question-subscore">{{readingScore.subscore}}</div>
               <div class="question-table-cell-last">{{readingScore.CrossReferenceScore}}</div>
             </div>
@@ -543,6 +565,7 @@
             <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Correct</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
+            <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div>
             <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
@@ -554,15 +577,14 @@
             <div class="question-table-cell">{{writingLangScore.answerOne}}</div>
             <div class="question-table-cell-answer">
               <div ng-if="writingLangScore.correctAnswer==='TRUE'">
-                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(writingLangScore)" ng-model="writingLangScore.adjustedAnswer" placeholder="{{writingLangScore.StudentAnswer}}">
-                <!-- <span ng-show="input" ng-init="input=true" ng-click="input=false">{{writingLangScore.StudentAnswer}}</span> -->
+                <span>{{writingLangScore.StudentAnswer}}</span>
               </div>
               <div ng-if="writingLangScore.correctAnswer==='FALSE'">
-                <input class="question-table-cell-input-incorrect" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(writingLangScore)" ng-model="writingLangScore.adjustedAnswer" placeholder="{{writingLangScore.StudentAnswer}}">
-                <!-- <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false">
-                  {{writingLangScore.StudentAnswer}}
-                </span> -->
+                <span class="question-answer-false bold">{{writingLangScore.StudentAnswer}}</span>
               </div>
+            </div>
+            <div class="question-table-cell">
+              <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(writingLangScore)" ng-model="writingLangScore.adjustedAnswer">
             </div>
             <div class="question-table-cell vertical-align">
               <span class="question-difficulty" ng-if="writingLangScore.diffLevel==='E'">
@@ -576,7 +598,14 @@
               </span>
             </div>
             <div class="question-table-cell question-subscore">{{writingLangScore.BudgetTime}}</div>
-            <div class="question-table-cell question-subscore">{{writingLangScore.duration}}</div>
+            <div class="question-table-cell-duration">
+              <div ng-if="writingLangScore.budgetTimeFlag==='TRUE'">
+                <div class="bold" style="color:blue">{{writingLangScore.duration}}</div>
+              </div>
+              <div ng-if="writingLangScore.budgetTimeFlag!=='TRUE'">
+                <div class="">{{writingLangScore.duration}}</div>
+              </div>
+            </div>
             <div class="question-table-cell question-subscore">{{writingLangScore.subscore}}</div>
             <div class="question-table-cell-last">{{writingLangScore.CrossReferenceScore}}</div>
           </div>
@@ -595,6 +624,7 @@
             <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Correct</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
+            <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div>
             <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
@@ -606,15 +636,14 @@
             <div class="question-table-cell">{{mathCalScore.answerOne}}</div>
             <div class="question-table-cell-answer">
               <div ng-if="mathCalScore.correctAnswer==='TRUE'">
-                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" placeholder="{{mathCalScore.StudentAnswer}}">
-                <!-- <span ng-show="input" ng-init="input=true" ng-click="input=false">{{mathCalScore.StudentAnswer}}</span> -->
+                <span>{{mathCalScore.StudentAnswer}}</span>
               </div>
               <div ng-if="mathCalScore.correctAnswer==='FALSE'">
-                <input class="question-table-cell-input-incorrect" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true"type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" placeholder="{{mathCalScore.StudentAnswer}}">
-                <!-- <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false">
-                  {{mathCalScore.StudentAnswer}}
-                </span> -->
+                <span class="question-answer-false bold">{{mathCalScore.StudentAnswer}}</span>
               </div>
+            </div>
+            <div class="question-table-cell">
+              <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer">
             </div>
             <div class="question-table-cell vertical-align">
               <span class="question-difficulty" ng-if="mathCalScore.diffLevel==='E'">
@@ -628,7 +657,14 @@
               </span>
             </div>
             <div class="question-table-cell question-subscore">{{mathCalScore.BudgetTime}}</div>
-            <div class="question-table-cell question-subscore">{{mathCalScore.duration}}</div>
+            <div class="question-table-cell-duration">
+              <div ng-if="mathCalScore.budgetTimeFlag==='TRUE'">
+                <div class="bold" style="color:blue">{{mathCalScore.duration}}</div>
+              </div>
+              <div ng-if="mathCalScore.budgetTimeFlag!=='TRUE'">
+                <div class="">{{mathCalScore.duration}}</div>
+              </div>
+            </div>
             <div class="question-table-cell question-subscore">{{mathCalScore.subscore}}</div>
             <div class="question-table-cell-last">{{mathCalScore.CrossReferenceScore}}</div>
           </div>
@@ -639,6 +675,7 @@
             <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Correct</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
+            <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div>
             <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
@@ -650,15 +687,14 @@
             <div class="question-table-cell">{{mathCalScore.answerOne}}</div>
             <div class="question-table-cell-answer">
               <div ng-if="mathCalScore.correctAnswer==='TRUE'">
-                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" placeholder="{{mathCalScore.StudentAnswer}}">
-                <!-- <span ng-show="input" ng-init="input=true" ng-click="input=false">{{mathCalScore.StudentAnswer}}</span> -->
+                <span>{{mathCalScore.StudentAnswer}}</span>
               </div>
               <div ng-if="mathCalScore.correctAnswer==='FALSE'">
-                <input class="question-table-cell-input-incorrect" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" placeholder="{{mathCalScore.StudentAnswer}}">
-                <!-- <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false">
-                  {{mathCalScore.StudentAnswer}}
-                </span> -->
+                <span class="question-answer-false bold">{{mathCalScore.StudentAnswer}}</span>
               </div>
+            </div>
+            <div class="question-table-cell">
+              <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer">
             </div>
             <div class="question-table-cell vertical-align">
               <span class="question-difficulty" ng-if="mathCalScore.diffLevel==='E'">
@@ -672,7 +708,14 @@
               </span>
             </div>
             <div class="question-table-cell question-subscore">{{mathCalScore.BudgetTime}}</div>
-            <div class="question-table-cell question-subscore">{{mathCalScore.duration}}</div>
+            <div class="question-table-cell-duration">
+              <div ng-if="mathCalScore.budgetTimeFlag==='TRUE'">
+                <div class="bold" style="color:blue">{{mathCalScore.duration}}</div>
+              </div>
+              <div ng-if="mathCalScore.budgetTimeFlag!=='TRUE'">
+                <div class="">{{mathCalScore.duration}}</div>
+              </div>
+            </div>
             <div class="question-table-cell question-subscore">{{mathCalScore.subscore}}</div>
             <div class="question-table-cell-last">{{mathCalScore.CrossReferenceScore}}</div>
           </div>
@@ -691,6 +734,7 @@
             <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Correct</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
+            <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div>
             <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
@@ -702,15 +746,14 @@
             <div class="question-table-cell">{{mathNoCalScore.answerOne}}</div>
             <div class="question-table-cell-answer">
               <div ng-if="mathNoCalScore.correctAnswer==='TRUE'">
-                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer" placeholder="{{mathNoCalScore.StudentAnswer}}">
-                <!-- <span ng-show="input" ng-init="input=true" ng-click="input=false">{{mathNoCalScore.StudentAnswer}}</span> -->
+                <span>{{mathNoCalScore.StudentAnswer}}</span>
               </div>
-              <div ng-if="mathNoCalScore.correctAnswer==='FALSE'" class="">
-                <input class="question-table-cell-input-incorrect" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer" placeholder="{{mathNoCalScore.StudentAnswer}}">
-                <!-- <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false"> -->
-                  <!-- {{mathNoCalScore.StudentAnswer}} -->
-                <!-- </span> -->
+              <div ng-if="mathNoCalScore.correctAnswer==='FALSE'">
+                <span class="question-answer-false bold">{{mathNoCalScore.StudentAnswer}}</span>
               </div>
+            </div>
+            <div class="question-table-cell">
+              <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer">
             </div>
             <div class="question-table-cell vertical-align">
               <span class="question-difficulty" ng-if="mathNoCalScore.diffLevel==='E'">
@@ -724,7 +767,14 @@
               </span>
             </div>
             <div class="question-table-cell question-subscore">{{mathNoCalScore.BudgetTime}}</div>
-            <div class="question-table-cell question-subscore">{{mathNoCalScore.duration}}</div>
+            <div class="question-table-cell-duration">
+              <div ng-if="mathNoCalScore.budgetTimeFlag==='TRUE'">
+                <div class="bold" style="color:blue">{{mathNoCalScore.duration}}</div>
+              </div>
+              <div ng-if="mathNoCalScore.budgetTimeFlag!=='TRUE'">
+                <div class="">{{mathNoCalScore.duration}}</div>
+              </div>
+            </div>
             <div class="question-table-cell question-subscore">{{mathNoCalScore.subscore}}</div>
             <div class="question-table-cell-last">{{mathNoCalScore.CrossReferenceScore}}</div>
           </div>
@@ -735,6 +785,7 @@
             <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Correct</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
+            <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
             <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div>
             <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
@@ -746,15 +797,14 @@
             <div class="question-table-cell">{{mathNoCalScore.answerOne}}</div>
             <div class="question-table-cell-answer">
               <div ng-if="mathNoCalScore.correctAnswer==='TRUE'">
-                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer" placeholder="{{mathNoCalScore.StudentAnswer}}">
-                <!-- <span ng-show="input" ng-init="input=true" ng-click="input=false">{{mathNoCalScore.StudentAnswer}}</span> -->
+                <span>{{mathNoCalScore.StudentAnswer}}</span>
               </div>
               <div ng-if="mathNoCalScore.correctAnswer==='FALSE'">
-                <input class="question-table-cell-input-incorrect" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer" placeholder="{{mathNoCalScore.StudentAnswer}}">
-                <!-- <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false">
-                  {{mathNoCalScore.StudentAnswer}}
-                </span> -->
+                <span class="question-answer-false bold">{{mathNoCalScore.StudentAnswer}}</span>
               </div>
+            </div>
+            <div class="question-table-cell">
+              <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer">
             </div>
             <div class="question-table-cell vertical-align">
               <span class="question-difficulty" ng-if="mathNoCalScore.diffLevel==='E'">
@@ -768,7 +818,14 @@
               </span>
             </div>
             <div class="question-table-cell question-subscore">{{mathNoCalScore.BudgetTime}}</div>
-            <div class="question-table-cell question-subscore">{{mathNoCalScore.duration}}</div>
+            <div class="question-table-cell-duration">
+              <div ng-if="mathNoCalScore.budgetTimeFlag==='TRUE'">
+                <div class="bold" style="color:blue">{{mathNoCalScore.duration}}</div>
+              </div>
+              <div ng-if="mathNoCalScore.budgetTimeFlag!=='TRUE'">
+                <div class="">{{mathNoCalScore.duration}}</div>
+              </div>
+            </div>
             <div class="question-table-cell question-subscore">{{mathNoCalScore.subscore}}</div>
             <div class="question-table-cell-last">{{mathNoCalScore.CrossReferenceScore}}</div>
           </div>
@@ -865,6 +922,18 @@
               <div class="question-legend-table-cell"><div class="question-legend-text-padding">Analysis in Science</div></div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-md-offset-6">
+        <div id="test-score-wording" style="margin-top:-285px">
+          <span class="bold">Student Name:</span> {{totalScores.studentName}}</br>
+          <span class="bold">Student ID:</span> {{totalScores.studentid}}</br>
+          <span class="bold">Grade:</span> {{totalScores.Grade}}</br>
+          <span class="bold">School Name:</span> {{totalScores.SchoolName}}</br>
+          <span class="bold">School Code:</span> {{totalScores.SchoolCode}}</br>
+          <span class="bold">Test #:</span> {{totalScores.testNumber}}</br>
+          <span class="bold">Test Score:</span> {{totalScores.TotalPSATScore}}</br>
+          <span class="bold">Test Date:</span> {{totalScores.testDate}}
         </div>
       </div>
     </div>
