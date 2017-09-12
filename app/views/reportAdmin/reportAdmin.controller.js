@@ -5,7 +5,9 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
 
   $scope.studentInfo=studentService.get();
   $scope.studentID=$scope.studentInfo.studentid;
+  $scope.examVersion=$scope.studentInfo.examversion;
 
+   console.log('$scope.examversion:', $scope.examVersion);
 
   //get student info
   dataService.get('student', {KEYID:$scope.studentInfo.KEYID}).then(function (response) {
@@ -42,7 +44,7 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
   });
 
   //get student answers
-  dataService.getStudentAnswers('student', {studentid: $scope.studentID, examVersion:1}).then(function (response) {
+  dataService.getStudentAnswers('student', {studentid: $scope.studentID, examversion: $scope.examVersion}).then(function (response) {
     console.log(response.data);
     $scope.answers=response.data;
 
