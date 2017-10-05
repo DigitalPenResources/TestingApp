@@ -1,0 +1,43 @@
+<div id="student-list-admin">
+  <div class="container page-padding">
+    <div class="row">
+      <div class="col-md-12 page-header">
+        Welcome {{student.StudentName}}
+      </div>
+    </div>
+    <div class="row student-list-header">
+      <div class="col-md-2">
+        Grade
+      </div>
+      <div class="col-md-2">
+        Exam Name
+      </div>
+      <div class="col-md-2">
+        Exam Version
+      </div>
+      <div class="col-md-2">
+        Total Score
+      </div>
+      <div class="col-md-2">
+        Date Taken
+      </div>
+    </div>
+    <div class="row student-list-text text-center" ng-repeat="student in studentArr" ng-click="selectStudent(student)">
+      <div class="col-md-2">
+        {{student.grade}}
+      </div>
+      <div class="col-md-2">
+        {{student.examname}}
+      </div>
+      <div class="col-md-2">
+        {{student.examversion}}
+      </div>
+      <div class="col-md-2">
+        {{student.totalPSATScore}}
+      </div>
+      <div class="col-md-2">
+        {{student.dateTaken}}
+      </div>
+    </div>
+  </div>
+</div>
