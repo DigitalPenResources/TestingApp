@@ -164,9 +164,10 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
     }
   };
 
-  var answersAdded=0;
+
   //send answer changes to backend
   $scope.calculate=function () {
+	   var answersAdded=0;
     //if no changes have been made
     if ($scope.answerChanges.length===0) {
       alert("No changes to the answers have been detected, please change answers before recalculating.");
