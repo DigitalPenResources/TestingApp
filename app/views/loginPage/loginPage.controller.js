@@ -22,7 +22,7 @@ app.controller('LoginPageController', function($scope, $state, dataService, stud
           studentid: response.data[0].studentid
         }
         studentService.set(studentInfo);
-        $state.go('report');
+        $state.go('studentList');
       } else if (response.data[0].role==="admin") {
         adminService.set(response.data[0].userid);
         $state.go('studentListAdmin');
