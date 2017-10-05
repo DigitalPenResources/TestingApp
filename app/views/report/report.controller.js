@@ -4,6 +4,8 @@ app.controller('ReportController', function($scope, $http, $httpParamSerializerJ
   $scope.studentInfo=studentService.get();
   console.log('$scope.studentInfo:', $scope.studentInfo);
   $scope.studentID=$scope.studentInfo.studentid
+  $scope.examVersion=$scope.studentInfo.examversion;
+  console.log('$scope.examversion:', $scope.examVersion);
 
 
   // $http({
@@ -70,7 +72,8 @@ app.controller('ReportController', function($scope, $http, $httpParamSerializerJ
   });
 
   //get student answers
-  dataService.getStudentAnswers('student', {studentid: $scope.studentID, examVersion:1}).then(function (response) {
+  dataService.getStudentAnswers('student', {studentid: $scope.studentID, examversion: $scope.examVersion}).then(function (response) {
+
     console.log(response.data);
     $scope.answers=response.data;
 
@@ -91,7 +94,7 @@ app.controller('ReportController', function($scope, $http, $httpParamSerializerJ
       }
     });
     console.log($scope.mathNoCalScoresArr)
-    
+
 
     //get scoring range
     dataService.getScoringRange('score', {grade: $scope.studentGrade}).then(function (response) {
