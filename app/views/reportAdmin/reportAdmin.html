@@ -527,7 +527,7 @@
                 </div>
               </div>
               <div class="question-table-cell">
-                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer">
+                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" maxlength="1">
               </div>
               <div class="question-table-cell vertical-align">
                 <span class="question-difficulty" ng-if="readingScore.diffLevel==='E'">
