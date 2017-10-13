@@ -10,7 +10,8 @@ app.constant('CONSTANTS', {
         getStudentTotalScores: 'getStudentTotalScores',
         getStudentSubScores: 'getStudentSubScores',
         getStudentAnswers: 'getStudentAnswers',
-        getStudentSectionData: 'getStudentSectionData'
+        getStudentSectionData: 'getStudentSectionData',
+        getStudentTestList: 'getStudentTestList'
       },
       login: {
         loginUser: 'loginUser'
