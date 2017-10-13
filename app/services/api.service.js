@@ -99,6 +99,17 @@ app.service('dataService', function($http, $q, CONSTANTS, $httpParamSerializerJQ
     });
   };
 
+  service.getStudentTestList = function(dataType, dataObj) {
+    var action = CONSTANTS.api.actions[dataType].getStudentTestList;
+    // var deferred = $q.defer();
+    return $http({
+      url: base + path + query + action,
+      method: 'GET',
+      params: dataObj,
+      paramSerializer: '$httpParamSerializerJQLike'
+    });
+  };
+
 
   service.getProjectedScore = function(dataType, dataObj) {
     var action = CONSTANTS.api.actions[dataType].getProjectedScore;
