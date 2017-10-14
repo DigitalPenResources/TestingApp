@@ -186,6 +186,12 @@ button:focus {
   color: grey
 };
 
+/*#report .nmsc-section-total-score {
+  text-align: center;
+  font-size: 45px;
+  padding:0 5px 0 0
+}*/
+
 #report .section-score-range-col {
   text-align: left;
   font-size: 13px;
@@ -220,6 +226,11 @@ button:focus {
 
 #psat-section-text-lg {
   font-size: 25px;
+  text-align: center
+}
+
+#report .nmsc-index {
+  font-size: 45px;
   text-align: center
 }
 
@@ -497,6 +508,12 @@ button:focus {
   padding-bottom: 5px
 }
 
+#report .question-number-false {
+  border-radius: 50%;
+  border: 2px solid red;
+  padding: 3px
+}
+
 #report .question-subscore {
   padding: 0 5px
 }
@@ -699,6 +716,36 @@ button:focus {
   font-weight: bold;
 }
 
+#modal .loader {
+  border: 4px solid #f3f3f3; /* Light grey */
+  border-top: 4px solid #3498db; /* Blue */
+  border-radius: 50%;
+  margin-bottom: -5px;
+  width: 50px;
+  height: 50px;
+  line-height: 41px;
+  -webkit-animation-name: spin;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  display: inline-block;
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
 /*#report .question-table-cell-answer:hover {
   background: lightgrey;
   cursor: pointer
@@ -714,3 +761,12 @@ button:focus {
 .progress-bar-custom {
   background: rgba(204, 25, 108, 1);
 }*/
+
+#modal .modal-header {
+  padding: 20px;
+  font-size: 20px;
+}
+
+#modal .modal-text {
+  margin-top: 20px
+}

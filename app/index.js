@@ -1,1 +1,1 @@
-var app = angular.module('app', ['ui.router', 'htmlToPdfSave']);
+var app = angular.module('app', ['ui.router','ui.bootstrap','htmlToPdfSave']);

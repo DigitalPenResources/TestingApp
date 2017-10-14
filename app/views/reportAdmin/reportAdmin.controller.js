@@ -1,4 +1,4 @@
-app.controller('ReportAdminController', function($scope, $http, $httpParamSerializerJQLike, adminService, studentService, dataService) {
+app.controller('ReportAdminController', function($scope, $http, $httpParamSerializerJQLike, adminService, studentService, dataService, $uibModal) {
   //get userid of admin
   $scope.adminID=adminService.get();
   console.log('$scope.adminID:', $scope.adminID);
@@ -165,29 +165,33 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
   };
 
 
-  //send answer changes to backend
+  //recalculate score
   $scope.calculate=function () {
-	   var answersAdded=0;
     //if no changes have been made
     if ($scope.answerChanges.length===0) {
       alert("No changes to the answers have been detected, please change answers before recalculating.");
     } else {
-      $scope.answerChanges.forEach(function (changeObj) {
-        dataService.insertStudentAnswer('answer', changeObj).then(function (response) {
-          console.log(response);
-          if (response.data.status==='success') {
-            answersAdded++;
-            if (answersAdded===$scope.answerChanges.length) {
-              console.log('all answers added, getting projected score');
-              dataService.getProjectedScore('score', {idstudent: $scope.answerChanges[0].idstudent, examversion: $scope.answerChanges[0].examversion}).then(function (response) {
-                console.log(response);
-                $scope.projectedScore=response.data[0];
-                $scope.recalc=true;
-                // document.getElementById('report').scrollIntoView();
-              });
-            }
+      $scope.recalc=false;
+      //if changes have been made, open modal
+      console.log($scope.answerChanges);
+      var modalInstance = $uibModal.open({
+        controller: 'LoadingRecalcController',
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        templateUrl: './views/modals/loadingRecalc/loadingRecalc.html',
+        size: 'md',
+        backdrop: 'static',
+        resolve: {
+          answerChanges: function() {
+              return $scope.answerChanges;
           }
-        });
+        }
+      });
+
+      modalInstance.result.then(function (score) {
+        console.log(score);
+        $scope.projectedScore=score;
+        $scope.recalc=true;
       });
     }
   };

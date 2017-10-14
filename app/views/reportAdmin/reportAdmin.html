@@ -61,7 +61,7 @@
           <div class="col-md-12 section-horizontal-bar"></div>
           <div class="col-md-12">
           <div id="psat-section-text-lg">Your NMSC Selection Index</div>
-           <div class="col-md-6 psat-section-total-score">
+           <div class="col-md-6 col-md-offset-3 nmsc-index">
 		                {{totalScores.NMSCSelectionIndex}}*
             </div>
             <br></br><br></br>
@@ -487,6 +487,7 @@
         <span class="bold">
           Projected Score:</span> <span ng-hide="recalc">N/A</span><span ng-show="recalc" style="color:red">{{projectedScore.projectedscore}}</span>
         <!-- <span class="bold">Projected Score:</span> {{projectedScore.projectedscore}} -->
+
       </div>
       <!--reading-->
       <div class="col-md-3">
@@ -510,16 +511,19 @@
               <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
             </div>
             <div class="question-table-rows" ng-repeat="readingScore in readingScoresArr">
-              <div class="question-table-cell question-number">{{readingScore.questionNumber}}</div>
+              <div ng-if="readingScore.correctAnswer==='TRUE'" class="question-table-cell question-number">{{readingScore.questionNumber}}</div>
+              <div ng-if="readingScore.correctAnswer==='FALSE' || readingScore.StudentAnswer===null" class="question-table-cell">
+                <div class="question-number-false">{{readingScore.questionNumber}}</div>
+              </div>
               <div class="question-table-cell">{{readingScore.answerOne}}</div>
               <div class="question-table-cell-answer">
                 <div ng-if="readingScore.correctAnswer==='TRUE'">
-                  <!-- <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" placeholder="{{readingScore.StudentAnswer}}"> -->
+                  <!-- <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" maxlength="1" placeholder="{{readingScore.StudentAnswer}}"> -->
                   <!-- <span ng-show="input" ng-init="input=true" ng-click="input=false">{{readingScore.StudentAnswer}}</span> -->
                   <span>{{readingScore.StudentAnswer}}</span>
                 </div>
                 <div ng-if="readingScore.correctAnswer==='FALSE'">
-                  <!-- <input class="question-table-cell-input-incorrect" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" placeholder="{{readingScore.StudentAnswer}}"> -->
+                  <!-- <input class="question-table-cell-input-incorrect" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" maxlength="1" placeholder="{{readingScore.StudentAnswer}}"> -->
                   <!-- <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false"> -->
                     <!-- {{readingScore.StudentAnswer}} -->
                   <!-- </span> -->
@@ -576,7 +580,10 @@
             <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
           </div>
           <div class="question-table-rows" ng-repeat="writingLangScore in writingLangScoresArr">
-            <div class="question-table-cell question-number">{{writingLangScore.questionNumber}}</div>
+            <div ng-if="writingLangScore.correctAnswer==='TRUE'" class="question-table-cell question-number">{{writingLangScore.questionNumber}}</div>
+            <div ng-if="writingLangScore.correctAnswer==='FALSE' || writingLangScore.StudentAnswer===null" class="question-table-cell">
+              <div class="question-number-false">{{writingLangScore.questionNumber}}</div>
+            </div>
             <div class="question-table-cell">{{writingLangScore.answerOne}}</div>
             <div class="question-table-cell-answer">
               <div ng-if="writingLangScore.correctAnswer==='TRUE'">
@@ -587,7 +594,7 @@
               </div>
             </div>
             <div class="question-table-cell">
-              <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(writingLangScore)" ng-model="writingLangScore.adjustedAnswer">
+              <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(writingLangScore)" ng-model="writingLangScore.adjustedAnswer" maxlength="1">
             </div>
             <div class="question-table-cell vertical-align">
               <span class="question-difficulty" ng-if="writingLangScore.diffLevel==='E'">
@@ -635,7 +642,10 @@
             <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
           </div>
           <div class="question-table-rows" ng-repeat="mathCalScore in mathCalScoresArr | limitTo:28">
-            <div class="question-table-cell question-number">{{mathCalScore.questionNumber}}</div>
+            <div ng-if="mathCalScore.correctAnswer==='TRUE'" class="question-table-cell question-number">{{mathCalScore.questionNumber}}</div>
+            <div ng-if="mathCalScore.correctAnswer==='FALSE' || mathCalScore.StudentAnswer===null" class="question-table-cell">
+              <div class="question-number-false">{{mathCalScore.questionNumber}}</div>
+            </div>
             <div class="question-table-cell">{{mathCalScore.answerOne}}</div>
             <div class="question-table-cell-answer">
               <div ng-if="mathCalScore.correctAnswer==='TRUE'">
@@ -646,7 +656,7 @@
               </div>
             </div>
             <div class="question-table-cell">
-              <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer">
+              <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" maxlength="1">
             </div>
             <div class="question-table-cell vertical-align">
               <span class="question-difficulty" ng-if="mathCalScore.diffLevel==='E'">
@@ -686,7 +696,10 @@
             <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
           </div>
           <div class="question-table-rows" ng-repeat="mathCalScore in mathCalScoresArr | limitTo: (28-mathCalScoresArr.length)">
-            <div class="question-table-cell question-number">{{mathCalScore.questionNumber}}</div>
+            <div ng-if="mathCalScore.correctAnswer==='TRUE'" class="question-table-cell question-number">{{mathCalScore.questionNumber}}</div>
+            <div ng-if="mathCalScore.correctAnswer==='FALSE' || mathCalScore.StudentAnswer===null" class="question-table-cell">
+              <div class="question-number-false">{{mathCalScore.questionNumber}}</div>
+            </div>
             <div class="question-table-cell">{{mathCalScore.answerOne}}</div>
             <div class="question-table-cell-answer">
               <div ng-if="mathCalScore.correctAnswer==='TRUE'">
@@ -697,7 +710,7 @@
               </div>
             </div>
             <div class="question-table-cell">
-              <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer">
+              <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" maxlength="1">
             </div>
             <div class="question-table-cell vertical-align">
               <span class="question-difficulty" ng-if="mathCalScore.diffLevel==='E'">
@@ -745,7 +758,10 @@
             <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
           </div>
           <div class="question-table-rows" ng-repeat="mathNoCalScore in mathNoCalScoresArr | limitTo:13">
-            <div class="question-table-cell question-number">{{mathNoCalScore.questionNumber}}</div>
+            <div ng-if="mathNoCalScore.correctAnswer==='TRUE'" class="question-table-cell question-number">{{mathNoCalScore.questionNumber}}</div>
+            <div ng-if="mathNoCalScore.correctAnswer==='FALSE' || mathNoCalScore.StudentAnswer===null" class="question-table-cell">
+              <div class="question-number-false">{{mathNoCalScore.questionNumber}}</div>
+            </div>
             <div class="question-table-cell">{{mathNoCalScore.answerOne}}</div>
             <div class="question-table-cell-answer">
               <div ng-if="mathNoCalScore.correctAnswer==='TRUE'">
@@ -756,7 +772,7 @@
               </div>
             </div>
             <div class="question-table-cell">
-              <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer">
+              <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer" maxlength="1">
             </div>
             <div class="question-table-cell vertical-align">
               <span class="question-difficulty" ng-if="mathNoCalScore.diffLevel==='E'">
@@ -796,7 +812,10 @@
             <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
           </div>
           <div class="question-table-rows" ng-repeat="mathNoCalScore in mathNoCalScoresArr | limitTo: (13-mathNoCalScoresArr.length)">
-            <div class="question-table-cell question-number">{{mathNoCalScore.questionNumber}}</div>
+            <div ng-if="mathNoCalScore.correctAnswer==='TRUE'" class="question-table-cell question-number">{{mathNoCalScore.questionNumber}}</div>
+            <div ng-if="mathNoCalScore.correctAnswer==='FALSE' || mathNoCalScore.StudentAnswer===null" class="question-table-cell">
+              <div class="question-number-false">{{mathNoCalScore.questionNumber}}</div>
+            </div>
             <div class="question-table-cell">{{mathNoCalScore.answerOne}}</div>
             <div class="question-table-cell-answer">
               <div ng-if="mathNoCalScore.correctAnswer==='TRUE'">
@@ -807,7 +826,7 @@
               </div>
             </div>
             <div class="question-table-cell">
-              <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer">
+              <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer" maxlength="1">
             </div>
             <div class="question-table-cell vertical-align">
               <span class="question-difficulty" ng-if="mathNoCalScore.diffLevel==='E'">

@@ -1,0 +1,10 @@
+<div id="modal" class="modal-header font-md text-center">
+  <div ng-hide="complete"><span class="loader"></span></div>
+  <div ng-hide="complete" class="modal-text">Recalculating projected score...</div>
+  <div ng-show="complete">
+    <i class="fa fa-check-circle fa-2x" style="color:#00B867"></i>
+    <div style="color:#00B867;font-size:20px">COMPLETE!</div>
+    <div style="color:grey;font-size:18px;margin-top:10px;margin-bottom:10px">Recalculated Projected Score: {{projectedScore.projectedscore}}</div>
+    <button class="btn btn-primary" ng-click="close()">OK</button>
+  </div>
+</div>
