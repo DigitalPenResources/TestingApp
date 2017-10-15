@@ -510,9 +510,10 @@ button:focus {
 }
 
 #report .question-number-false {
-  border-radius: 50%;
+  border-radius: 14px;
   border: 2px solid red;
-  padding: 1px
+  padding: 1px;
+  height: 28px;
 }
 
 #report .question-subscore {
@@ -535,7 +536,7 @@ button:focus {
 #report .question-difficulty-icon {
   width: 15px;
   height: 15px;
-  border-radius: 50%;
+  border-radius: 7.5px;
   margin: 0 5px
 }
 

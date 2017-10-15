@@ -51,12 +51,17 @@
             <div class="col-md-6 psat-section-score-range-col">
               <span class="section-score-range">|</span>320 to 1520
             </div>
+            <!-- <div ng-show="recalc" class="col-md-12" style="color:red; text-align: center; font-size: 15px; font-weight: bold; line-height: 0;">
+              Projected Score: {{projectedScore.projectedscore}}</div> -->
           </div>
           <div class="col-md-12 section-horizontal-bar"></div>
           <div class="col-md-12">
-            <div id="psat-section-text-lg">Keep in mind, the PSAT/NMSQT® and SAT are on the same scale.</div>
-            <div class="section-horizontal-bar-short"></div>
-            <div class="text-center">Your score shows you how you would have scored that day on the SAT®.1 How well you do depends on what you do next!</div>
+          <div id="psat-section-text-lg">Your NMSC Selection Index</div>
+           <div class="col-md-6 col-md-offset-3 nmsc-index">
+                    {{totalScores.NMSCSelectionIndex}}*
+            </div>
+            <br></br><br></br>
+            <div class="text-left">NMSC uses a Selection Index based on PSAT/NMSQT scores as an initial screen of students who enter its scholarship programs. To calculate your Selection index, double the sum of your Reading, Writing and Language, and Math Test Scores.</div>
           </div>
         </div>
       </div>
@@ -95,12 +100,6 @@
       </div>
     </div>
     <div class="row section-margin">
-      <div id="section-legend" class="col-md-12">
-        <div id="horizontal-bar-legend-short-left"></div>
-        <div class="bold">The College and Career Readiness Benchmark</div>
-        <div id="horizontal-bar-legend-short-right"></div>
-      </div>
-      <div class="col-md-12 text-center">Reaching your grade-level Benchmark means that you are likely on track to be ready to succeed in select first-year, credit-bearing college courses</div>
       <div id="section-legend" class="col-md-12 section-margin">
         <div id="section-legend-red"></div>
         <div class="bold legend-text">Need to strengthen skills</div>
@@ -109,7 +108,6 @@
         <div id="section-legend-green"></div>
         <div class="bold legend-text">Meets or exceeds Benchmark</div>
       </div>
-      <div class="col-md-12 text-center font-sm">*The red, yellow, and green ranges in the test scores and subscores reflect your areas of strengths and weaknesses compared to the typical performance of students in your grade</div>
     </div>
     <div id="subscore-background" class="row">
       <div class="col-md-6">
@@ -122,14 +120,14 @@
           <!--start progress bar-->
           <div class="row test-score-bar">
             <div class="col-md-1 score-min">{{scoreRange.readingtestredmin}}</div>
-            <div class="col-md-8 score-bar">
+            <div class="col-md-10 score-bar">
               <div class="progress progress-bar-height">
                 <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': readingtestredpercentage + '%'}"></div>
                 <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': readingtestyellowpercentage + '%'}"></div>
                 <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': readingtestgreenpercentage + '%'}"></div>
               </div>
             </div>
-            <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
+            <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
               <div  class="progress score-bar-indicator-no-margin">
                 <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': readingTestScoretotalpercentage + '%'}"></div>
                 <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
@@ -166,14 +164,14 @@
           <!--start progress bar-->
           <div class="row test-score-bar">
             <div class="col-md-1 score-min">{{scoreRange.writingtestredmin}}</div>
-            <div class="col-md-8 score-bar">
+            <div class="col-md-10 score-bar">
               <div class="progress progress-bar-height">
                 <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': writingtestredpercentage + '%'}"></div>
                 <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': writingtestyellowpercentage + '%'}"></div>
                 <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': writingtestgreenpercentage + '%'}"></div>
               </div>
             </div>
-            <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
+            <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
               <div  class="progress score-bar-indicator-no-margin">
                 <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': writingTestScoretotalpercentage + '%'}"></div>
                 <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
@@ -203,263 +201,272 @@
           <div class="row test-score-horizontal-padding">
             <div class="test-score-horizontal"></div>
           </div>
-          <!--MATH CALCULATOR SECTION-->
+          <span class="font-lg">Subscores </span>{{scoreRange.commandofevidenceredmin}} to {{scoreRange.commandofevidencegreenmax}} range*
           <div class="row subscore-title">
-            <span class="subscore-score">{{totalScores.TotalMathScore}}</span> Math - Calculator
+            <span class="subscore-score">{{subScores.TotalCommandOfEvidence}}</span> Command of Evidence
           </div>
           <!--start progress bar-->
           <div class="row test-score-bar">
-            <div class="col-md-1 score-min">{{scoreRange.mathsectionredmin}}</div>
-            <div class="col-md-8 score-bar">
+            <div class="col-md-1 score-min">{{scoreRange.commandofevidenceredmin}}</div>
+            <div class="col-md-10 score-bar">
               <div class="progress progress-bar-height">
-                <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': mathsectionredpercentage + '%'}"></div>
-                <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': mathsectionyellowpercentage + '%'}"></div>
-                <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': mathsectiongreenpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': commandofevidenceredpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': commandofevidenceyellowpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': commandofevidencegreenpercentage + '%'}"></div>
               </div>
             </div>
-            <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
+            <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
               <div  class="progress score-bar-indicator-no-margin">
-                <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': mathscoretotalpercentage + '%'}"></div>
+                <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': commandOfEvidencePercentage + '%'}"></div>
                 <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
               </div>
             </div>
-            <div class="col-md-1 score-max">{{scoreRange.mathsectiongreenmax}}</div>
+            <div class="col-md-1 score-max">{{scoreRange.commandofevidencegreenmax}}</div>
           </div>
           <!--end progress bar-->
-          <div class="row test-score-question">
-            <div class="col-md-3" >
-              <div class="test-score-text-lg">{{sectionMathCalcData.TotalInSection}}</div>
-              <div>Total Questions</div>
-            </div>
-            <div class="col-md-3">
-              <div class="test-score-text-lg">{{sectionMathCalcData.CorrectAnswers}}</div>
-              <div>Correct Answers</div>
-            </div>
-            <div class="col-md-3">
-              <div class="test-score-text-lg">{{sectionMathCalcData.IncorrectAnswers}}</div>
-              <div>Incorrect Answers</div>
-            </div>
-            <div class="col-md-3">
-              <div class="test-score-text-lg">{{sectionMathCalcData.OmittedAnswers}}</div>
-              <div>Omitted Answers</div>
-            </div>
-          </div>
-          <div class="row test-score-horizontal-padding">
-            <div class="test-score-horizontal"></div>
-          </div>
-          <!--MATH NO CALC SECTION-->
           <div class="row subscore-title">
-            <span class="subscore-score">{{totalScores.TotalMathScore}}</span> Math - No Calculator
+            <span class="subscore-score">{{subScores.TotalContextWords}}</span> Words in Context
           </div>
           <!--start progress bar-->
           <div class="row test-score-bar">
-            <div class="col-md-1 score-min">{{scoreRange.mathsectionredmin}}</div>
-            <div class="col-md-8 score-bar">
+            <div class="col-md-1 score-min">{{scoreRange.wordsincontextredmin}}</div>
+            <div class="col-md-10 score-bar">
               <div class="progress progress-bar-height">
-                <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': mathsectionredpercentage + '%'}"></div>
-                <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': mathsectionyellowpercentage + '%'}"></div>
-                <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': mathsectiongreenpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': commandofevidenceredpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': commandofevidenceyellowpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': commandofevidencegreenpercentage + '%'}"></div>
               </div>
             </div>
-            <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
+            <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
               <div  class="progress score-bar-indicator-no-margin">
-                <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': mathscoretotalpercentage + '%'}"></div>
+                <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': contextWordsPercentage + '%'}"></div>
                 <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
               </div>
             </div>
-            <div class="col-md-1 score-max">{{scoreRange.mathsectiongreenmax}}</div>
+            <div class="col-md-1 score-max">{{scoreRange.wordsincontextgreenmax}}</div>
           </div>
           <!--end progress bar-->
-          <div class="row test-score-question">
-            <div class="col-md-3" >
-              <div class="test-score-text-lg">{{sectionMathNoCalcData.TotalInSection}}</div>
-              <div>Total Questions</div>
-            </div>
-            <div class="col-md-3">
-              <div class="test-score-text-lg">{{sectionMathNoCalcData.CorrectAnswers}}</div>
-              <div>Correct Answers</div>
-            </div>
-            <div class="col-md-3">
-              <div class="test-score-text-lg">{{sectionMathNoCalcData.IncorrectAnswers}}</div>
-              <div>Incorrect Answers</div>
-            </div>
-            <div class="col-md-3">
-              <div class="test-score-text-lg">{{sectionMathNoCalcData.OmittedAnswers}}</div>
-              <div>Omitted Answers</div>
-            </div>
+          <div class="row subscore-title">
+            <span class="subscore-score">{{subScores.TotalExpressionOfIdeas}}</span> Expression of Ideas
           </div>
-          <div class="row test-score-horizontal-padding">
-            <div class="subscore-score"></div>
+          <!--start progress bar-->
+          <div class="row test-score-bar">
+            <div class="col-md-1 score-min">{{scoreRange.expressionofideasredmin}}</div>
+            <div class="col-md-10 score-bar">
+              <div class="progress progress-bar-height">
+                <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': expressionofideasredpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': expressionofideasyellowpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': expressionofideasgreenpercentage + '%'}"></div>
+              </div>
+            </div>
+            <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
+              <div  class="progress score-bar-indicator-no-margin">
+                <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': expressionOfIdeasPercentage + '%'}"></div>
+                <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+              </div>
+            </div>
+            <div class="col-md-1 score-max">{{scoreRange.expressionofideasgreenmax}}</div>
           </div>
-        </div>
-        <div id="test-score-wording" class="row">
-          When you take tests more than once, your scores may differ slightly upon each testing occasion. This expected variation is considered your score range, and reflects the range your scores will likely fall in upon retesting. For the PSAT/NMSQT®, these ranges are approximately:</br></br>
-          <span class="bold">Total:</span> Your score ± 40 points.</br>
-          <span class="bold">Section:</span> Your score ± 30 points.</br>
-          <span class="bold">Test Scores and Cross-Test Scores:</span> Your score ± 3 points. </br>
-          <span class="bold">Subscores:</span> Your score ± 2 points. </br></br>
-          Remember that you will receive scores in the same areas when you take the SAT.</br>
-          1. Beginning in March 2016
+          <!--end progress bar-->
+          <div class="row subscore-title">
+            <span class="subscore-score">{{subScores.TotalStandardEngish}}</span> Standard English Conventions
+          </div>
+          <!--start progress bar-->
+          <div class="row test-score-bar">
+            <div class="col-md-1 score-min">{{scoreRange.englishconventionsredmin}}</div>
+            <div class="col-md-10 score-bar">
+              <div class="progress progress-bar-height">
+                <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': englishconventionsredpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': englishconventionsyellowpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': englishconventionsgreenpercentage + '%'}"></div>
+              </div>
+            </div>
+            <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
+              <div  class="progress score-bar-indicator-no-margin">
+                <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': standardEngPercentage + '%'}"></div>
+                <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+              </div>
+            </div>
+            <div class="col-md-1 score-max">{{scoreRange.englishconventionsgreenmax}}</div>
+          </div>
+          <!--end progress bar-->
         </div>
       </div>
       <div class="col-md-6">
-        <span class="font-lg">Subscores </span>{{scoreRange.commandofevidenceredmin}} to {{scoreRange.commandofevidencegreenmax}} range*
+        <span class="font-lg">Test Scores </span>160 to 760 range*
+        <!--MATH CALCULATOR SECTION-->
         <div class="row subscore-title">
-          <span class="subscore-score">{{subScores.TotalCommandOfEvidence}}</span> Command of Evidence
+          <span class="subscore-score">{{totalScores.TotalMathScore}}</span> Math - Calculator
         </div>
         <!--start progress bar-->
         <div class="row test-score-bar">
-          <div class="col-md-1 score-min">{{scoreRange.commandofevidenceredmin}}</div>
-          <div class="col-md-8 score-bar">
+          <div class="col-md-1 score-min">{{scoreRange.mathsectionredmin}}</div>
+          <div class="col-md-10 score-bar">
             <div class="progress progress-bar-height">
-              <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': commandofevidenceredpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': commandofevidenceyellowpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': commandofevidencegreenpercentage + '%'}"></div>
+              <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': mathsectionredpercentage + '%'}"></div>
+              <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': mathsectionyellowpercentage + '%'}"></div>
+              <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': mathsectiongreenpercentage + '%'}"></div>
             </div>
           </div>
-          <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
+          <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
             <div  class="progress score-bar-indicator-no-margin">
-              <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': commandOfEvidencePercentage + '%'}"></div>
+              <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': mathscoretotalpercentage + '%'}"></div>
               <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
             </div>
           </div>
-          <div class="col-md-1 score-max">{{scoreRange.commandofevidencegreenmax}}</div>
+          <div class="col-md-1 score-max">{{scoreRange.mathsectiongreenmax}}</div>
         </div>
         <!--end progress bar-->
+        <div class="row test-score-question">
+          <div class="col-md-3" >
+            <div class="test-score-text-lg">{{sectionMathCalcData.TotalInSection}}</div>
+            <div>Total Questions</div>
+          </div>
+          <div class="col-md-3">
+            <div class="test-score-text-lg">{{sectionMathCalcData.CorrectAnswers}}</div>
+            <div>Correct Answers</div>
+          </div>
+          <div class="col-md-3">
+            <div class="test-score-text-lg">{{sectionMathCalcData.IncorrectAnswers}}</div>
+            <div>Incorrect Answers</div>
+          </div>
+          <div class="col-md-3">
+            <div class="test-score-text-lg">{{sectionMathCalcData.OmittedAnswers}}</div>
+            <div>Omitted Answers</div>
+          </div>
+        </div>
+        <div class="row test-score-horizontal-padding">
+          <div class="test-score-horizontal"></div>
+        </div>
+        <!--MATH NO CALC SECTION-->
         <div class="row subscore-title">
-          <span class="subscore-score">{{subScores.TotalContextWords}}</span> Words in Context
+          <span class="subscore-score">{{totalScores.TotalMathScore}}</span> Math - No Calculator
         </div>
         <!--start progress bar-->
         <div class="row test-score-bar">
-          <div class="col-md-1 score-min">{{scoreRange.wordsincontextredmin}}</div>
-          <div class="col-md-8 score-bar">
+          <div class="col-md-1 score-min">{{scoreRange.mathsectionredmin}}</div>
+          <div class="col-md-10 score-bar">
             <div class="progress progress-bar-height">
-              <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': commandofevidenceredpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': commandofevidenceyellowpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': commandofevidencegreenpercentage + '%'}"></div>
+              <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': mathsectionredpercentage + '%'}"></div>
+              <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': mathsectionyellowpercentage + '%'}"></div>
+              <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': mathsectiongreenpercentage + '%'}"></div>
             </div>
           </div>
-          <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
+          <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
             <div  class="progress score-bar-indicator-no-margin">
-              <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': contextWordsPercentage + '%'}"></div>
+              <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': mathscoretotalpercentage + '%'}"></div>
               <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
             </div>
           </div>
-          <div class="col-md-1 score-max">{{scoreRange.wordsincontextgreenmax}}</div>
+          <div class="col-md-1 score-max">{{scoreRange.mathsectiongreenmax}}</div>
         </div>
         <!--end progress bar-->
-        <div class="row subscore-title">
-          <span class="subscore-score">{{subScores.TotalExpressionOfIdeas}}</span> Expression of Ideas
-        </div>
-        <!--start progress bar-->
-        <div class="row test-score-bar">
-          <div class="col-md-1 score-min">{{scoreRange.expressionofideasredmin}}</div>
-          <div class="col-md-8 score-bar">
-            <div class="progress progress-bar-height">
-              <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': expressionofideasredpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': expressionofideasyellowpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': expressionofideasgreenpercentage + '%'}"></div>
-            </div>
+        <div class="row test-score-question">
+          <div class="col-md-3" >
+            <div class="test-score-text-lg">{{sectionMathNoCalcData.TotalInSection}}</div>
+            <div>Total Questions</div>
           </div>
-          <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
-            <div  class="progress score-bar-indicator-no-margin">
-              <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': expressionOfIdeasPercentage + '%'}"></div>
-              <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
-            </div>
+          <div class="col-md-3">
+            <div class="test-score-text-lg">{{sectionMathNoCalcData.CorrectAnswers}}</div>
+            <div>Correct Answers</div>
           </div>
-          <div class="col-md-1 score-max">{{scoreRange.expressionofideasgreenmax}}</div>
-        </div>
-        <!--end progress bar-->
-        <div class="row subscore-title">
-          <span class="subscore-score">{{subScores.TotalStandardEngish}}</span> Standard English Conventions
-        </div>
-        <!--start progress bar-->
-        <div class="row test-score-bar">
-          <div class="col-md-1 score-min">{{scoreRange.englishconventionsredmin}}</div>
-          <div class="col-md-8 score-bar">
-            <div class="progress progress-bar-height">
-              <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': englishconventionsredpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': englishconventionsyellowpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': englishconventionsgreenpercentage + '%'}"></div>
-            </div>
+          <div class="col-md-3">
+            <div class="test-score-text-lg">{{sectionMathNoCalcData.IncorrectAnswers}}</div>
+            <div>Incorrect Answers</div>
           </div>
-          <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
-            <div  class="progress score-bar-indicator-no-margin">
-              <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': standardEngPercentage + '%'}"></div>
-              <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
-            </div>
+          <div class="col-md-3">
+            <div class="test-score-text-lg">{{sectionMathNoCalcData.OmittedAnswers}}</div>
+            <div>Omitted Answers</div>
           </div>
-          <div class="col-md-1 score-max">{{scoreRange.englishconventionsgreenmax}}</div>
         </div>
-        <!--end progress bar-->
-        <div class="row subscore-title">
-          <span class="subscore-score">{{subScores.TotalHeartOfAlgebra}}</span> Heart of Algebra
+        <div class="row test-score-horizontal-padding">
+          <div class="subscore-score"></div>
         </div>
-        <!--start progress bar-->
-        <div class="row test-score-bar">
-          <div class="col-md-1 score-min">{{scoreRange.algebraredmin}}</div>
-          <div class="col-md-8 score-bar">
-            <div class="progress progress-bar-height">
-              <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': algebraredpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': algebrayellowpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': algebragreenpercentage + '%'}"></div>
-            </div>
+        <div class="row">
+          <div class="row test-score-horizontal-padding">
+            <div class="test-score-horizontal"></div>
           </div>
-          <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
-            <div  class="progress score-bar-indicator-no-margin">
-              <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': heartOfAlgebraPercentage + '%'}"></div>
-              <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
-            </div>
+          <span class="font-lg">Subscores </span>{{scoreRange.commandofevidenceredmin}} to {{scoreRange.commandofevidencegreenmax}} range*
+          <div class="row subscore-title">
+            <span class="subscore-score">{{subScores.TotalHeartOfAlgebra}}</span> Heart of Algebra
           </div>
-          <div class="col-md-1 score-max">{{scoreRange.algebragreenmax}}</div>
-        </div>
-        <!--end progress bar-->
-        <div class="row subscore-title">
-          <span class="subscore-score">{{subScores.TotalProblemSolving}}</span> Problem Solving and Data Analysis
-        </div>
-        <!--start progress bar-->
-        <div class="row test-score-bar">
-          <div class="col-md-1 score-min">{{scoreRange.problemsolvingredmin}}</div>
-          <div class="col-md-8 score-bar">
-            <div class="progress progress-bar-height">
-              <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': problemsolvingredpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': problemsolvingyellowpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': problemsolvinggreenpercentage + '%'}"></div>
+          <!--start progress bar-->
+          <div class="row test-score-bar">
+            <div class="col-md-1 score-min">{{scoreRange.algebraredmin}}</div>
+            <div class="col-md-10 score-bar">
+              <div class="progress progress-bar-height">
+                <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': algebraredpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': algebrayellowpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': algebragreenpercentage + '%'}"></div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
-            <div  class="progress score-bar-indicator-no-margin">
-              <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': problemSolvingPercentage + '%'}"></div>
-              <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+            <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
+              <div  class="progress score-bar-indicator-no-margin">
+                <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': heartOfAlgebraPercentage + '%'}"></div>
+                <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+              </div>
             </div>
+            <div class="col-md-1 score-max">{{scoreRange.algebragreenmax}}</div>
           </div>
-          <div class="col-md-1 score-max">{{scoreRange.problemsolvinggreenmax}}</div>
-        </div>
-        <!--end progress bar-->
-        <div class="row subscore-title">
-          <span class="subscore-score">{{subScores.TotalPassportAdvMath}}</span> Passport to Advanced Math
-        </div>
-        <!--start progress bar-->
-        <div class="row test-score-bar">
-          <div class="col-md-1 score-min">{{scoreRange.advancedmathredmin}}</div>
-          <div class="col-md-8 score-bar">
-            <div class="progress progress-bar-height">
-              <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': advancedmathredpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': advancedmathyellowpercentage + '%'}"></div>
-              <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': advancedmathgreenpercentage + '%'}"></div>
+          <!--end progress bar-->
+          <div class="row subscore-title">
+            <span class="subscore-score">{{subScores.TotalProblemSolving}}</span> Problem Solving and Data Analysis
+          </div>
+          <!--start progress bar-->
+          <div class="row test-score-bar">
+            <div class="col-md-1 score-min">{{scoreRange.problemsolvingredmin}}</div>
+            <div class="col-md-10 score-bar">
+              <div class="progress progress-bar-height">
+                <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': problemsolvingredpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': problemsolvingyellowpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': problemsolvinggreenpercentage + '%'}"></div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-8 col-md-offset-1 score-bar-indicator-padding">
-            <div  class="progress score-bar-indicator-no-margin">
-              <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': passportAdvMathPercentage + '%'}"></div>
-              <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+            <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
+              <div  class="progress score-bar-indicator-no-margin">
+                <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': problemSolvingPercentage + '%'}"></div>
+                <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+              </div>
             </div>
+            <div class="col-md-1 score-max">{{scoreRange.problemsolvinggreenmax}}</div>
           </div>
-          <div class="col-md-1 score-max">{{scoreRange.advancedmathgreenmax}}</div>
+          <!--end progress bar-->
+          <div class="row subscore-title">
+            <span class="subscore-score">{{subScores.TotalPassportAdvMath}}</span> Passport to Advanced Math
+          </div>
+          <!--start progress bar-->
+          <div class="row test-score-bar">
+            <div class="col-md-1 score-min">{{scoreRange.advancedmathredmin}}</div>
+            <div class="col-md-10 score-bar">
+              <div class="progress progress-bar-height">
+                <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': advancedmathredpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': advancedmathyellowpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': advancedmathgreenpercentage + '%'}"></div>
+              </div>
+            </div>
+            <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
+              <div  class="progress score-bar-indicator-no-margin">
+                <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': passportAdvMathPercentage + '%'}"></div>
+                <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+              </div>
+            </div>
+            <div class="col-md-1 score-max">{{scoreRange.advancedmathgreenmax}}</div>
+          </div>
+          <!--end progress bar-->
+          <div id="test-score-wording" class="col-md-8 col-md-offset-1">
+            <span class="bold">Student Name:</span> {{totalScores.studentName}}</br>
+            <span class="bold">Student ID:</span> {{totalScores.studentid}}</br>
+            <span class="bold">Grade:</span> {{totalScores.Grade}}</br>
+            <span class="bold">School Name:</span> {{totalScores.SchoolName}}</br>
+            <span class="bold">School Code:</span> {{totalScores.SchoolCode}}</br>
+            <span class="bold">Test #:</span> {{totalScores.testNumber}}</br>
+            <span class="bold">Test Score:</span> {{totalScores.TotalPSATScore}}</br>
+            <span class="bold">Test Date:</span> {{totalScores.testDate}}
+          </div>
         </div>
-        <!--end progress bar-->
       </div>
     </div>
+
     <div class="row section-margin">
       <div class="col-md-12 font-lg section-title">
         Your Question-Level Feedback
@@ -467,7 +474,10 @@
       <!--reading-->
       <div class="col-md-3">
         <div class="col-md-12 question-icon">
-          <i class="fa fa-book"></i>
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x" style="color:#9C27B0"></i>
+            <i class="fa fa-book fa-stack-1x fa-inverse" style="border-radius:50%;box-shadow: 0px 0px 5px 0px #9C27B0"></i>
+          </span>
         </div>
         <div >
           <div class="question-table">
@@ -510,7 +520,10 @@
       <!--WRITING-->
       <div class="col-md-3">
         <div class="col-md-12 question-icon">
-          <i class="fa fa-pencil"></i>
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x" style="color:#00BCD4"></i>
+            <i class="fa fa-pencil fa-stack-1x fa-inverse" style="border-radius:50%;box-shadow: 0px 0px 5px 0px #00BCD4"></i>
+          </span>
         </div>
         <div class="question-table">
           <div class="question-table-rows">
@@ -551,7 +564,10 @@
       <!--MATH CALCULATOR-->
       <div class="col-md-3">
         <div class="col-md-12 question-icon">
-          <i class="fa fa-calculator"></i>
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x" style="color:#FF5722"></i>
+            <i class="fa fa-calculator fa-stack-1x fa-inverse" style="border-radius:50%;box-shadow: 0px 0px 5px 0px #FF5722"></i>
+          </span>
         </div>
         <div class="question-table">
           <div class="question-table-rows">
@@ -628,7 +644,7 @@
       <!--MATH NO CALCULATOR-->
       <div class="col-md-3">
         <div class="col-md-12 question-icon">
-          <span class="fa-stack">
+          <span class="fa-stack fa-lg">
             <i class="fa fa-calculator fa-stack-1x"></i>
             <i class="fa fa-ban fa-stack-2x text-danger"></i>
           </span>
@@ -796,6 +812,18 @@
               <div class="question-legend-table-cell"><div class="question-legend-text-padding">Analysis in Science</div></div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-md-offset-6">
+        <div id="test-score-wording" style="margin-top:-265px">
+          <span class="bold">Student Name:</span> {{totalScores.studentName}}</br>
+          <span class="bold">Student ID:</span> {{totalScores.studentid}}</br>
+          <span class="bold">Grade:</span> {{totalScores.Grade}}</br>
+          <span class="bold">School Name:</span> {{totalScores.SchoolName}}</br>
+          <span class="bold">School Code:</span> {{totalScores.SchoolCode}}</br>
+          <span class="bold">Test #:</span> {{totalScores.testNumber}}</br>
+          <span class="bold">Test Score:</span> {{totalScores.TotalPSATScore}}</br>
+          <span class="bold">Test Date:</span> {{totalScores.testDate}}
         </div>
       </div>
     </div>
