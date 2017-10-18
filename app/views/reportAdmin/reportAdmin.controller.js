@@ -6,20 +6,21 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
   $scope.studentInfo=studentService.get();
   $scope.studentID=$scope.studentInfo.studentid;
   $scope.examVersion=$scope.studentInfo.examversion;
+  $scope.examName=$scope.studentInfo.examname;
 
-   console.log('$scope.examversion:', $scope.examVersion);
+   console.log('$scope.studentInfo:', $scope.studentInfo);
 
   //get student info
   dataService.get('student', {KEYID:$scope.studentInfo.KEYID}).then(function (response) {
     console.log(response);
     console.log(response.data[0]);
-    $scope.studentNAME=response.data[0].StudentName;
-    $scope.studentKEYID=response.data[0].KEYID;
+    // $scope.studentNAME=response.data[0].StudentName;
+    // $scope.studentKEYID=response.data[0].KEYID;
     $scope.studentGrade=response.data[0].grade;
   });
 
   //get student total scores
-  dataService.getStudentTotalScores('student', {studentid: $scope.studentID}).then(function (response) {
+  dataService.getStudentTotalScores('student', {studentid: $scope.studentInfo.studentid, examversion: $scope.studentInfo.examversion}).then(function (response) {
     console.log(response.data);
     $scope.totalScores=response.data[0];
     $scope.PSATscoretotalpercentage=(($scope.totalScores.TotalPSATScore-320)/(1520-320))*100;
@@ -31,7 +32,7 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
   });
 
   //get student sub scores
-  dataService.getStudentSubScores('student', {studentid: $scope.studentID}).then(function (response) {
+  dataService.getStudentSubScores('student', {studentid: $scope.studentInfo.studentid}).then(function (response) {
     console.log(response.data);
     $scope.subScores=response.data[0];
     $scope.commandOfEvidencePercentage=(($scope.subScores.TotalCommandOfEvidence-1)/(15-1))*100;
@@ -44,7 +45,7 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
   });
 
   //get student answers
-  dataService.getStudentAnswers('student', {studentid: $scope.studentID, examversion: $scope.examVersion}).then(function (response) {
+  dataService.getStudentAnswers('student', {studentid: $scope.studentInfo.studentid, examversion: $scope.studentInfo.examversion}).then(function (response) {
     console.log(response.data);
     $scope.answers=response.data;
 
@@ -120,25 +121,25 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
     });
 
     //get reading section data
-    dataService.getStudentSectionData('student', {studentid: $scope.studentID, sectionName:'01'}).then(function (response) {
+    dataService.getStudentSectionData('student', {studentid: $scope.studentInfo.studentid, sectionName:'01'}).then(function (response) {
       console.log(response);
       $scope.sectionReadingData=response.data[0];
     });
 
     //get writing section data
-    dataService.getStudentSectionData('student', {studentid: $scope.studentID, sectionName:'02'}).then(function (response) {
+    dataService.getStudentSectionData('student', {studentid: $scope.studentInfo.studentid, sectionName:'02'}).then(function (response) {
       console.log(response);
       $scope.sectionWritingData=response.data[0];
     });
 
     //get math w/ calc section data
-    dataService.getStudentSectionData('student', {studentid: $scope.studentID, sectionName:'04'}).then(function (response) {
+    dataService.getStudentSectionData('student', {studentid: $scope.studentInfo.studentid, sectionName:'04'}).then(function (response) {
       console.log(response);
       $scope.sectionMathCalcData=response.data[0];
     });
 
     //get math no calc section data
-    dataService.getStudentSectionData('student', {studentid: $scope.studentID, sectionName:'03'}).then(function (response) {
+    dataService.getStudentSectionData('student', {studentid: $scope.studentInfo.studentid, sectionName:'03'}).then(function (response) {
       console.log(response);
       $scope.sectionMathNoCalcData=response.data[0];
     });
@@ -232,25 +233,36 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
   $scope.printToPdf = function() {
     html2canvas($('#print-section-1') , {
       onrendered: function (canvas) {
+      // console.log(canvas)
       var data1 = canvas.toDataURL();
         html2canvas($('#print-section-2') , {
           onrendered: function (canvas) {
+            // console.log(canvas)
             var data2 = canvas.toDataURL();
-
+            // console.log(data2)
             var docDefinition = {
               content: [
                 {
                   image: data1,
-                  width: 500,
+                  width: 560,
                   pageBreak:'after',
+                  alignment: 'center',
+                  // margin: [5,10,5,10]
                 },
                 {
                   image: data2,
-                  width: 500,
+                  alignment: 'center',
+                  width: 530,
+                  // height: 700
+                  // margin: [15,0,5,10] //works for psat
                 }
-              ]
+              ],
+              // pageMargins: [20,30,20,30] //works
+
+              // margin:[400,100,40,50]
+
             };
-            pdfMake.createPdf(docDefinition).download($scope.studentID + ' - ' + $scope.answers[0].examVersion);
+            pdfMake.createPdf(docDefinition).download($scope.studentInfo.studentid + ' - ' + $scope.answers[0].examVersion);
           }
         });
        }

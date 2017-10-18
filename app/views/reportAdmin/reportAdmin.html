@@ -472,20 +472,22 @@
       </div>
     </div>
     <div id="print-section-2">
-      <div class="row section-margin">
-        <div class="col-md-12 font-lg section-title">
-          Your Question-Level Feedback
-        </div>
-        <div class="col-md-12 text-center font-md" style="margin-bottom:20px">
-          Change answer input below and recalculate for projected score <br>
-          <span class="bold">Actual Score:</span> {{totalScores.TotalPSATScore}}
-          <button class="btn btn-danger" ng-click="calculate()">Recalculate</button>
-          <button class="btn btn-primary" ng-click="printToPdf()"><i class="fa fa-save"></i> Save as PDF</button>
-          <span class="bold">
-            Projected Score:</span> <span ng-hide="recalc">N/A</span><span ng-show="recalc" style="color:red">{{projectedScore.projectedscore}}</span>
-          <!-- <span class="bold">Projected Score:</span> {{projectedScore.projectedscore}} -->
 
-        </div>
+    <div class="row section-margin">
+      <div class="col-md-12 font-lg section-title">
+        Your Question-Level Feedback
+      </div>
+      <div class="col-md-12 text-center font-md" style="margin-bottom:20px">
+        Change answer input below and recalculate for projected score <br>
+        <span class="bold">Actual Score:</span> {{totalScores.TotalPSATScore}}
+        <button class="btn btn-danger" ng-click="calculate()">Recalculate</button>
+        <button class="btn btn-primary" ng-click="printToPdf()"><i class="fa fa-save"></i> Save as PDF</button>
+        <span class="bold">
+          Projected Score:</span> <span ng-hide="recalc">N/A</span><span ng-show="recalc" style="color:red">{{projectedScore.projectedscore}}</span>
+        <!-- <span class="bold">Projected Score:</span> {{projectedScore.projectedscore}} -->
+
+      </div>
+      <!-- <div id="print-section-2"> -->
         <!--reading-->
         <div class="col-md-3">
           <div class="col-md-12 question-icon">
@@ -494,65 +496,63 @@
               <i class="fa fa-book fa-stack-1x fa-inverse" style="border-radius:50%;box-shadow: 0px 0px 5px 0px #9C27B0"></i>
             </span>
           </div>
-          <div >
-            <div class="question-table">
-              <div class="question-table-rows">
-                <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
-                <div class="question-table-header"><div class="question-table-header-text">Correct</div></div>
-                <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
-                <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
-                <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
-                <div class="question-table-header"><div class="question-table-header-text-budget">Budget Time</div></div>
-                <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
-                <div class="question-table-header"><div class="question-table-header-text-subscore">Subscore</div></div>
-                <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
+          <div class="question-table">
+            <div class="question-table-rows">
+              <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
+              <div class="question-table-header"><div class="question-table-header-text">Correct</div></div>
+              <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
+              <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
+              <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
+              <div class="question-table-header"><div class="question-table-header-text-budget">Budget Time</div></div>
+              <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
+              <div class="question-table-header"><div class="question-table-header-text-subscore">Subscore</div></div>
+              <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
+            </div>
+            <div class="question-table-rows" ng-repeat="readingScore in readingScoresArr">
+              <div ng-if="readingScore.correctAnswer==='TRUE'" class="question-table-cell question-number">{{readingScore.questionNumber}}</div>
+              <div ng-if="readingScore.correctAnswer==='FALSE' || readingScore.StudentAnswer===null" class="question-table-cell">
+                <div class="question-number-false">{{readingScore.questionNumber}}</div>
               </div>
-              <div class="question-table-rows" ng-repeat="readingScore in readingScoresArr">
-                <div ng-if="readingScore.correctAnswer==='TRUE'" class="question-table-cell question-number">{{readingScore.questionNumber}}</div>
-                <div ng-if="readingScore.correctAnswer==='FALSE' || readingScore.StudentAnswer===null" class="question-table-cell">
-                  <div class="question-number-false">{{readingScore.questionNumber}}</div>
+              <div class="question-table-cell">{{readingScore.answerOne}}</div>
+              <div class="question-table-cell-answer">
+                <div ng-if="readingScore.correctAnswer==='TRUE'">
+                  <!-- <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" maxlength="1" placeholder="{{readingScore.StudentAnswer}}"> -->
+                  <!-- <span ng-show="input" ng-init="input=true" ng-click="input=false">{{readingScore.StudentAnswer}}</span> -->
+                  <span>{{readingScore.StudentAnswer}}</span>
                 </div>
-                <div class="question-table-cell">{{readingScore.answerOne}}</div>
-                <div class="question-table-cell-answer">
-                  <div ng-if="readingScore.correctAnswer==='TRUE'">
-                    <!-- <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" maxlength="1" placeholder="{{readingScore.StudentAnswer}}"> -->
-                    <!-- <span ng-show="input" ng-init="input=true" ng-click="input=false">{{readingScore.StudentAnswer}}</span> -->
-                    <span>{{readingScore.StudentAnswer}}</span>
-                  </div>
-                  <div ng-if="readingScore.correctAnswer==='FALSE'">
-                    <!-- <input class="question-table-cell-input-incorrect" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" maxlength="1" placeholder="{{readingScore.StudentAnswer}}"> -->
-                    <!-- <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false"> -->
-                      <!-- {{readingScore.StudentAnswer}} -->
-                    <!-- </span> -->
-                    <span class="question-answer-false bold">{{readingScore.StudentAnswer}}</span>
-                  </div>
+                <div ng-if="readingScore.correctAnswer==='FALSE'">
+                  <!-- <input class="question-table-cell-input-incorrect" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" maxlength="1" placeholder="{{readingScore.StudentAnswer}}"> -->
+                  <!-- <span class="question-answer-false bold" ng-show="input" ng-init="input=true" ng-click="input=false"> -->
+                    <!-- {{readingScore.StudentAnswer}} -->
+                  <!-- </span> -->
+                  <span class="question-answer-false bold">{{readingScore.StudentAnswer}}</span>
                 </div>
-                <div class="question-table-cell">
-                  <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" maxlength="1">
-                </div>
-                <div class="question-table-cell vertical-align">
-                  <span class="question-difficulty" ng-if="readingScore.diffLevel==='E'">
-                    <div class="question-difficulty-icon easy"></div>
-                  </span>
-                  <span class="question-difficulty" ng-if="readingScore.diffLevel==='M'">
-                    <div class="question-difficulty-icon med"></div>
-                  </span>
-                  <span class="question-difficulty" ng-if="readingScore.diffLevel==='H'">
-                    <div class="question-difficulty-icon hard"></div>
-                  </span>
-                </div>
-                <div class="question-table-cell question-subscore">{{readingScore.BudgetTime}}</div>
-                <div class="question-table-cell-duration">
-                  <div ng-if="readingScore.budgetTimeFlag==='TRUE'">
-                    <div class="bold" style="color:blue">{{readingScore.duration}}</div>
-                  </div>
-                  <div ng-if="readingScore.budgetTimeFlag!=='TRUE'">
-                    <div class="">{{readingScore.duration}}</div>
-                  </div>
-                </div>
-                <div class="question-table-cell question-subscore">{{readingScore.subscore}}</div>
-                <div class="question-table-cell-last">{{readingScore.CrossReferenceScore}}</div>
               </div>
+              <div class="question-table-cell">
+                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" maxlength="1">
+              </div>
+              <div class="question-table-cell vertical-align">
+                <span class="question-difficulty" ng-if="readingScore.diffLevel==='E'">
+                  <div class="question-difficulty-icon easy"></div>
+                </span>
+                <span class="question-difficulty" ng-if="readingScore.diffLevel==='M'">
+                  <div class="question-difficulty-icon med"></div>
+                </span>
+                <span class="question-difficulty" ng-if="readingScore.diffLevel==='H'">
+                  <div class="question-difficulty-icon hard"></div>
+                </span>
+              </div>
+              <div class="question-table-cell question-subscore">{{readingScore.BudgetTime}}</div>
+              <div class="question-table-cell-duration">
+                <div ng-if="readingScore.budgetTimeFlag==='TRUE'">
+                  <div class="bold" style="color:blue">{{readingScore.duration}}</div>
+                </div>
+                <div ng-if="readingScore.budgetTimeFlag!=='TRUE'">
+                  <div class="">{{readingScore.duration}}</div>
+                </div>
+              </div>
+              <div class="question-table-cell question-subscore">{{readingScore.subscore}}</div>
+              <div class="question-table-cell-last">{{readingScore.CrossReferenceScore}}</div>
             </div>
           </div>
         </div>
@@ -618,122 +618,7 @@
             </div>
           </div>
         </div>
-        <!--MATH CALCULATOR-->
-        <div class="col-md-3">
-          <div class="col-md-12 question-icon">
-            <span class="fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x" style="color:#FF5722"></i>
-              <i class="fa fa-calculator fa-stack-1x fa-inverse" style="border-radius:50%;box-shadow: 0px 0px 5px 0px #FF5722"></i>
-            </span>
-          </div>
-          <div class="question-table">
-            <div class="question-table-rows">
-              <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
-              <div class="question-table-header"><div class="question-table-header-text">Correct</div></div>
-              <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
-              <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
-              <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
-              <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div>
-              <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
-              <div class="question-table-header"><div class="question-table-header-text-subscore">Subscore</div></div>
-              <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
-            </div>
-            <div class="question-table-rows" ng-repeat="mathCalScore in mathCalScoresArr | limitTo:28">
-              <div ng-if="mathCalScore.correctAnswer==='TRUE'" class="question-table-cell question-number">{{mathCalScore.questionNumber}}</div>
-              <div ng-if="mathCalScore.correctAnswer==='FALSE' || mathCalScore.StudentAnswer===null" class="question-table-cell">
-                <div class="question-number-false">{{mathCalScore.questionNumber}}</div>
-              </div>
-              <div class="question-table-cell">{{mathCalScore.answerOne}}</div>
-              <div class="question-table-cell-answer">
-                <div ng-if="mathCalScore.correctAnswer==='TRUE'">
-                  <span>{{mathCalScore.StudentAnswer}}</span>
-                </div>
-                <div ng-if="mathCalScore.correctAnswer==='FALSE'">
-                  <span class="question-answer-false bold">{{mathCalScore.StudentAnswer}}</span>
-                </div>
-              </div>
-              <div class="question-table-cell">
-                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" maxlength="1">
-              </div>
-              <div class="question-table-cell vertical-align">
-                <span class="question-difficulty" ng-if="mathCalScore.diffLevel==='E'">
-                  <div class="question-difficulty-icon easy"></div>
-                </span>
-                <span class="question-difficulty" ng-if="mathCalScore.diffLevel==='M'">
-                  <div class="question-difficulty-icon med"></div>
-                </span>
-                <span class="question-difficulty" ng-if="mathCalScore.diffLevel==='H'">
-                  <div class="question-difficulty-icon hard"></div>
-                </span>
-              </div>
-              <div class="question-table-cell question-subscore">{{mathCalScore.BudgetTime}}</div>
-              <div class="question-table-cell-duration">
-                <div ng-if="mathCalScore.budgetTimeFlag==='TRUE'">
-                  <div class="bold" style="color:blue">{{mathCalScore.duration}}</div>
-                </div>
-                <div ng-if="mathCalScore.budgetTimeFlag!=='TRUE'">
-                  <div class="">{{mathCalScore.duration}}</div>
-                </div>
-              </div>
-              <div class="question-table-cell question-subscore">{{mathCalScore.subscore}}</div>
-              <div class="question-table-cell-last">{{mathCalScore.CrossReferenceScore}}</div>
-            </div>
-          </div>
-          <!--questions 28 onwards-->
-          <div class="question-table">
-            <div class="question-table-rows">
-              <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
-              <div class="question-table-header"><div class="question-table-header-text">Correct</div></div>
-              <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
-              <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
-              <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
-              <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div>
-              <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
-              <div class="question-table-header"><div class="question-table-header-text-subscore">Subscore</div></div>
-              <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
-            </div>
-            <div class="question-table-rows" ng-repeat="mathCalScore in mathCalScoresArr | limitTo: (28-mathCalScoresArr.length)">
-              <div ng-if="mathCalScore.correctAnswer==='TRUE'" class="question-table-cell question-number">{{mathCalScore.questionNumber}}</div>
-              <div ng-if="mathCalScore.correctAnswer==='FALSE' || mathCalScore.StudentAnswer===null" class="question-table-cell">
-                <div class="question-number-false">{{mathCalScore.questionNumber}}</div>
-              </div>
-              <div class="question-table-cell">{{mathCalScore.answerOne}}</div>
-              <div class="question-table-cell-answer">
-                <div ng-if="mathCalScore.correctAnswer==='TRUE'">
-                  <span>{{mathCalScore.StudentAnswer}}</span>
-                </div>
-                <div ng-if="mathCalScore.correctAnswer==='FALSE'">
-                  <span class="question-answer-false bold">{{mathCalScore.StudentAnswer}}</span>
-                </div>
-              </div>
-              <div class="question-table-cell">
-                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" maxlength="1">
-              </div>
-              <div class="question-table-cell vertical-align">
-                <span class="question-difficulty" ng-if="mathCalScore.diffLevel==='E'">
-                  <div class="question-difficulty-icon easy"></div>
-                </span>
-                <span class="question-difficulty" ng-if="mathCalScore.diffLevel==='M'">
-                  <div class="question-difficulty-icon med"></div>
-                </span>
-                <span class="question-difficulty" ng-if="mathCalScore.diffLevel==='H'">
-                  <div class="question-difficulty-icon hard"></div>
-                </span>
-              </div>
-              <div class="question-table-cell question-subscore">{{mathCalScore.BudgetTime}}</div>
-              <div class="question-table-cell-duration">
-                <div ng-if="mathCalScore.budgetTimeFlag==='TRUE'">
-                  <div class="bold" style="color:blue">{{mathCalScore.duration}}</div>
-                </div>
-                <div ng-if="mathCalScore.budgetTimeFlag!=='TRUE'">
-                  <div class="">{{mathCalScore.duration}}</div>
-                </div>
-              </div>
-              <div class="question-table-cell question-subscore">{{mathCalScore.subscore}}</div>
-              <div class="question-table-cell-last">{{mathCalScore.CrossReferenceScore}}</div>
-            </div>
-          </div>
-        </div>
+
         <!--MATH NO CALCULATOR-->
         <div class="col-md-3">
           <div class="col-md-12 question-icon">
@@ -754,7 +639,7 @@
               <div class="question-table-header"><div class="question-table-header-text-subscore">Subscore</div></div>
               <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
             </div>
-            <div class="question-table-rows" ng-repeat="mathNoCalScore in mathNoCalScoresArr | limitTo:13">
+            <div class="question-table-rows" ng-repeat="mathNoCalScore in mathNoCalScoresArr">
               <div ng-if="mathNoCalScore.correctAnswer==='TRUE'" class="question-table-cell question-number">{{mathNoCalScore.questionNumber}}</div>
               <div ng-if="mathNoCalScore.correctAnswer==='FALSE' || mathNoCalScore.StudentAnswer===null" class="question-table-cell">
                 <div class="question-number-false">{{mathNoCalScore.questionNumber}}</div>
@@ -796,7 +681,7 @@
             </div>
           </div>
           <!--questions 14 onwards-->
-          <div class="question-table">
+          <!-- <div class="question-table">
             <div class="question-table-rows">
               <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Correct</div></div>
@@ -848,7 +733,7 @@
               <div class="question-table-cell question-subscore">{{mathNoCalScore.subscore}}</div>
               <div class="question-table-cell-last">{{mathNoCalScore.CrossReferenceScore}}</div>
             </div>
-          </div>
+          </div> -->
           <!--end table-->
           <div class="col-md-12" style="padding-left:30px">
             <!-- <div style="margin-top:20px;font-weight:bold;font-size:20px">
@@ -942,6 +827,122 @@
               </div>
             </div>
           </div>
+        </div>
+        <!--MATH CALCULATOR-->
+        <div class="col-md-3">
+          <div class="col-md-12 question-icon">
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x" style="color:#FF5722"></i>
+              <i class="fa fa-calculator fa-stack-1x fa-inverse" style="border-radius:50%;box-shadow: 0px 0px 5px 0px #FF5722"></i>
+            </span>
+          </div>
+          <div class="question-table">
+            <div class="question-table-rows">
+              <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
+              <div class="question-table-header"><div class="question-table-header-text">Correct</div></div>
+              <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
+              <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
+              <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
+              <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div>
+              <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
+              <div class="question-table-header"><div class="question-table-header-text-subscore">Subscore</div></div>
+              <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
+            </div>
+            <div class="question-table-rows" ng-repeat="mathCalScore in mathCalScoresArr">
+              <div ng-if="mathCalScore.correctAnswer==='TRUE'" class="question-table-cell question-number">{{mathCalScore.questionNumber}}</div>
+              <div ng-if="mathCalScore.correctAnswer==='FALSE' || mathCalScore.StudentAnswer===null" class="question-table-cell">
+                <div class="question-number-false">{{mathCalScore.questionNumber}}</div>
+              </div>
+              <div class="question-table-cell">{{mathCalScore.answerOne}}</div>
+              <div class="question-table-cell-answer">
+                <div ng-if="mathCalScore.correctAnswer==='TRUE'">
+                  <span>{{mathCalScore.StudentAnswer}}</span>
+                </div>
+                <div ng-if="mathCalScore.correctAnswer==='FALSE'">
+                  <span class="question-answer-false bold">{{mathCalScore.StudentAnswer}}</span>
+                </div>
+              </div>
+              <div class="question-table-cell">
+                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" maxlength="1">
+              </div>
+              <div class="question-table-cell vertical-align">
+                <span class="question-difficulty" ng-if="mathCalScore.diffLevel==='E'">
+                  <div class="question-difficulty-icon easy"></div>
+                </span>
+                <span class="question-difficulty" ng-if="mathCalScore.diffLevel==='M'">
+                  <div class="question-difficulty-icon med"></div>
+                </span>
+                <span class="question-difficulty" ng-if="mathCalScore.diffLevel==='H'">
+                  <div class="question-difficulty-icon hard"></div>
+                </span>
+              </div>
+              <div class="question-table-cell question-subscore">{{mathCalScore.BudgetTime}}</div>
+              <div class="question-table-cell-duration">
+                <div ng-if="mathCalScore.budgetTimeFlag==='TRUE'">
+                  <div class="bold" style="color:blue">{{mathCalScore.duration}}</div>
+                </div>
+                <div ng-if="mathCalScore.budgetTimeFlag!=='TRUE'">
+                  <div class="">{{mathCalScore.duration}}</div>
+                </div>
+              </div>
+              <div class="question-table-cell question-subscore">{{mathCalScore.subscore}}</div>
+              <div class="question-table-cell-last">{{mathCalScore.CrossReferenceScore}}</div>
+            </div>
+          </div>
+          <!--questions 28 onwards-->
+          <!-- <div class="question-table">
+            <div class="question-table-rows">
+              <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
+              <div class="question-table-header"><div class="question-table-header-text">Correct</div></div>
+              <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
+              <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
+              <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
+              <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div>
+              <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
+              <div class="question-table-header"><div class="question-table-header-text-subscore">Subscore</div></div>
+              <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
+            </div>
+            <div class="question-table-rows" ng-repeat="mathCalScore in mathCalScoresArr | limitTo: (28-mathCalScoresArr.length)">
+              <div ng-if="mathCalScore.correctAnswer==='TRUE'" class="question-table-cell question-number">{{mathCalScore.questionNumber}}</div>
+              <div ng-if="mathCalScore.correctAnswer==='FALSE' || mathCalScore.StudentAnswer===null" class="question-table-cell">
+                <div class="question-number-false">{{mathCalScore.questionNumber}}</div>
+              </div>
+              <div class="question-table-cell">{{mathCalScore.answerOne}}</div>
+              <div class="question-table-cell-answer">
+                <div ng-if="mathCalScore.correctAnswer==='TRUE'">
+                  <span>{{mathCalScore.StudentAnswer}}</span>
+                </div>
+                <div ng-if="mathCalScore.correctAnswer==='FALSE'">
+                  <span class="question-answer-false bold">{{mathCalScore.StudentAnswer}}</span>
+                </div>
+              </div>
+              <div class="question-table-cell">
+                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" maxlength="1">
+              </div>
+              <div class="question-table-cell vertical-align">
+                <span class="question-difficulty" ng-if="mathCalScore.diffLevel==='E'">
+                  <div class="question-difficulty-icon easy"></div>
+                </span>
+                <span class="question-difficulty" ng-if="mathCalScore.diffLevel==='M'">
+                  <div class="question-difficulty-icon med"></div>
+                </span>
+                <span class="question-difficulty" ng-if="mathCalScore.diffLevel==='H'">
+                  <div class="question-difficulty-icon hard"></div>
+                </span>
+              </div>
+              <div class="question-table-cell question-subscore">{{mathCalScore.BudgetTime}}</div>
+              <div class="question-table-cell-duration">
+                <div ng-if="mathCalScore.budgetTimeFlag==='TRUE'">
+                  <div class="bold" style="color:blue">{{mathCalScore.duration}}</div>
+                </div>
+                <div ng-if="mathCalScore.budgetTimeFlag!=='TRUE'">
+                  <div class="">{{mathCalScore.duration}}</div>
+                </div>
+              </div>
+              <div class="question-table-cell question-subscore">{{mathCalScore.subscore}}</div>
+              <div class="question-table-cell-last">{{mathCalScore.CrossReferenceScore}}</div>
+            </div>
+          </div> -->
         </div>
         <div class="col-md-6 col-md-offset-6">
           <div id="test-score-wording" style="margin-top:-285px">
