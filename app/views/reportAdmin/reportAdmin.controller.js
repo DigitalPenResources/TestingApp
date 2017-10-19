@@ -252,7 +252,7 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
                 {
                   image: data2,
                   alignment: 'center',
-                  width: 530,
+                  width: 560,
                   // height: 700
                   // margin: [15,0,5,10] //works for psat
                 }
