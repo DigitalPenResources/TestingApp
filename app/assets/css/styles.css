@@ -655,7 +655,7 @@ button:focus {
 }
 
 .admin-width {
-  width: 1450px
+  width: 1250px
 }
 
 /*#report .question-table-cell-input {
@@ -669,7 +669,7 @@ button:focus {
 }*/
 
 #report .question-table-cell-input-correct{
-  width: 100%;
+  width: 30px;
   white-space: nowrap;
   border: 0;
   text-align: center;

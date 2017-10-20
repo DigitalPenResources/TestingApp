@@ -7,6 +7,7 @@
         </div>
         <div class="col-md-12 text-center font-md" style="margin-bottom:20px">
           You are viewing report for <span class="bold">{{studentInfo.StudentName}}</span>
+          <div>Test Name: {{studentInfo.examname}}, Version: {{studentInfo.examversion}}</div>
         </div>
       </div>
       <div class="row">
@@ -60,12 +61,14 @@
             </div>
             <div class="col-md-12 section-horizontal-bar"></div>
             <div class="col-md-12">
-            <div id="psat-section-text-lg">Your NMSC Selection Index</div>
-             <div class="col-md-6 col-md-offset-3 nmsc-index">
-  		                {{totalScores.NMSCSelectionIndex}}*
+              <div ng-show="examName!=='SATV1'">
+                <div id="psat-section-text-lg">Your NMSC Selection Index</div>
+                <div class="col-md-6 col-md-offset-3 nmsc-index">
+      		                {{totalScores.NMSCSelectionIndex}}*
+                </div>
+                <br></br><br></br>
+                <div class="text-left">NMSC uses a Selection Index based on PSAT/NMSQT scores as an initial screen of students who enter its scholarship programs. To calculate your Selection index, double the sum of your Reading, Writing and Language, and Math Test Scores.</div>
               </div>
-              <br></br><br></br>
-              <div class="text-left">NMSC uses a Selection Index based on PSAT/NMSQT scores as an initial screen of students who enter its scholarship programs. To calculate your Selection index, double the sum of your Reading, Writing and Language, and Math Test Scores.</div>
             </div>
           </div>
         </div>
@@ -488,6 +491,10 @@
 
       </div>
       <div id="print-section-2" style="margin-top:110px">
+        <div class="col-md-12">
+          <div class="text-center font-md bold">Test Name: {{studentInfo.examname}}, Version: {{studentInfo.examversion}}</div>
+        </div>
+
         <!--reading-->
         <div class="col-md-3">
           <div class="col-md-12 question-icon">
@@ -503,7 +510,7 @@
               <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
-              <div class="question-table-header"><div class="question-table-header-text-budget">Budget Time</div></div>
+              <!-- <div class="question-table-header"><div class="question-table-header-text-budget">Budget Time</div></div> -->
               <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
               <div class="question-table-header"><div class="question-table-header-text-subscore">Subscore</div></div>
               <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
@@ -542,7 +549,7 @@
                   <div class="question-difficulty-icon hard"></div>
                 </span>
               </div>
-              <div class="question-table-cell question-subscore">{{readingScore.BudgetTime}}</div>
+              <!-- <div class="question-table-cell question-subscore">{{readingScore.BudgetTime}}</div> -->
               <div class="question-table-cell-duration">
                 <div ng-if="readingScore.budgetTimeFlag==='TRUE'">
                   <div class="bold" style="color:blue">{{readingScore.duration}}</div>
@@ -571,7 +578,7 @@
               <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
-              <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div>
+              <!-- <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div> -->
               <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
               <div class="question-table-header"><div class="question-table-header-text-subscore">Subscore</div></div>
               <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
@@ -604,7 +611,7 @@
                   <div class="question-difficulty-icon hard"></div>
                 </span>
               </div>
-              <div class="question-table-cell question-subscore">{{writingLangScore.BudgetTime}}</div>
+              <!-- <div class="question-table-cell question-subscore">{{writingLangScore.BudgetTime}}</div> -->
               <div class="question-table-cell-duration">
                 <div ng-if="writingLangScore.budgetTimeFlag==='TRUE'">
                   <div class="bold" style="color:blue">{{writingLangScore.duration}}</div>
@@ -634,7 +641,7 @@
               <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
-              <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div>
+              <!-- <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div> -->
               <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
               <div class="question-table-header"><div class="question-table-header-text-subscore">Subscore</div></div>
               <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
@@ -667,7 +674,7 @@
                   <div class="question-difficulty-icon hard"></div>
                 </span>
               </div>
-              <div class="question-table-cell question-subscore">{{mathNoCalScore.BudgetTime}}</div>
+              <!-- <div class="question-table-cell question-subscore">{{mathNoCalScore.BudgetTime}}</div> -->
               <div class="question-table-cell-duration">
                 <div ng-if="mathNoCalScore.budgetTimeFlag==='TRUE'">
                   <div class="bold" style="color:blue">{{mathNoCalScore.duration}}</div>
@@ -843,7 +850,7 @@
               <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
-              <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div>
+              <!-- <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div> -->
               <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
               <div class="question-table-header"><div class="question-table-header-text-subscore">Subscore</div></div>
               <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
@@ -876,7 +883,7 @@
                   <div class="question-difficulty-icon hard"></div>
                 </span>
               </div>
-              <div class="question-table-cell question-subscore">{{mathCalScore.BudgetTime}}</div>
+              <!-- <div class="question-table-cell question-subscore">{{mathCalScore.BudgetTime}}</div> -->
               <div class="question-table-cell-duration">
                 <div ng-if="mathCalScore.budgetTimeFlag==='TRUE'">
                   <div class="bold" style="color:blue">{{mathCalScore.duration}}</div>

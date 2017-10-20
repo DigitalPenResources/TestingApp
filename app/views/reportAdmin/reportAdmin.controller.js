@@ -252,12 +252,12 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
                 {
                   image: data2,
                   alignment: 'center',
-                  width: 560,
+                  width: 520,
                   // height: 700
                   // margin: [15,0,5,10] //works for psat
                 }
               ],
-              // pageMargins: [20,30,20,30] //works
+              pageMargins: [20,20,20,20] //works
 
               // margin:[400,100,40,50]
 
