@@ -420,7 +420,8 @@ button:focus {
 
 #report .question-table {
   display: table;
-  margin-top: 50px
+  margin-top: 50px;
+  font-size: 18px;
 }
 
 #report .question-table-header {
@@ -435,7 +436,7 @@ button:focus {
 #report .question-table-header-no-border {
   display: table-cell;
   white-space: nowrap;
-  max-width: 30px;
+  max-width: 50px;
   height: 85px;
   vertical-align: bottom
 }
@@ -655,7 +656,7 @@ button:focus {
 }
 
 .admin-width {
-  width: 1250px
+  width: 1300px
 }
 
 /*#report .question-table-cell-input {
