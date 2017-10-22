@@ -420,7 +420,7 @@ button:focus {
 
 #report .question-table {
   display: table;
-  margin-top: 50px;
+  /*margin-top: 50px;*/
   font-size: 18px;
 }
 

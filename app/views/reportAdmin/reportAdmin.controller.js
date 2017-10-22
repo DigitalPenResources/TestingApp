@@ -257,8 +257,8 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
                   // margin: [15,0,5,10] //works for psat
                 }
               ],
-              pageMargins: [15,15,15,15] //works
-
+              pageMargins: [15,15,15,15], //works
+              pageSize: { width: 612, height: 792 }
               // margin:[400,100,40,50]
 
             };
