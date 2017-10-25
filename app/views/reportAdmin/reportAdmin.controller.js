@@ -232,14 +232,14 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
 
   $scope.printToPdf = function() {
     html2canvas($('#print-section-1') , {
-      scale: 2,
+      // scale: 2,
       // dpi: 196,
       onrendered: function (canvas) {
       // console.log(canvas)
       var data1 = canvas.toDataURL();
         html2canvas($('#print-section-2'), {
           // dpi: 196,
-          width: 600,
+          // width: 600,
           onrendered: function (canvas) {
             // console.log(canvas)
             var data2 = canvas.toDataURL();
@@ -248,7 +248,7 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
               content: [
                 {
                   image: data1,
-                  width: 500,
+                  width: 560,
                   pageBreak:'after',
                   alignment: 'center',
                   // margin: [5,10,5,10]
@@ -256,7 +256,7 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
                 {
                   image: data2,
                   alignment: 'center',
-                  // width: 500,
+                  width: 560,
                   // height: 700
                   // fit:[612, 792]
                   // margin: [15,0,5,10] //works for psat
