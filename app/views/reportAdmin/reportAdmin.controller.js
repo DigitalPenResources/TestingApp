@@ -121,25 +121,25 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
     });
 
     //get reading section data
-    dataService.getStudentSectionData('student', {studentid: $scope.studentInfo.studentid, sectionName:'01'}).then(function (response) {
+    dataService.getStudentSectionData('student', {studentid: $scope.studentInfo.studentid, sectionName:'01', examversion: $scope.studentInfo.examversion}).then(function (response) {
       console.log(response);
       $scope.sectionReadingData=response.data[0];
     });
 
     //get writing section data
-    dataService.getStudentSectionData('student', {studentid: $scope.studentInfo.studentid, sectionName:'02'}).then(function (response) {
+    dataService.getStudentSectionData('student', {studentid: $scope.studentInfo.studentid, sectionName:'02', examversion: $scope.studentInfo.examversion}).then(function (response) {
       console.log(response);
       $scope.sectionWritingData=response.data[0];
     });
 
     //get math w/ calc section data
-    dataService.getStudentSectionData('student', {studentid: $scope.studentInfo.studentid, sectionName:'04'}).then(function (response) {
+    dataService.getStudentSectionData('student', {studentid: $scope.studentInfo.studentid, sectionName:'04', examversion: $scope.studentInfo.examversion}).then(function (response) {
       console.log(response);
       $scope.sectionMathCalcData=response.data[0];
     });
 
     //get math no calc section data
-    dataService.getStudentSectionData('student', {studentid: $scope.studentInfo.studentid, sectionName:'03'}).then(function (response) {
+    dataService.getStudentSectionData('student', {studentid: $scope.studentInfo.studentid, sectionName:'03', examversion: $scope.studentInfo.examversion}).then(function (response) {
       console.log(response);
       $scope.sectionMathNoCalcData=response.data[0];
     });
@@ -227,15 +227,19 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
     //       console.log('adding to arr')
     //       readingScoreChanges.push(readingScoreChangesObj);
     //     }
-    //   }
+      // }
   // };
 
   $scope.printToPdf = function() {
     html2canvas($('#print-section-1') , {
+      // scale: 2,
+      // dpi: 196,
       onrendered: function (canvas) {
       // console.log(canvas)
       var data1 = canvas.toDataURL();
-        html2canvas($('#print-section-2') , {
+        html2canvas($('#print-section-2'), {
+          // dpi: 196,
+          // width: 600,
           onrendered: function (canvas) {
             // console.log(canvas)
             var data2 = canvas.toDataURL();
@@ -254,11 +258,12 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
                   alignment: 'center',
                   width: 560,
                   // height: 700
+                  // fit:[612, 792]
                   // margin: [15,0,5,10] //works for psat
                 }
               ],
-              // pageMargins: [20,30,20,30] //works
-
+              pageMargins: [15,15,15,15], //works
+              pageSize: { width: 612, height: 792 }
               // margin:[400,100,40,50]
 
             };

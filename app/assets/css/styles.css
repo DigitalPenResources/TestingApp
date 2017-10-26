@@ -184,7 +184,7 @@ button:focus {
   font-size: 13px;
   padding: 0 0 0 5px;
   line-height: 60px;
-  color: grey
+  /*color: grey*/
 };
 
 /*#report .nmsc-section-total-score {
@@ -198,7 +198,7 @@ button:focus {
   font-size: 13px;
   padding:0 0 0 5px;
   line-height: 42px;
-  color: grey
+  /*color: grey*/
 }
 
 .section-score-range {
@@ -254,7 +254,7 @@ button:focus {
   background: white;
   padding: 10px;
   font-size: 20px;
-  color: grey;
+  /*color: grey;*/
   border: 1px solid grey
 }
 
@@ -288,7 +288,7 @@ button:focus {
   margin: 0;
   line-height: 10px;
   text-align: right;
-  color:grey;
+  /*color:grey;*/
   height: 30px
 }
 
@@ -296,7 +296,7 @@ button:focus {
   padding: 0;
   margin: 0;
   line-height: 10px;
-  color:grey;
+  /*color:grey;*/
   height: 30px
 }
 
@@ -420,7 +420,8 @@ button:focus {
 
 #report .question-table {
   display: table;
-  margin-top: 50px
+  /*margin-top: 50px;*/
+  font-size: 18px;
 }
 
 #report .question-table-header {
@@ -428,15 +429,15 @@ button:focus {
   border-right: 2px solid lightgrey;
   white-space: nowrap;
   max-width: 30px;
-  height: 85px;
+  height: 105px;
   vertical-align: bottom
 }
 
 #report .question-table-header-no-border {
   display: table-cell;
   white-space: nowrap;
-  max-width: 30px;
-  height: 85px;
+  max-width: 50px;
+  height: 105px;
   vertical-align: bottom
 }
 
@@ -447,7 +448,7 @@ button:focus {
 
 #report .question-table-header-text-subscore {
   transform: rotate(-90deg);
-  padding-left: 17px
+  padding-left: 12px
 }
 
 #report .question-table-header-text-difficulty {
@@ -462,7 +463,7 @@ button:focus {
 
 #report .question-table-header-text-actual {
   transform: rotate(-90deg);
-  padding-left: 20px
+  padding-left: 25px
 }
 
 #report .question-table-header-text-crosstest {
@@ -655,7 +656,7 @@ button:focus {
 }
 
 .admin-width {
-  width: 1450px
+  width: auto
 }
 
 /*#report .question-table-cell-input {
@@ -669,7 +670,7 @@ button:focus {
 }*/
 
 #report .question-table-cell-input-correct{
-  width: 100%;
+  width: 30px;
   white-space: nowrap;
   border: 0;
   text-align: center;

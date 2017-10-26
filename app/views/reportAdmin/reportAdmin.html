@@ -7,6 +7,7 @@
         </div>
         <div class="col-md-12 text-center font-md" style="margin-bottom:20px">
           You are viewing report for <span class="bold">{{studentInfo.StudentName}}</span>
+          <div>Test Name: {{studentInfo.examname}}, Version: {{studentInfo.examversion}}</div>
         </div>
       </div>
       <div class="row">
@@ -18,7 +19,7 @@
             <div class="col-md-6 section-total-score">
               {{totalScores.TotalEvidentScore}}
             </div>
-            <div class="col-md-6 section-score-range-col" style="text-align: left;font-size: 13px; padding:0 0 0 5px; line-height: 42px; color: grey">
+            <div class="col-md-6 section-score-range-col" style="text-align: left;font-size: 13px; padding:0 0 0 5px; line-height: 42px;">
               <span class="section-score-range">|</span>{{scoreRange.readingwritingsectionredmin}} to {{scoreRange.readingwritingsectiongreenmax}}
             </div>
             <div class="col-md-12 section-horizontal-bar"></div>
@@ -60,12 +61,14 @@
             </div>
             <div class="col-md-12 section-horizontal-bar"></div>
             <div class="col-md-12">
-            <div id="psat-section-text-lg">Your NMSC Selection Index</div>
-             <div class="col-md-6 col-md-offset-3 nmsc-index">
-  		                {{totalScores.NMSCSelectionIndex}}*
+              <div ng-show="examName!=='SATV1'">
+                <div id="psat-section-text-lg">Your NMSC Selection Index</div>
+                <div class="col-md-6 col-md-offset-3 nmsc-index">
+      		                {{totalScores.NMSCSelectionIndex}}*
+                </div>
+                <br></br><br></br>
+                <div class="text-left">NMSC uses a Selection Index based on PSAT/NMSQT scores as an initial screen of students who enter its scholarship programs. To calculate your Selection index, double the sum of your Reading, Writing and Language, and Math Test Scores.</div>
               </div>
-              <br></br><br></br>
-              <div class="text-left">NMSC uses a Selection Index based on PSAT/NMSQT scores as an initial screen of students who enter its scholarship programs. To calculate your Selection index, double the sum of your Reading, Writing and Language, and Math Test Scores.</div>
             </div>
           </div>
         </div>
@@ -77,7 +80,7 @@
             <div class="col-md-6 section-total-score">
               {{totalScores.TotalMathScore}}
             </div>
-            <div class="col-md-6 section-score-range-col" style="text-align: left;font-size: 13px; padding:0 0 0 5px; line-height: 42px; color: grey">
+            <div class="col-md-6 section-score-range-col" style="text-align: left;font-size: 13px; padding:0 0 0 5px; line-height: 42px;">
               <span class="section-score-range">|</span>{{scoreRange.mathsectionredmin}} to {{scoreRange.mathsectiongreenmax}}
             </div>
             <div class="col-md-12 section-horizontal-bar"></div>
@@ -298,50 +301,7 @@
         </div>
         <div class="col-md-6">
           <span class="font-lg">Test Scores </span>160 to 760 range*
-          <!--MATH CALCULATOR SECTION-->
-          <div class="row subscore-title">
-            <span class="subscore-score">{{totalScores.TotalMathScore}}</span> Math - Calculator
-          </div>
-          <!--start progress bar-->
-          <div class="row test-score-bar">
-            <div class="col-md-1 score-min">{{scoreRange.mathsectionredmin}}</div>
-            <div class="col-md-10 score-bar">
-              <div class="progress progress-bar-height">
-                <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': mathsectionredpercentage + '%'}"></div>
-                <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': mathsectionyellowpercentage + '%'}"></div>
-                <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': mathsectiongreenpercentage + '%'}"></div>
-              </div>
-            </div>
-            <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
-              <div  class="progress score-bar-indicator-no-margin">
-                <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': mathscoretotalpercentage + '%'}"></div>
-                <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
-              </div>
-            </div>
-            <div class="col-md-1 score-max">{{scoreRange.mathsectiongreenmax}}</div>
-          </div>
-          <!--end progress bar-->
-          <div class="row test-score-question">
-            <div class="col-md-3" >
-              <div class="test-score-text-lg">{{sectionMathCalcData.TotalInSection}}</div>
-              <div>Total Questions</div>
-            </div>
-            <div class="col-md-3">
-              <div class="test-score-text-lg">{{sectionMathCalcData.CorrectAnswers}}</div>
-              <div>Correct Answers</div>
-            </div>
-            <div class="col-md-3">
-              <div class="test-score-text-lg">{{sectionMathCalcData.IncorrectAnswers}}</div>
-              <div>Incorrect Answers</div>
-            </div>
-            <div class="col-md-3">
-              <div class="test-score-text-lg">{{sectionMathCalcData.OmittedAnswers}}</div>
-              <div>Omitted Answers</div>
-            </div>
-          </div>
-          <div class="row test-score-horizontal-padding">
-            <div class="test-score-horizontal"></div>
-          </div>
+
           <!--MATH NO CALC SECTION-->
           <div class="row subscore-title">
             <span class="subscore-score">{{totalScores.TotalMathScore}}</span> Math - No Calculator
@@ -383,6 +343,51 @@
               <div>Omitted Answers</div>
             </div>
           </div>
+          <div class="row test-score-horizontal-padding">
+            <div class="test-score-horizontal"></div>
+          </div>
+          <!--MATH CALCULATOR SECTION-->
+          <div class="row subscore-title">
+            <span class="subscore-score">{{totalScores.TotalMathScore}}</span> Math - Calculator
+          </div>
+          <!--start progress bar-->
+          <div class="row test-score-bar">
+            <div class="col-md-1 score-min">{{scoreRange.mathsectionredmin}}</div>
+            <div class="col-md-10 score-bar">
+              <div class="progress progress-bar-height">
+                <div class="progress-bar progress-bar-red" role="progressbar" ng-style="{'width': mathsectionredpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-yellow" role="progressbar" ng-style="{'width': mathsectionyellowpercentage + '%'}"></div>
+                <div class="progress-bar progress-bar-green" role="progressbar" ng-style="{'width': mathsectiongreenpercentage + '%'}"></div>
+              </div>
+            </div>
+            <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
+              <div  class="progress score-bar-indicator-no-margin">
+                <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': mathscoretotalpercentage + '%'}"></div>
+                <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
+              </div>
+            </div>
+            <div class="col-md-1 score-max">{{scoreRange.mathsectiongreenmax}}</div>
+          </div>
+          <!--end progress bar-->
+          <div class="row test-score-question">
+            <div class="col-md-3" >
+              <div class="test-score-text-lg">{{sectionMathCalcData.TotalInSection}}</div>
+              <div>Total Questions</div>
+            </div>
+            <div class="col-md-3">
+              <div class="test-score-text-lg">{{sectionMathCalcData.CorrectAnswers}}</div>
+              <div>Correct Answers</div>
+            </div>
+            <div class="col-md-3">
+              <div class="test-score-text-lg">{{sectionMathCalcData.IncorrectAnswers}}</div>
+              <div>Incorrect Answers</div>
+            </div>
+            <div class="col-md-3">
+              <div class="test-score-text-lg">{{sectionMathCalcData.OmittedAnswers}}</div>
+              <div>Omitted Answers</div>
+            </div>
+          </div>
+
           <div class="row test-score-horizontal-padding">
             <div class="subscore-score"></div>
           </div>
@@ -457,7 +462,7 @@
               <div class="col-md-1 score-max">{{scoreRange.advancedmathgreenmax}}</div>
             </div>
             <!--end progress bar-->
-            <div id="test-score-wording" class="col-md-8 col-md-offset-1">
+            <div id="test-score-wording" class="col-md-10 col-md-offset-1">
               <span class="bold">Student Name:</span> {{totalScores.studentName}}</br>
               <span class="bold">Student ID:</span> {{totalScores.studentid}}</br>
               <span class="bold">Grade:</span> {{totalScores.Grade}}</br>
@@ -488,6 +493,10 @@
 
       </div>
       <div id="print-section-2" style="margin-top:110px">
+        <div class="col-md-12">
+          <div class="text-center font-md bold">Test Name: {{studentInfo.examname}}, Version: {{studentInfo.examversion}}</div>
+        </div>
+
         <!--reading-->
         <div class="col-md-3">
           <div class="col-md-12 question-icon">
@@ -496,14 +505,14 @@
               <i class="fa fa-book fa-stack-1x fa-inverse" style="border-radius:50%;box-shadow: 0px 0px 5px 0px #9C27B0"></i>
             </span>
           </div>
-          <div class="question-table">
+          <div class="col-md-12 question-table">
             <div class="question-table-rows">
               <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Correct</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
-              <div class="question-table-header"><div class="question-table-header-text-budget">Budget Time</div></div>
+              <!-- <div class="question-table-header"><div class="question-table-header-text-budget">Budget Time</div></div> -->
               <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
               <div class="question-table-header"><div class="question-table-header-text-subscore">Subscore</div></div>
               <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
@@ -542,7 +551,7 @@
                   <div class="question-difficulty-icon hard"></div>
                 </span>
               </div>
-              <div class="question-table-cell question-subscore">{{readingScore.BudgetTime}}</div>
+              <!-- <div class="question-table-cell question-subscore">{{readingScore.BudgetTime}}</div> -->
               <div class="question-table-cell-duration">
                 <div ng-if="readingScore.budgetTimeFlag==='TRUE'">
                   <div class="bold" style="color:blue">{{readingScore.duration}}</div>
@@ -564,14 +573,14 @@
               <i class="fa fa-pencil fa-stack-1x fa-inverse" style="border-radius:50%;box-shadow: 0px 0px 5px 0px #00BCD4"></i>
             </span>
           </div>
-          <div class="question-table">
+          <div class="col-md-12 question-table">
             <div class="question-table-rows">
               <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Correct</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
-              <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div>
+              <!-- <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div> -->
               <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
               <div class="question-table-header"><div class="question-table-header-text-subscore">Subscore</div></div>
               <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
@@ -604,7 +613,7 @@
                   <div class="question-difficulty-icon hard"></div>
                 </span>
               </div>
-              <div class="question-table-cell question-subscore">{{writingLangScore.BudgetTime}}</div>
+              <!-- <div class="question-table-cell question-subscore">{{writingLangScore.BudgetTime}}</div> -->
               <div class="question-table-cell-duration">
                 <div ng-if="writingLangScore.budgetTimeFlag==='TRUE'">
                   <div class="bold" style="color:blue">{{writingLangScore.duration}}</div>
@@ -627,14 +636,14 @@
               <i class="fa fa-ban fa-stack-2x text-danger"></i>
             </span>
           </div>
-          <div class="question-table">
+          <div class="col-md-12 question-table">
             <div class="question-table-rows">
               <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Correct</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
-              <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div>
+              <!-- <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div> -->
               <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
               <div class="question-table-header"><div class="question-table-header-text-subscore">Subscore</div></div>
               <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
@@ -667,7 +676,7 @@
                   <div class="question-difficulty-icon hard"></div>
                 </span>
               </div>
-              <div class="question-table-cell question-subscore">{{mathNoCalScore.BudgetTime}}</div>
+              <!-- <div class="question-table-cell question-subscore">{{mathNoCalScore.BudgetTime}}</div> -->
               <div class="question-table-cell-duration">
                 <div ng-if="mathNoCalScore.budgetTimeFlag==='TRUE'">
                   <div class="bold" style="color:blue">{{mathNoCalScore.duration}}</div>
@@ -836,14 +845,14 @@
               <i class="fa fa-calculator fa-stack-1x fa-inverse" style="border-radius:50%;box-shadow: 0px 0px 5px 0px #FF5722"></i>
             </span>
           </div>
-          <div class="question-table">
+          <div class="col-md-12 question-table">
             <div class="question-table-rows">
               <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Correct</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Your Answer</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Adjusted Ans.</div></div>
               <div class="question-table-header"><div class="question-table-header-text">Difficulty</div></div>
-              <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div>
+              <!-- <div class="question-table-header"><div class="question-table-header-text">Budget Time</div></div> -->
               <div class="question-table-header"><div class="question-table-header-text-actual">Actual Time</div></div>
               <div class="question-table-header"><div class="question-table-header-text-subscore">Subscore</div></div>
               <div class="question-table-header-no-border"><div class="question-table-header-text-crosstest"> Cross-Test </br>Score</div></div>
@@ -876,7 +885,7 @@
                   <div class="question-difficulty-icon hard"></div>
                 </span>
               </div>
-              <div class="question-table-cell question-subscore">{{mathCalScore.BudgetTime}}</div>
+              <!-- <div class="question-table-cell question-subscore">{{mathCalScore.BudgetTime}}</div> -->
               <div class="question-table-cell-duration">
                 <div ng-if="mathCalScore.budgetTimeFlag==='TRUE'">
                   <div class="bold" style="color:blue">{{mathCalScore.duration}}</div>
