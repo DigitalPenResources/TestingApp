@@ -22,6 +22,10 @@ app.controller('StudentListAdminController', function($scope, $state, $http, $ht
 
   $scope.selectStudent = function (student) {
     studentService.set(student);
-    $state.go('reportAdmin');
-  }
+    if (student.examname==='ACT') {
+      $state.go('reportACTAdmin');
+    } else {
+      $state.go('reportAdmin');
+    }
+  };
 });

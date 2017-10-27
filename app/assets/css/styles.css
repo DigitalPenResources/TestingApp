@@ -33,6 +33,10 @@ button:focus {
   font-size: 30px;
 }
 
+.font-exlg {
+  font-size: 45px;
+}
+
 #subscore-background {
   padding: 10px 20px 20px 20px;
   background: repeating-linear-gradient(-45deg, #e6e6e6, #e6e6e6 1px, white 1px, white 10px);
