@@ -8,6 +8,17 @@ app.controller('StudentListAdminController', function($scope, $state, $http, $ht
     console.log('all students:', response.data);
     $scope.studentArr=response.data;
 
+    //map total composite score for ACT test
+    $scope.studentArr.forEach(function (student) {
+      if (student.examname==='ACT') {
+        dataService.getStudentTotalScores('student', {studentid: student.studentid, examversion: student.examversion}).then(function (response) {
+          student.totalPSATScore=response.data[0].TotalCompositeScore;
+        });
+      }
+    });
+
+    // console.log($scope.studentArr)
+
     // //find KEYID of logged in student
     // studentArr.forEach(function (student) {
     //   // console.log(student)
