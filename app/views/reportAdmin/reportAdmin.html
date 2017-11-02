@@ -544,7 +544,7 @@
                 </div>
               </div>
               <div class="question-table-cell">
-                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" maxlength="1">
+                <input class="question-table-cell-input-correct" ng-class="{'select-input': readingScore.adjustedAnswer!==''}" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" maxlength="1">
               </div>
               <div class="question-table-cell vertical-align">
                 <span class="question-difficulty" ng-if="readingScore.diffLevel==='E'">
@@ -612,7 +612,7 @@
                 </div>
               </div>
               <div class="question-table-cell">
-                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(writingLangScore)" ng-model="writingLangScore.adjustedAnswer" maxlength="1">
+                <input class="question-table-cell-input-correct" ng-class="{'select-input': writingLangScore.adjustedAnswer!==''}" type="text" ng-change="changeScore(writingLangScore)" ng-model="writingLangScore.adjustedAnswer" maxlength="1">
               </div>
               <div class="question-table-cell vertical-align">
                 <span class="question-difficulty" ng-if="writingLangScore.diffLevel==='E'">
@@ -681,7 +681,8 @@
                 </div>
               </div>
               <div class="question-table-cell">
-                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer" maxlength="1">
+                <input style="width:45px" ng-if="mathNoCalScore.numericColumn==='T'" class="question-table-cell-input-correct" ng-class="{'select-input': mathNoCalScore.adjustedAnswer!==''}" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer" maxlength="4">
+                <input style="width:45px" ng-if="mathNoCalScore.numericColumn!=='T'" class="question-table-cell-input-correct" ng-class="{'select-input': mathNoCalScore.adjustedAnswer!==''}" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer" maxlength="1">
               </div>
               <div class="question-table-cell vertical-align">
                 <span class="question-difficulty" ng-if="mathNoCalScore.diffLevel==='E'">
@@ -896,7 +897,8 @@
                 </div>
               </div>
               <div class="question-table-cell">
-                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" maxlength="1">
+                <input style="width:45px" ng-if="mathCalScore.numericColumn==='T'" class="question-table-cell-input-correct" ng-class="{'select-input': mathCalScore.adjustedAnswer!==''}" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" maxlength="4">
+                <input style="width:45px" ng-if="mathCalScore.numericColumn!=='T'" class="question-table-cell-input-correct" ng-class="{'select-input': mathCalScore.adjustedAnswer!==''}" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" maxlength="1">
               </div>
               <div class="question-table-cell vertical-align">
                 <span class="question-difficulty" ng-if="mathCalScore.diffLevel==='E'">
