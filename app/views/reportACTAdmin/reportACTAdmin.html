@@ -1,6 +1,6 @@
 <div id="report">
   <div class="container page-padding admin-width">
-    <div id="print-section-1">
+    <div id="print-section-1" style="overflow:hidden">
       <div class="row">
         <div class="col-md-12 page-header" style="margin-bottom:0">
           Welcome {{adminID}}
@@ -10,10 +10,10 @@
           <div>Test Name: {{studentInfo.examname}}, Version: {{studentInfo.examversion}}</div>
         </div>
       </div>
-      <div class="col-md-6" style="padding-right:0">
+      <div style="border:3px solid red;width:62.5%;float:left;padding-bottom:50px;padding-left:10px">
         <!--MATH-->
-        <div class="col-md-3 section-border-right">
-          <div id="total-score-section" style="text-align:center;height:80px;margin-bottom:260px">
+        <div class="" style="width:20%;float:left">
+          <div id="total-score-section" style="text-align:center;height:80px;margin-bottom:230px">
               <div class="bold font-exlg">{{totalScores.TotalMathScore}}</div>
               <div>MATH</div>
           </div>
@@ -81,8 +81,8 @@
           </div>
         </div>
         <!--SCIENCE-->
-        <div class="col-md-3 section-border-right">
-          <div id="total-score-section" style="text-align:center;margin-bottom:260px;height:80px">
+        <div class="" style="width:20%;float:left">
+          <div id="total-score-section" style="text-align:center;margin-bottom:230px;height:80px">
               <div class="bold font-exlg">{{totalScores.TotalScienceScore}}</div>
               <div>SCIENCE</div>
           </div>
@@ -150,8 +150,8 @@
           </div>
         </div>
         <!--ENGLISH-->
-        <div class="col-md-3 section-border-right">
-          <div id="total-score-section" style="text-align:center;margin-bottom:260px;height:80px">
+        <div class="" style="width:20%;float:left">
+          <div id="total-score-section" style="text-align:center;margin-bottom:230px;height:80px">
               <div class="bold font-exlg">{{totalScores.TotalEngishScore}}</div>
               <div>ENGLISH</div>
           </div>
@@ -219,8 +219,8 @@
           </div>
         </div>
         <!--READING-->
-        <div class="col-md-3 section-border-right">
-          <div id="total-score-section" style="text-align:center;margin-bottom:260px;height:80px">
+        <div class="" style="width:20%;float:left">
+          <div id="total-score-section" style="text-align:center;margin-bottom:230px;height:80px">
               <div class="bold font-exlg">{{totalScores.TotalReadingScore}}</div>
               <div>READING</div>
           </div>
@@ -287,13 +287,11 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-6" style="padding-left:0">
         <!--COMPOSITE-->
-        <div class="col-md-3 section-border-right">
-          <div id="total-score-section" style="text-align:center;margin-bottom:260px;height:80px">
-              <div class="bold font-exlg">{{totalScores.TotalCompositeScore}}</div>
-              <div>COMPOSITE</div>
+        <div class="" style="width:20%;float:left">
+          <div id="total-score-section" style="text-align:center;margin-bottom:230px;height:80px">
+            <div class="bold font-exlg">{{totalScores.TotalCompositeScore}}</div>
+            <div>COMPOSITE</div>
           </div>
           <div class="section-height">
             <div class="row" style="transform: rotate(-90deg)">
@@ -358,9 +356,11 @@
             </div>
           </div>
         </div>
+      </div>
+      <div style="width:12.5%;float:left;padding-bottom:50px;padding-left:10px">
         <!--STEM-->
-        <div class="col-md-3 section-border-right">
-          <div id="total-score-section" style="text-align:center;margin-bottom:260px;height:80px">
+        <div class="" style="width:100%;">
+          <div id="total-score-section" style="text-align:center;margin-bottom:230px;height:80px">
               <div class="bold font-exlg">{{totalScores.TotalStemScore}}</div>
               <div>STEM</div>
           </div>
@@ -427,9 +427,11 @@
             </div>
           </div>
         </div>
+      </div>
+      <div style="border:3px solid red;width:25%;float:left;padding-bottom:50px;padding-left:10px">
         <!--WRITING-->
-        <div class="col-md-3 section-border-right">
-          <div id="total-score-section" style="text-align:center;margin-bottom:260px;height:80px">
+        <div class="" style="width:50%;float:left">
+          <div id="total-score-section" style="text-align:center;margin-bottom:230px;height:80px">
               <div class="bold font-exlg">{{totalScores.TotalWritingScore}}</div>
               <div>WRITING</div>
           </div>
@@ -497,8 +499,8 @@
           </div>
         </div>
         <!--ELA-->
-        <div class="col-md-3">
-          <div id="total-score-section" style="text-align:center;margin-bottom:260px;height:80px">
+        <div class="" style="width:50%;float:left">
+          <div id="total-score-section" style="text-align:center;margin-bottom:230px;height:80px">
               <div class="bold font-exlg">{{totalScores.TotalELAScore}}</div>
               <div>ELA</div>
           </div>
