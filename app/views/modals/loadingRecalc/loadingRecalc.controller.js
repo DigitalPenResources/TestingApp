@@ -11,6 +11,7 @@ app.controller('LoadingRecalcController', function($scope, $uibModalInstance, an
         answersAdded++;
         if (answersAdded===$scope.answerChanges.length) {
           console.log('all answers added, getting projected score');
+          console.log($scope.answerChanges)
           dataService.getProjectedScore('score', {idstudent: $scope.answerChanges[0].idstudent, examversion: $scope.answerChanges[0].examversion}).then(function (response) {
             console.log(response);
             $scope.projectedScore=response.data[0];

@@ -55,6 +55,8 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
     $scope.mathNoCalScoresArr=[];
 
     $scope.answers.forEach(function (answer) {
+      answer.adjustedAnswer="";
+
       if (answer.sectionName==='01') {
         $scope.readingScoresArr.push(answer);
       } else if (answer.sectionName==='02'){
@@ -156,13 +158,19 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
       examversion: answer.examVersion,
       studentanswer: answer.adjustedAnswer
     };
+
     //check if question has already been changed, if so, update answer, if not, add to array
-    var foundIndex = $scope.answerChanges.findIndex(x => x.questionNumber == answer.questionNumber && x.sectionName == answer.sectionName);
+    var foundIndex = $scope.answerChanges.findIndex(x => x.questionnumber == answer.questionNumber && x.sectionname == answer.sectionName);
     if (foundIndex===-1) {
       $scope.answerChanges.push($scope.answerChangesObj);
     } else {
-      $scope.answerChanges[foundIndex].adjustedAnswer = answer.adjustedAnswer;
+      if (answer.adjustedAnswer==="") {
+        $scope.answerChanges.splice(foundIndex, 1);
+      } else {
+        $scope.answerChanges[foundIndex].studentanswer = answer.adjustedAnswer;
+      }
     }
+    console.log($scope.answerChanges)
   };
 
 
@@ -174,7 +182,7 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
     } else {
       $scope.recalc=false;
       //if changes have been made, open modal
-      console.log($scope.answerChanges);
+      // console.log($scope.answerChanges);
       var modalInstance = $uibModal.open({
         controller: 'LoadingRecalcController',
         ariaLabelledBy: 'modal-title',

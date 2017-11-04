@@ -505,6 +505,12 @@
               <i class="fa fa-book fa-stack-1x fa-inverse" style="border-radius:50%;box-shadow: 0px 0px 5px 0px #9C27B0"></i>
             </span>
           </div>
+          <div class="col-md-12 text-center">
+            <div><span class="bold">Allocated Time:</span> {{totalScores.SectionOneAllocatedTime}}</div>
+          </div>
+          <div class="col-md-12 text-center">
+            <div><span class="bold">Actual Time:</span> {{totalScores.SectionOneActualTime}}</div>
+          </div>
           <div class="col-md-12 question-table">
             <div class="question-table-rows">
               <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
@@ -538,7 +544,7 @@
                 </div>
               </div>
               <div class="question-table-cell">
-                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" maxlength="1">
+                <input class="question-table-cell-input-correct" ng-class="{'select-input': readingScore.adjustedAnswer!==''}" type="text" ng-change="changeScore(readingScore)" ng-model="readingScore.adjustedAnswer" maxlength="1">
               </div>
               <div class="question-table-cell vertical-align">
                 <span class="question-difficulty" ng-if="readingScore.diffLevel==='E'">
@@ -553,10 +559,10 @@
               </div>
               <!-- <div class="question-table-cell question-subscore">{{readingScore.BudgetTime}}</div> -->
               <div class="question-table-cell-duration">
-                <div ng-if="readingScore.budgetTimeFlag==='TRUE'">
+                <div ng-if="readingScore.correctAnswer==='FALSE'">
                   <div class="bold" style="color:blue">{{readingScore.duration}}</div>
                 </div>
-                <div ng-if="readingScore.budgetTimeFlag!=='TRUE'">
+                <div ng-if="readingScore.correctAnswer==='TRUE'">
                   <div class="">{{readingScore.duration}}</div>
                 </div>
               </div>
@@ -572,6 +578,12 @@
               <i class="fa fa-circle fa-stack-2x" style="color:#00BCD4"></i>
               <i class="fa fa-pencil fa-stack-1x fa-inverse" style="border-radius:50%;box-shadow: 0px 0px 5px 0px #00BCD4"></i>
             </span>
+          </div>
+          <div class="col-md-12 text-center">
+            <div><span class="bold">Allocated Time:</span> {{totalScores.SectionTwoAllocatedTime}}</div>
+          </div>
+          <div class="col-md-12 text-center">
+            <div><span class="bold">Actual Time:</span> {{totalScores.SectionTwoActualTime}}</div>
           </div>
           <div class="col-md-12 question-table">
             <div class="question-table-rows">
@@ -600,7 +612,7 @@
                 </div>
               </div>
               <div class="question-table-cell">
-                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(writingLangScore)" ng-model="writingLangScore.adjustedAnswer" maxlength="1">
+                <input class="question-table-cell-input-correct" ng-class="{'select-input': writingLangScore.adjustedAnswer!==''}" type="text" ng-change="changeScore(writingLangScore)" ng-model="writingLangScore.adjustedAnswer" maxlength="1">
               </div>
               <div class="question-table-cell vertical-align">
                 <span class="question-difficulty" ng-if="writingLangScore.diffLevel==='E'">
@@ -615,10 +627,10 @@
               </div>
               <!-- <div class="question-table-cell question-subscore">{{writingLangScore.BudgetTime}}</div> -->
               <div class="question-table-cell-duration">
-                <div ng-if="writingLangScore.budgetTimeFlag==='TRUE'">
+                <div ng-if="writingLangScore.correctAnswer==='FALSE'">
                   <div class="bold" style="color:blue">{{writingLangScore.duration}}</div>
                 </div>
-                <div ng-if="writingLangScore.budgetTimeFlag!=='TRUE'">
+                <div ng-if="writingLangScore.correctAnswer==='TRUE'">
                   <div class="">{{writingLangScore.duration}}</div>
                 </div>
               </div>
@@ -635,6 +647,12 @@
               <i class="fa fa-calculator fa-stack-1x"></i>
               <i class="fa fa-ban fa-stack-2x text-danger"></i>
             </span>
+          </div>
+          <div class="col-md-12 text-center">
+            <div><span class="bold">Allocated Time:</span> {{totalScores.SectionThreeAllocatedTime}}</div>
+          </div>
+          <div class="col-md-12 text-center">
+            <div><span class="bold">Actual Time:</span> {{totalScores.SectionThreeActualTime}}</div>
           </div>
           <div class="col-md-12 question-table">
             <div class="question-table-rows">
@@ -663,7 +681,8 @@
                 </div>
               </div>
               <div class="question-table-cell">
-                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer" maxlength="1">
+                <input style="width:45px" ng-if="mathNoCalScore.numericColumn==='T'" class="question-table-cell-input-correct" ng-class="{'select-input': mathNoCalScore.adjustedAnswer!==''}" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer" maxlength="4">
+                <input style="width:45px" ng-if="mathNoCalScore.numericColumn!=='T'" class="question-table-cell-input-correct" ng-class="{'select-input': mathNoCalScore.adjustedAnswer!==''}" type="text" ng-change="changeScore(mathNoCalScore)" ng-model="mathNoCalScore.adjustedAnswer" maxlength="1">
               </div>
               <div class="question-table-cell vertical-align">
                 <span class="question-difficulty" ng-if="mathNoCalScore.diffLevel==='E'">
@@ -678,10 +697,10 @@
               </div>
               <!-- <div class="question-table-cell question-subscore">{{mathNoCalScore.BudgetTime}}</div> -->
               <div class="question-table-cell-duration">
-                <div ng-if="mathNoCalScore.budgetTimeFlag==='TRUE'">
+                <div ng-if="mathNoCalScore.correctAnswer==='FALSE'">
                   <div class="bold" style="color:blue">{{mathNoCalScore.duration}}</div>
                 </div>
-                <div ng-if="mathNoCalScore.budgetTimeFlag!=='TRUE'">
+                <div ng-if="mathNoCalScore.correctAnswer==='TRUE'">
                   <div class="">{{mathNoCalScore.duration}}</div>
                 </div>
               </div>
@@ -845,6 +864,12 @@
               <i class="fa fa-calculator fa-stack-1x fa-inverse" style="border-radius:50%;box-shadow: 0px 0px 5px 0px #FF5722"></i>
             </span>
           </div>
+          <div class="col-md-12 text-center">
+            <div><span class="bold">Allocated Time:</span> {{totalScores.SectionFourAllocatedTime}}</div>
+          </div>
+          <div class="col-md-12 text-center">
+            <div><span class="bold">Actual Time:</span> {{totalScores.SectionFourActualTime}}</div>
+          </div>
           <div class="col-md-12 question-table">
             <div class="question-table-rows">
               <div class="question-table-header"><div class="question-table-header-text">Question #</div></div>
@@ -872,7 +897,8 @@
                 </div>
               </div>
               <div class="question-table-cell">
-                <input class="question-table-cell-input-correct" ng-class="{'select-input': focused}" ng-init="focused = false" ng-focus="focused = true" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" maxlength="1">
+                <input style="width:45px" ng-if="mathCalScore.numericColumn==='T'" class="question-table-cell-input-correct" ng-class="{'select-input': mathCalScore.adjustedAnswer!==''}" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" maxlength="4">
+                <input style="width:45px" ng-if="mathCalScore.numericColumn!=='T'" class="question-table-cell-input-correct" ng-class="{'select-input': mathCalScore.adjustedAnswer!==''}" type="text" ng-change="changeScore(mathCalScore)" ng-model="mathCalScore.adjustedAnswer" maxlength="1">
               </div>
               <div class="question-table-cell vertical-align">
                 <span class="question-difficulty" ng-if="mathCalScore.diffLevel==='E'">
@@ -887,10 +913,10 @@
               </div>
               <!-- <div class="question-table-cell question-subscore">{{mathCalScore.BudgetTime}}</div> -->
               <div class="question-table-cell-duration">
-                <div ng-if="mathCalScore.budgetTimeFlag==='TRUE'">
+                <div ng-if="mathCalScore.correctAnswer==='FALSE'">
                   <div class="bold" style="color:blue">{{mathCalScore.duration}}</div>
                 </div>
-                <div ng-if="mathCalScore.budgetTimeFlag!=='TRUE'">
+                <div ng-if="mathCalScore.correctAnswer==='TRUE'">
                   <div class="">{{mathCalScore.duration}}</div>
                 </div>
               </div>

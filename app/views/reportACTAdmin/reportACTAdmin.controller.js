@@ -125,7 +125,11 @@ app.controller('ReportACTAdminController', function($scope, $http, studentServic
                 {
                   image: data2,
                   alignment: 'center',
+<<<<<<< HEAD
                   width: 540,
+=======
+                  width: 530,
+>>>>>>> master
                   // height: 700
                   // fit:[612, 792]
                   // margin: [15,0,5,10] //works for psat
