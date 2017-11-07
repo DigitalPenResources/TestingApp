@@ -10,14 +10,24 @@ app.controller('ReportACTAdminController', function($scope, $http, studentServic
   dataService.getStudentTotalScores('student', {studentid: $scope.studentInfo.studentid, examversion: $scope.studentInfo.examversion}).then(function (response) {
     console.log(response.data[0]);
     $scope.totalScores=response.data[0];
-    $scope.mathscoretotalpercentage=(($scope.totalScores.TotalMathScore-1)/(36-1))*100;
-    $scope.sciencescoretotalpercentage=(($scope.totalScores.TotalScienceScore-1)/(36-1))*100;
-    $scope.englishscoretotalpercentage=(($scope.totalScores.TotalEngishScore-1)/(36-1))*100;
-    $scope.readingscoretotalpercentage=(($scope.totalScores.TotalReadingScore-1)/(36-1))*100;
-    $scope.compositescoretotalpercentage=(($scope.totalScores.TotalCompositeScore-1)/(36-1))*100;
-    $scope.stemscoretotalpercentage=(($scope.totalScores.TotalStemScore-1)/(36-1))*100;
-    $scope.writingscoretotalpercentage=(($scope.totalScores.TotalWritingScore-1)/(36-1))*100;
-    $scope.elascoretotalpercentage=(($scope.totalScores.TotalELAScore-1)/(36-1))*100;
+    $scope.totalMathScore = $scope.totalScores.TotalMathScore;
+    $scope.totalScienceScore = $scope.totalScores.TotalScienceScore;
+    $scope.totalEnglishScore = $scope.totalScores.TotalEngishScore;
+    $scope.totalReadingScore = $scope.totalScores.TotalReadingScore;
+    $scope.totalCompositeScore = $scope.totalScores.TotalCompositeScore;
+    $scope.totalStemScore = $scope.totalScores.TotalStemScore;
+    $scope.totalWritingScore = $scope.totalScores.TotalWritingScore;
+    $scope.totalELAScore = $scope.totalScores.TotalELAScore;
+
+
+    // $scope.mathscoretotalpercentage=(($scope.totalScores.TotalMathScore-1)/(36-1))*100;
+    // $scope.sciencescoretotalpercentage=(($scope.totalScores.TotalScienceScore-1)/(36-1))*100;
+    // $scope.englishscoretotalpercentage=(($scope.totalScores.TotalEngishScore-1)/(36-1))*100;
+    // $scope.readingscoretotalpercentage=(($scope.totalScores.TotalReadingScore-1)/(36-1))*100;
+    // $scope.compositescoretotalpercentage=(($scope.totalScores.TotalCompositeScore-1)/(36-1))*100;
+    // $scope.stemscoretotalpercentage=(($scope.totalScores.TotalStemScore-1)/(36-1))*100;
+    // $scope.writingscoretotalpercentage=(($scope.totalScores.TotalWritingScore-1)/(36-1))*100;
+    // $scope.elascoretotalpercentage=(($scope.totalScores.TotalELAScore-1)/(36-1))*100;
   });
 
   //score range
@@ -142,5 +152,61 @@ app.controller('ReportACTAdminController', function($scope, $http, studentServic
        }
      });
    };
+
+   $scope.sectionArr=['Math', 'English', 'Science', 'Reading', 'Composite', 'Stem', 'Writing', 'ELA'];
+   $scope.goal=36;
+
+      var calculateBarPercent = function(section) {
+        var sectionScore = 'total' + section + 'Score';
+       var percent = ($scope[sectionScore] / $scope.goal) * 100;
+       if (percent > 100) {
+         percent = 100;
+       }
+       if ($scope[sectionScore] <= 1 ) {
+         percent = 0.5;
+        }
+       return percent;
+     };
+
+   $scope.sectionArr.forEach(function (section) {
+     var watchSection='total' + section + 'Score';
+     $scope.$watch(watchSection, function() {
+       var barPercentSection= 'barPercent' + section;
+       var barStyleSection='barStyle' + section;
+
+       $scope[barPercentSection] = 100 - calculateBarPercent(section);
+       $scope[barStyleSection] = 'transform: translateY(' + $scope[barPercentSection] + '%)';
+     });
+
+   });
+
+
+
+
+// //VERTICAL MATH SCALE
+//    $scope.infoAboveMath=false;
+//    var calculateBarPercentMath = function() {
+//     var percent = ($scope.totalMathScore / $scope.goal) * 100;
+//     if (percent > 100) {
+//       percent = 100;
+//     }
+//     if (percent < 15) {
+//       $scope.infoAboveMath = true;
+//     }
+//     return percent;
+//   };
+//
+//   $scope.$watch('totalMathScore', function() {
+//     $scope.barPercentMath = 100 - calculateBarPercentMath();
+//     $scope.barStyleMath = 'transform: translateY(' + $scope.barPercentMath + '%)';
+//   });
+//
+// //VERTICAL SCIENCE SCALE
+//
+//   $scope.$watch('totalMathScore', function(taco) {
+//     $scope.barPercent = 100 - calculateBarPercent(taco);
+//     $scope.barStyle = 'transform: translateY(' + $scope.barPercent + '%)';
+//   });
+
 
 });

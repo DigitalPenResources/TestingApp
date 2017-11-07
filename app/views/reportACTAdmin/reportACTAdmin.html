@@ -13,558 +13,266 @@
       <div style="border:3px solid red;width:62.5%;float:left;padding-bottom:50px;padding-left:10px">
         <!--MATH-->
         <div class="" style="width:20%;float:left">
-          <div id="total-score-section" style="text-align:center;height:80px;margin-bottom:230px">
+          <div id="total-score-section" style="text-align:center;height:100%;">
               <div class="bold font-exlg">{{totalScores.TotalMathScore}}</div>
-              <div>MATH</div>
+              <div style="padding-bottom:5px">MATH</div>
           </div>
-          <div class="section-height">
-            <div class="row" style="transform: rotate(-90deg)">
-              <!-- <div class="col-md-1 score-min" style="font-size:11px">{{scoreRangeMin}}</div> -->
-              <div class="col-md-12 score-bar" style="width:200%">
-                <div class="progress progress-bar-height" style="height:150px;margin-bottom:10px;margin-top:10px;">
-                  <div class="progress-bar" role="progressbar" ng-style="{'width': '100%'}" style="background-color:#fff2e6"></div>
-                </div>
+          <div class="bar-container">
+            <div class="goal-bar">
+              <div class="bar-wrap">
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <!-- <hr class="bar-line" /> -->
+
+
+                <div class="bar bar-green" style="{{barStyleMath}}"></div>
+                <span class="bar-label"></span>
               </div>
-              <div class="col-md-12 score-bar-indicator-padding" style="width:200%">
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-10px">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': mathscoretotalpercentage + '%'}"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1%;margin-top:60px;height:70px;background-color:green">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black"></div>
-                  </div>
-                  <!-- <div style="transform: rotate(90deg)">1</div> -->
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:1%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px;">
-                    <div style="transform:rotate(90deg);margin-top:-20px;color:black;">1</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:14.3%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-20px;color:black;">6</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:31.4%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">12</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:48.6%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">18</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:65.7%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">24</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:82.9%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">30</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:98%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">36</div>
-                  </div>
-                </div>
+
+              <div class="bar-labels">
+                <span class="bar-label">36</span>
+                <span class="bar-label">30</span>
+                <span class="bar-label">24</span>
+                <span class="bar-label">18</span>
+                <span class="bar-label">12</span>
+                <span class="bar-label">6</span>
+                <span class="bar-label">1</span>
               </div>
-              <!-- <div class="col-md-1 score-max" style="font-size:11px">{{scoreRangeMax}}</div> -->
-            </div>
+            </div> <!-- /.goal-bar -->
           </div>
         </div>
         <!--SCIENCE-->
         <div class="" style="width:20%;float:left">
-          <div id="total-score-section" style="text-align:center;margin-bottom:230px;height:80px">
+          <div id="total-score-section" style="text-align:center;height:100%">
               <div class="bold font-exlg">{{totalScores.TotalScienceScore}}</div>
-              <div>SCIENCE</div>
+              <div style="padding-bottom:5px">SCIENCE</div>
           </div>
-          <div class="section-height">
-            <div class="row" style="transform: rotate(-90deg)">
-              <!-- <div class="col-md-1 score-min" style="font-size:11px">{{scoreRangeMin}}</div> -->
-              <div class="col-md-12 score-bar" style="width:200%">
-                <div class="progress progress-bar-height" style="height:150px;margin-bottom:10px;margin-top:10px;">
-                  <div class="progress-bar" role="progressbar" ng-style="{'width': '100%'}" style="background-color:#fff2e6"></div>
-                </div>
+          <div class="bar-container">
+            <div class="goal-bar">
+              <div class="bar-wrap">
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+
+                <div class="bar bar-green" style="{{barStyleScience}}"></div>
+                <span class="bar-label"></span>
               </div>
-              <div class="col-md-12 score-bar-indicator-padding" style="width:200%">
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-10px">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': sciencescoretotalpercentage + '%'}"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1%;margin-top:60px;height:70px;background-color:green">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black"></div>
-                  </div>
-                  <!-- <div style="transform: rotate(90deg)">1</div> -->
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:1%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px;">
-                    <div style="transform:rotate(90deg);margin-top:-20px;color:black;">1</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:14.3%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-20px;color:black;">6</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:31.4%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">12</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:48.6%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">18</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:65.7%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">24</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:82.9%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">30</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:98%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">36</div>
-                  </div>
-                </div>
+
+              <div class="bar-labels">
+                <span class="bar-label">36</span>
+                <span class="bar-label">30</span>
+                <span class="bar-label">24</span>
+                <span class="bar-label">18</span>
+                <span class="bar-label">12</span>
+                <span class="bar-label">6</span>
+                <span class="bar-label">1</span>
               </div>
-              <!-- <div class="col-md-1 score-max" style="font-size:11px">{{scoreRangeMax}}</div> -->
-            </div>
+            </div> <!-- /.goal-bar -->
           </div>
         </div>
         <!--ENGLISH-->
         <div class="" style="width:20%;float:left">
-          <div id="total-score-section" style="text-align:center;margin-bottom:230px;height:80px">
+          <div id="total-score-section" style="text-align:center;height:100%">
               <div class="bold font-exlg">{{totalScores.TotalEngishScore}}</div>
-              <div>ENGLISH</div>
+              <div style="padding-bottom:5px">ENGLISH</div>
           </div>
-          <div class="section-height">
-            <div class="row" style="transform: rotate(-90deg)">
-              <!-- <div class="col-md-1 score-min" style="font-size:11px">{{scoreRangeMin}}</div> -->
-              <div class="col-md-12 score-bar" style="width:200%">
-                <div class="progress progress-bar-height" style="height:150px;margin-bottom:10px;margin-top:10px;">
-                  <div class="progress-bar" role="progressbar" ng-style="{'width': '100%'}" style="background-color:#fff2e6"></div>
-                </div>
+          <div class="bar-container">
+            <div class="goal-bar">
+              <div class="bar-wrap">
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+
+                <div class="bar bar-blue" style="{{barStyleEnglish}}"></div>
+                <span class="bar-label"></span>
               </div>
-              <div class="col-md-12 score-bar-indicator-padding" style="width:200%">
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-10px">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': englishscoretotalpercentage + '%'}"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1%;margin-top:60px;height:70px;background-color:blue">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black"></div>
-                  </div>
-                  <!-- <div style="transform: rotate(90deg)">1</div> -->
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:1%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px;">
-                    <div style="transform:rotate(90deg);margin-top:-20px;color:black;">1</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:14.3%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-20px;color:black;">6</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:31.4%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">12</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:48.6%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">18</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:65.7%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">24</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:82.9%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">30</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:98%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">36</div>
-                  </div>
-                </div>
+
+              <div class="bar-labels">
+                <span class="bar-label">36</span>
+                <span class="bar-label">30</span>
+                <span class="bar-label">24</span>
+                <span class="bar-label">18</span>
+                <span class="bar-label">12</span>
+                <span class="bar-label">6</span>
+                <span class="bar-label">1</span>
               </div>
-              <!-- <div class="col-md-1 score-max" style="font-size:11px">{{scoreRangeMax}}</div> -->
-            </div>
+            </div> <!-- /.goal-bar -->
           </div>
         </div>
         <!--READING-->
         <div class="" style="width:20%;float:left">
-          <div id="total-score-section" style="text-align:center;margin-bottom:230px;height:80px">
+          <div id="total-score-section" style="text-align:center;height:100%">
               <div class="bold font-exlg">{{totalScores.TotalReadingScore}}</div>
-              <div>READING</div>
+              <div style="padding-bottom:5px">READING</div>
           </div>
-          <div class="section-height">
-            <div class="row" style="transform: rotate(-90deg)">
-              <!-- <div class="col-md-1 score-min" style="font-size:11px">{{scoreRangeMin}}</div> -->
-              <div class="col-md-12 score-bar" style="width:200%">
-                <div class="progress progress-bar-height" style="height:150px;margin-bottom:10px;margin-top:10px;">
-                  <div class="progress-bar" role="progressbar" ng-style="{'width': '100%'}" style="background-color:#fff2e6"></div>
-                </div>
+          <div class="bar-container">
+            <div class="goal-bar">
+              <div class="bar-wrap">
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+
+                <div class="bar bar-blue" style="{{barStyleReading}}"></div>
+                <span class="bar-label"></span>
               </div>
-              <div class="col-md-12 score-bar-indicator-padding" style="width:200%">
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-10px">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': readingscoretotalpercentage + '%'}"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1%;margin-top:60px;height:70px;background-color:blue">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black"></div>
-                  </div>
-                  <!-- <div style="transform: rotate(90deg)">1</div> -->
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:1%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px;">
-                    <div style="transform:rotate(90deg);margin-top:-20px;color:black;">1</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:14.3%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-20px;color:black;">6</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:31.4%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">12</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:48.6%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">18</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:65.7%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">24</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:82.9%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">30</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:98%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">36</div>
-                  </div>
-                </div>
+
+              <div class="bar-labels">
+                <span class="bar-label">36</span>
+                <span class="bar-label">30</span>
+                <span class="bar-label">24</span>
+                <span class="bar-label">18</span>
+                <span class="bar-label">12</span>
+                <span class="bar-label">6</span>
+                <span class="bar-label">1</span>
               </div>
-              <!-- <div class="col-md-1 score-max" style="font-size:11px">{{scoreRangeMax}}</div> -->
-            </div>
+            </div> <!-- /.goal-bar -->
           </div>
         </div>
         <!--COMPOSITE-->
         <div class="" style="width:20%;float:left">
-          <div id="total-score-section" style="text-align:center;margin-bottom:230px;height:80px">
-            <div class="bold font-exlg">{{totalScores.TotalCompositeScore}}</div>
-            <div>COMPOSITE</div>
+          <div id="total-score-section" style="text-align:center;background-color:#5f3a78;height:100%">
+            <div class="bold font-exlg" style="color:white">{{totalScores.TotalCompositeScore}}</div>
+            <div style="padding-bottom:5px;color:white">COMPOSITE</div>
           </div>
-          <div class="section-height">
-            <div class="row" style="transform: rotate(-90deg)">
-              <!-- <div class="col-md-1 score-min" style="font-size:11px">{{scoreRangeMin}}</div> -->
-              <div class="col-md-12 score-bar" style="width:200%">
-                <div class="progress progress-bar-height" style="height:150px;margin-bottom:10px;margin-top:10px;">
-                  <div class="progress-bar" role="progressbar" ng-style="{'width': '100%'}" style="background-color:#fff2e6"></div>
-                </div>
+          <div class="bar-container">
+            <div class="goal-bar">
+              <div class="bar-wrap">
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+
+                <div class="bar bar-purple" style="{{barStyleComposite}}"></div>
+                <span class="bar-label"></span>
               </div>
-              <div class="col-md-12 score-bar-indicator-padding" style="width:200%">
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-10px">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': compositescoretotalpercentage + '%'}"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1%;margin-top:60px;height:70px;background-color:purple">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black"></div>
-                  </div>
-                  <!-- <div style="transform: rotate(90deg)">1</div> -->
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:1%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px;">
-                    <div style="transform:rotate(90deg);margin-top:-20px;color:black;">1</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:14.3%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-20px;color:black;">6</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:31.4%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">12</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:48.6%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">18</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:65.7%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">24</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:82.9%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">30</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:98%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">36</div>
-                  </div>
-                </div>
+
+              <div class="bar-labels">
+                <span class="bar-label">36</span>
+                <span class="bar-label">30</span>
+                <span class="bar-label">24</span>
+                <span class="bar-label">18</span>
+                <span class="bar-label">12</span>
+                <span class="bar-label">6</span>
+                <span class="bar-label">1</span>
               </div>
-              <!-- <div class="col-md-1 score-max" style="font-size:11px">{{scoreRangeMax}}</div> -->
-            </div>
+            </div> <!-- /.goal-bar -->
           </div>
         </div>
       </div>
       <div style="width:12.5%;float:left;padding-bottom:50px;padding-left:10px">
         <!--STEM-->
         <div class="" style="width:100%;">
-          <div id="total-score-section" style="text-align:center;margin-bottom:230px;height:80px">
+          <div id="total-score-section" style="text-align:center;height:100%">
               <div class="bold font-exlg">{{totalScores.TotalStemScore}}</div>
-              <div>STEM</div>
+              <div style="padding-bottom:5px">STEM</div>
           </div>
-          <div class="section-height">
-            <div class="row" style="transform: rotate(-90deg)">
-              <!-- <div class="col-md-1 score-min" style="font-size:11px">{{scoreRangeMin}}</div> -->
-              <div class="col-md-12 score-bar" style="width:200%">
-                <div class="progress progress-bar-height" style="height:150px;margin-bottom:10px;margin-top:10px;">
-                  <div class="progress-bar" role="progressbar" ng-style="{'width': '100%'}" style="background-color:#fff2e6"></div>
-                </div>
+          <div class="bar-container">
+            <div class="goal-bar">
+              <div class="bar-wrap">
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+
+                <div class="bar bar-green" style="{{barStyleStem}}"></div>
+                <span class="bar-label"></span>
               </div>
-              <div class="col-md-12 score-bar-indicator-padding" style="width:200%">
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-10px">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': stemscoretotalpercentage + '%'}"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1%;margin-top:60px;height:70px;background-color:green">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black"></div>
-                  </div>
-                  <!-- <div style="transform: rotate(90deg)">1</div> -->
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:1%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px;">
-                    <div style="transform:rotate(90deg);margin-top:-20px;color:black;">1</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:14.3%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-20px;color:black;">6</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:31.4%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">12</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:48.6%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">18</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:65.7%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">24</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:82.9%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">30</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:98%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">36</div>
-                  </div>
-                </div>
+
+              <div class="bar-labels">
+                <span class="bar-label">36</span>
+                <span class="bar-label">30</span>
+                <span class="bar-label">24</span>
+                <span class="bar-label">18</span>
+                <span class="bar-label">12</span>
+                <span class="bar-label">6</span>
+                <span class="bar-label">1</span>
               </div>
-              <!-- <div class="col-md-1 score-max" style="font-size:11px">{{scoreRangeMax}}</div> -->
-            </div>
+            </div> <!-- /.goal-bar -->
           </div>
         </div>
       </div>
-      <div style="border:3px solid red;width:25%;float:left;padding-bottom:50px;padding-left:10px">
+      <div style=";width:25%;float:left;padding-bottom:50px;padding-left:10px">
         <!--WRITING-->
         <div class="" style="width:50%;float:left">
-          <div id="total-score-section" style="text-align:center;margin-bottom:230px;height:80px">
+          <div id="total-score-section" style="text-align:center;height:100%">
               <div class="bold font-exlg">{{totalScores.TotalWritingScore}}</div>
-              <div>WRITING</div>
+              <div style="padding-bottom:5px">WRITING</div>
           </div>
-          <div class="section-height">
-            <div class="row" style="transform: rotate(-90deg)">
-              <!-- <div class="col-md-1 score-min" style="font-size:11px">{{scoreRangeMin}}</div> -->
-              <div class="col-md-12 score-bar" style="width:200%">
-                <div class="progress progress-bar-height" style="height:150px;margin-bottom:10px;margin-top:10px;">
-                  <div class="progress-bar" role="progressbar" ng-style="{'width': '100%'}" style="background-color:#fff2e6"></div>
-                </div>
+          <div class="bar-container">
+            <div class="goal-bar">
+              <div class="bar-wrap" style="border-top:0px;border-bottom:0px">
+                <div style="position:absolute;text-align:center; margin-top:150px;padding-left:15px;padding-right:15px">The writing test score range is 2-12</div>
+                <hr class="bar-line" style="top:95%"/>
+                <hr class="bar-line" style="top:83.3%"/>
+                <hr class="bar-line" style="top:66.7%"/>
+                <!-- <hr class="bar-line" style="top:50%"/> -->
+                <!-- <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" /> -->
+
+                <div class="bar bar-blue" style="{{barStyleWriting}}"></div>
+                <span class="bar-label"></span>
               </div>
-              <div class="col-md-12 score-bar-indicator-padding" style="width:200%">
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-10px">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': writingscoretotalpercentage + '%'}"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1%;margin-top:60px;height:70px;background-color:blue">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black"></div>
-                  </div>
-                  <!-- <div style="transform: rotate(90deg)">1</div> -->
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:1%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px;">
-                    <div style="transform:rotate(90deg);margin-top:-20px;color:black;">1</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:14.3%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-20px;color:black;">6</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:31.4%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">12</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:48.6%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">18</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:65.7%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">24</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:82.9%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">30</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:98%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">36</div>
-                  </div>
-                </div>
+
+              <div class="bar-labels">
+                <span class="bar-label"></span>
+                <span class="bar-label"></span>
+                <span class="bar-label"></span>
+                <span class="bar-label"></span>
+                <span class="bar-label">12</span>
+                <span class="bar-label">6</span>
+                <span class="bar-label" style="top:96.5%">2</span>
               </div>
-              <!-- <div class="col-md-1 score-max" style="font-size:11px">{{scoreRangeMax}}</div> -->
-            </div>
+            </div> <!-- /.goal-bar -->
           </div>
         </div>
         <!--ELA-->
         <div class="" style="width:50%;float:left">
-          <div id="total-score-section" style="text-align:center;margin-bottom:230px;height:80px">
+          <div id="total-score-section" style="text-align:center;height:100%">
               <div class="bold font-exlg">{{totalScores.TotalELAScore}}</div>
-              <div>ELA</div>
+              <div style="padding-bottom:5px">ELA</div>
           </div>
-          <div class="section-height">
-            <div class="row" style="transform: rotate(-90deg)">
-              <!-- <div class="col-md-1 score-min" style="font-size:11px">{{scoreRangeMin}}</div> -->
-              <div class="col-md-12 score-bar" style="width:200%">
-                <div class="progress progress-bar-height" style="height:150px;margin-bottom:10px;margin-top:10px;">
-                  <div class="progress-bar" role="progressbar" ng-style="{'width': '100%'}" style="background-color:#fff2e6"></div>
-                </div>
+          <div class="bar-container">
+            <div class="goal-bar">
+              <div class="bar-wrap">
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+
+                <div class="bar bar-blue" style="{{barStyleELA}}"></div>
+                <span class="bar-label"></span>
               </div>
-              <div class="col-md-12 score-bar-indicator-padding" style="width:200%">
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-10px">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': elascoretotalpercentage + '%'}"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1%;margin-top:60px;height:70px;background-color:blue">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black"></div>
-                  </div>
-                  <!-- <div style="transform: rotate(90deg)">1</div> -->
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:1%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px;">
-                    <div style="transform:rotate(90deg);margin-top:-20px;color:black;">1</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:14.3%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-20px;color:black;">6</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:31.4%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">12</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:48.6%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">18</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:65.7%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">24</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:82.9%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">30</div>
-                  </div>
-                </div>
-                <div  class="progress score-bar-indicator" style="height:170px;margin-top:-190px;">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" style="width:98%"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar" style="width:1px;margin-top:20px">
-                    <div style="transform:rotate(90deg);margin-top:-25px;color:black;">36</div>
-                  </div>
-                </div>
+
+              <div class="bar-labels">
+                <span class="bar-label">36</span>
+                <span class="bar-label">30</span>
+                <span class="bar-label">24</span>
+                <span class="bar-label">18</span>
+                <span class="bar-label">12</span>
+                <span class="bar-label">6</span>
+                <span class="bar-label">1</span>
               </div>
-              <!-- <div class="col-md-1 score-max" style="font-size:11px">{{scoreRangeMax}}</div> -->
-            </div>
+            </div> <!-- /.goal-bar -->
           </div>
         </div>
       </div>
@@ -1062,5 +770,76 @@
         <div style="clear:both"></div>
       </div>
     </div>
+  </div>
+</div>
+
+<div style="width:20%">
+
+  <div class="bar-container">
+    <div class="goal-bar">
+      <div class="bar-wrap">
+        <hr class="bar-line" />
+        <hr class="bar-line" />
+        <hr class="bar-line" />
+        <hr class="bar-line" />
+        <hr class="bar-line" />
+        <hr class="bar-line" />
+        <hr class="bar-line" />
+
+        <div class="bar" style="{{barStyleMath}}">
+          <div class="bar-info" ng-class="{'info-above': infoAbove}">
+            <div class="bar-info-inner">
+              {{totalMathScore}} / {{goal}}
+            </div>
+          </div>
+        </div>
+        <span class="bar-label"></span>
+      </div>
+
+      <div class="bar-labels">
+        <span class="bar-label">36</span>
+        <span class="bar-label">30</span>
+        <span class="bar-label">24</span>
+        <span class="bar-label">18</span>
+        <span class="bar-label">12</span>
+        <span class="bar-label">6</span>
+        <span class="bar-label">1</span>
+      </div>
+    </div> <!-- /.goal-bar -->
+  </div>
+</div>
+
+<div style="width:20%">
+  <div class="bar-container">
+    <div class="goal-bar">
+      <div class="bar-wrap">
+        <hr class="bar-line" />
+        <hr class="bar-line" />
+        <hr class="bar-line" />
+        <hr class="bar-line" />
+        <hr class="bar-line" />
+        <hr class="bar-line" />
+        <hr class="bar-line" />
+
+        <div class="bar" style="{{barStyleEnglish}}">
+          <div class="bar-info" ng-class="{'info-above': infoAbove}">
+            <div class="bar-info-inner">
+              {{totalEnglishScore}} / {{goal}}
+            </div>
+          </div>
+        </div>
+        <span class="bar-label"></span>
+      </div>
+
+      <div class="bar-labels">
+        <span class="bar-label">36</span>
+        <span class="bar-label">30</span>
+        <span class="bar-label">24</span>
+        <span class="bar-label">18</span>
+        <span class="bar-label">12</span>
+        <span class="bar-label">6</span>
+        <span class="bar-label">1</span>
+      </div>
+    </div> <!-- /.goal-bar -->
   </div>
 </div>
