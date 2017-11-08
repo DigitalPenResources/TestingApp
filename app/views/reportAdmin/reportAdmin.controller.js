@@ -193,7 +193,10 @@ app.controller('ReportAdminController', function($scope, $http, $httpParamSerial
         resolve: {
           answerChanges: function() {
               return $scope.answerChanges;
-          }
+          },
+          reportType: function() {
+              return $scope.studentInfo.examname;
+          },
         }
       });
 

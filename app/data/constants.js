@@ -18,7 +18,8 @@ app.constant('CONSTANTS', {
       },
       score: {
         getScoringRange: 'getScoringRange',
-        getProjectedScore: 'getProjectedScore'
+        getProjectedScore: 'getProjectedScore',
+        getProjectedACTScore: 'getProjectedACTScore'
       },
       answer: {
         insertStudentAnswer: 'insertStudentAnswer'

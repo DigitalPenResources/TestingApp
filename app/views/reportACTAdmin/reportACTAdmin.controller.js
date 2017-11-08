@@ -5,6 +5,7 @@ app.controller('ReportACTAdminController', function($scope, $http, studentServic
 
   //get student
   $scope.studentInfo=studentService.get();
+  console.log($scope.studentInfo)
 
   //get student total scores
   dataService.getStudentTotalScores('student', {studentid: $scope.studentInfo.studentid, examversion: $scope.studentInfo.examversion}).then(function (response) {
@@ -35,6 +36,7 @@ app.controller('ReportACTAdminController', function($scope, $http, studentServic
     $scope.mathNoCalScoresArr=[];
 
     $scope.answers.forEach(function (answer) {
+      answer.adjustedAnswer="";
       if (answer.sectionName==='01') {
         $scope.readingScoresArr.push(answer);
       } else if (answer.sectionName==='02'){
@@ -59,11 +61,15 @@ app.controller('ReportACTAdminController', function($scope, $http, studentServic
       studentanswer: answer.adjustedAnswer
     };
     //check if question has already been changed, if so, update answer, if not, add to array
-    var foundIndex = $scope.answerChanges.findIndex(x => x.questionNumber == answer.questionNumber && x.sectionName == answer.sectionName);
+    var foundIndex = $scope.answerChanges.findIndex(x => x.questionnumber == answer.questionNumber && x.sectionname == answer.sectionName);
     if (foundIndex===-1) {
       $scope.answerChanges.push($scope.answerChangesObj);
     } else {
-      $scope.answerChanges[foundIndex].adjustedAnswer = answer.adjustedAnswer;
+      if (answer.adjustedAnswer==="") {
+        $scope.answerChanges.splice(foundIndex, 1);
+      } else {
+        $scope.answerChanges[foundIndex].studentanswer = answer.adjustedAnswer;
+      }
     }
   };
 
@@ -87,7 +93,10 @@ app.controller('ReportACTAdminController', function($scope, $http, studentServic
         resolve: {
           answerChanges: function() {
               return $scope.answerChanges;
-          }
+          },
+          reportType: function() {
+              return $scope.studentInfo.examname;
+          },
         }
       });
 

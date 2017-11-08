@@ -1,5 +1,6 @@
-app.controller('LoadingRecalcController', function($scope, $uibModalInstance, answerChanges, dataService) {
+app.controller('LoadingRecalcController', function($scope, $uibModalInstance, answerChanges, dataService, reportType) {
   console.log(answerChanges);
+  console.log(reportType)
   $scope.answerChanges=answerChanges;
   var answersAdded=0;
 
@@ -12,11 +13,19 @@ app.controller('LoadingRecalcController', function($scope, $uibModalInstance, an
         if (answersAdded===$scope.answerChanges.length) {
           console.log('all answers added, getting projected score');
           console.log($scope.answerChanges)
-          dataService.getProjectedScore('score', {idstudent: $scope.answerChanges[0].idstudent, examversion: $scope.answerChanges[0].examversion}).then(function (response) {
-            console.log(response);
-            $scope.projectedScore=response.data[0];
-            $scope.complete=true;
-          });
+          if (reportType==='ACT') {
+            dataService.getProjectedACTScore('score', {idstudent: $scope.answerChanges[0].idstudent, examversion: $scope.answerChanges[0].examversion}).then(function (response) {
+              console.log(response);
+              $scope.projectedScore=response.data[0];
+              $scope.complete=true;
+            });
+          } else {
+            dataService.getProjectedScore('score', {idstudent: $scope.answerChanges[0].idstudent, examversion: $scope.answerChanges[0].examversion}).then(function (response) {
+              console.log(response);
+              $scope.projectedScore=response.data[0];
+              $scope.complete=true;
+            });
+          }
         }
       }
     });

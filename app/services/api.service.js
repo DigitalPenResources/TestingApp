@@ -122,6 +122,17 @@ app.service('dataService', function($http, $q, CONSTANTS, $httpParamSerializerJQ
     });
   };
 
+  service.getProjectedACTScore = function(dataType, dataObj) {
+    var action = CONSTANTS.api.actions[dataType].getProjectedACTScore;
+    // var deferred = $q.defer();
+    return $http({
+      url: base + path + query + action,
+      method: 'GET',
+      params: dataObj,
+      paramSerializer: '$httpParamSerializerJQLike'
+    });
+  };
+
   service.getAll = function(dataType) {
     var action = CONSTANTS.api.actions[dataType].getAll;
 
