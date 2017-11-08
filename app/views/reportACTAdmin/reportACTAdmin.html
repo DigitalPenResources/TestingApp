@@ -143,7 +143,7 @@
         </div>
         <!--COMPOSITE-->
         <div class="" style="width:20%;float:left">
-          <div id="total-score-section" style="text-align:center;background-color:#5f3a78;height:100%">
+          <div id="total-score-section" style="text-align:center;background-color:#9B59B6;height:100%">
             <div class="bold font-exlg" style="color:white">{{totalScores.TotalCompositeScore}}</div>
             <div style="padding-bottom:5px;color:white">COMPOSITE</div>
           </div>
@@ -183,7 +183,7 @@
           </div>
           <div class="bar-container">
             <div class="goal-bar">
-              <div class="bar-wrap">
+              <div class="bar-wrap" style="background-color:#66CC99">
                 <hr class="bar-line" />
                 <hr class="bar-line" />
                 <hr class="bar-line" />
@@ -217,7 +217,7 @@
           </div>
           <div class="bar-container">
             <div class="goal-bar">
-              <div class="bar-wrap" style="border-top:0px;border-bottom:0px">
+              <div class="bar-wrap" style="border-top:0px;border-bottom:0px;background-color:#36D7B7">
                 <div style="position:absolute;text-align:center; margin-top:150px;padding-left:15px;padding-right:15px">The writing test score range is 2-12</div>
                 <hr class="bar-line" style="top:95%"/>
                 <hr class="bar-line" style="top:83.3%"/>
@@ -251,7 +251,7 @@
           </div>
           <div class="bar-container">
             <div class="goal-bar">
-              <div class="bar-wrap">
+              <div class="bar-wrap" style="background-color:#C8F7C5">
                 <hr class="bar-line" />
                 <hr class="bar-line" />
                 <hr class="bar-line" />
@@ -770,76 +770,5 @@
         <div style="clear:both"></div>
       </div>
     </div>
-  </div>
-</div>
-
-<div style="width:20%">
-
-  <div class="bar-container">
-    <div class="goal-bar">
-      <div class="bar-wrap">
-        <hr class="bar-line" />
-        <hr class="bar-line" />
-        <hr class="bar-line" />
-        <hr class="bar-line" />
-        <hr class="bar-line" />
-        <hr class="bar-line" />
-        <hr class="bar-line" />
-
-        <div class="bar" style="{{barStyleMath}}">
-          <div class="bar-info" ng-class="{'info-above': infoAbove}">
-            <div class="bar-info-inner">
-              {{totalMathScore}} / {{goal}}
-            </div>
-          </div>
-        </div>
-        <span class="bar-label"></span>
-      </div>
-
-      <div class="bar-labels">
-        <span class="bar-label">36</span>
-        <span class="bar-label">30</span>
-        <span class="bar-label">24</span>
-        <span class="bar-label">18</span>
-        <span class="bar-label">12</span>
-        <span class="bar-label">6</span>
-        <span class="bar-label">1</span>
-      </div>
-    </div> <!-- /.goal-bar -->
-  </div>
-</div>
-
-<div style="width:20%">
-  <div class="bar-container">
-    <div class="goal-bar">
-      <div class="bar-wrap">
-        <hr class="bar-line" />
-        <hr class="bar-line" />
-        <hr class="bar-line" />
-        <hr class="bar-line" />
-        <hr class="bar-line" />
-        <hr class="bar-line" />
-        <hr class="bar-line" />
-
-        <div class="bar" style="{{barStyleEnglish}}">
-          <div class="bar-info" ng-class="{'info-above': infoAbove}">
-            <div class="bar-info-inner">
-              {{totalEnglishScore}} / {{goal}}
-            </div>
-          </div>
-        </div>
-        <span class="bar-label"></span>
-      </div>
-
-      <div class="bar-labels">
-        <span class="bar-label">36</span>
-        <span class="bar-label">30</span>
-        <span class="bar-label">24</span>
-        <span class="bar-label">18</span>
-        <span class="bar-label">12</span>
-        <span class="bar-label">6</span>
-        <span class="bar-label">1</span>
-      </div>
-    </div> <!-- /.goal-bar -->
   </div>
 </div>

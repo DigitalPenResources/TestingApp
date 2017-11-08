@@ -855,7 +855,7 @@ button:focus {
   .goal-bar .bar-wrap {
     position: relative;
     height: 100%;
-    background: rgb(255, 242, 230);
+    background: #1BA39C;
     border-bottom: 1px solid black;
     border-top: 1px solid black;
     border-radius: 3px;
