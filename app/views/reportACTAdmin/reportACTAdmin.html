@@ -1,6 +1,6 @@
 <div id="report">
   <div class="container page-padding admin-width">
-    <div id="print-section-1">
+    <div id="print-section-1" style="overflow:hidden">
       <div class="row">
         <div class="col-md-12 page-header" style="margin-bottom:0">
           Welcome {{adminID}}
@@ -10,203 +10,273 @@
           <div>Test Name: {{studentInfo.examname}}, Version: {{studentInfo.examversion}}</div>
         </div>
       </div>
-      <div class="col-md-6" style="padding-right:0">
+      <div style="border:3px solid red;width:62.5%;float:left;padding-bottom:50px;padding-left:10px">
         <!--MATH-->
-        <div class="col-md-3 section-border-right">
-          <div id="total-score-section" style="text-align:center;margin-bottom:20px;height:80px">
+        <div class="" style="width:20%;float:left">
+          <div id="total-score-section" style="text-align:center;height:100%;">
               <div class="bold font-exlg">{{totalScores.TotalMathScore}}</div>
-              <div>MATH</div>
+              <div style="padding-bottom:5px">MATH</div>
           </div>
-          <div class="section-height">
-            <div class="row">
-              <div class="col-md-1 score-min" style="font-size:11px">{{scoreRangeMin}}</div>
-              <div class="col-md-10 score-bar">
-                <div class="progress progress-bar-height">
-                  <div class="progress-bar" role="progressbar" ng-style="{'width': '100%'}"></div>
-                </div>
+          <div class="bar-container">
+            <div class="goal-bar">
+              <div class="bar-wrap">
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <!-- <hr class="bar-line" /> -->
+
+
+                <div class="bar bar-green" style="{{barStyleMath}}"></div>
+                <span class="bar-label"></span>
               </div>
-              <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
-                <div  class="progress score-bar-indicator">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': mathscoretotalpercentage + '%'}"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
-                </div>
+
+              <div class="bar-labels">
+                <span class="bar-label">36</span>
+                <span class="bar-label">30</span>
+                <span class="bar-label">24</span>
+                <span class="bar-label">18</span>
+                <span class="bar-label">12</span>
+                <span class="bar-label">6</span>
+                <span class="bar-label">1</span>
               </div>
-              <div class="col-md-1 score-max" style="font-size:11px">{{scoreRangeMax}}</div>
-            </div>
+            </div> <!-- /.goal-bar -->
           </div>
         </div>
         <!--SCIENCE-->
-        <div class="col-md-3 section-border-right">
-          <div id="total-score-section" style="text-align:center;margin-bottom:20px;height:80px">
+        <div class="" style="width:20%;float:left">
+          <div id="total-score-section" style="text-align:center;height:100%">
               <div class="bold font-exlg">{{totalScores.TotalScienceScore}}</div>
-              <div>SCIENCE</div>
+              <div style="padding-bottom:5px">SCIENCE</div>
           </div>
-          <div class="section-height">
-            <div class="row">
-              <div class="col-md-1 score-min" style="font-size:11px">{{scoreRangeMin}}</div>
-              <div class="col-md-10 score-bar">
-                <div class="progress progress-bar-height">
-                  <div class="progress-bar" role="progressbar" ng-style="{'width': '100%'}"></div>
-                </div>
+          <div class="bar-container">
+            <div class="goal-bar">
+              <div class="bar-wrap">
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+
+                <div class="bar bar-green" style="{{barStyleScience}}"></div>
+                <span class="bar-label"></span>
               </div>
-              <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
-                <div  class="progress score-bar-indicator">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': sciencescoretotalpercentage + '%'}"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
-                </div>
+
+              <div class="bar-labels">
+                <span class="bar-label">36</span>
+                <span class="bar-label">30</span>
+                <span class="bar-label">24</span>
+                <span class="bar-label">18</span>
+                <span class="bar-label">12</span>
+                <span class="bar-label">6</span>
+                <span class="bar-label">1</span>
               </div>
-              <div class="col-md-1 score-max" style="font-size:11px">{{scoreRangeMax}}</div>
-            </div>
+            </div> <!-- /.goal-bar -->
           </div>
         </div>
         <!--ENGLISH-->
-        <div class="col-md-3 section-border-right">
-          <div id="total-score-section" style="text-align:center;margin-bottom:20px;height:80px">
+        <div class="" style="width:20%;float:left">
+          <div id="total-score-section" style="text-align:center;height:100%">
               <div class="bold font-exlg">{{totalScores.TotalEngishScore}}</div>
-              <div>ENGLISH</div>
+              <div style="padding-bottom:5px">ENGLISH</div>
           </div>
-          <div class="section-height">
-            <div class="row">
-              <div class="col-md-1 score-min" style="font-size:11px">{{scoreRangeMin}}</div>
-              <div class="col-md-10 score-bar">
-                <div class="progress progress-bar-height">
-                  <div class="progress-bar" role="progressbar" ng-style="{'width': '100%'}"></div>
-                </div>
+          <div class="bar-container">
+            <div class="goal-bar">
+              <div class="bar-wrap">
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+
+                <div class="bar bar-blue" style="{{barStyleEnglish}}"></div>
+                <span class="bar-label"></span>
               </div>
-              <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
-                <div  class="progress score-bar-indicator">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': englishscoretotalpercentage + '%'}"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
-                </div>
+
+              <div class="bar-labels">
+                <span class="bar-label">36</span>
+                <span class="bar-label">30</span>
+                <span class="bar-label">24</span>
+                <span class="bar-label">18</span>
+                <span class="bar-label">12</span>
+                <span class="bar-label">6</span>
+                <span class="bar-label">1</span>
               </div>
-              <div class="col-md-1 score-max" style="font-size:11px">{{scoreRangeMax}}</div>
-            </div>
+            </div> <!-- /.goal-bar -->
           </div>
         </div>
         <!--READING-->
-        <div class="col-md-3 section-border-right">
-          <div id="total-score-section" style="text-align:center;margin-bottom:20px;height:80px">
+        <div class="" style="width:20%;float:left">
+          <div id="total-score-section" style="text-align:center;height:100%">
               <div class="bold font-exlg">{{totalScores.TotalReadingScore}}</div>
-              <div>READING</div>
+              <div style="padding-bottom:5px">READING</div>
           </div>
-          <div class="section-height">
-            <div class="row">
-              <div class="col-md-1 score-min" style="font-size:11px">{{scoreRangeMin}}</div>
-              <div class="col-md-10 score-bar">
-                <div class="progress progress-bar-height">
-                  <div class="progress-bar" role="progressbar" ng-style="{'width': '100%'}"></div>
-                </div>
+          <div class="bar-container">
+            <div class="goal-bar">
+              <div class="bar-wrap">
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+
+                <div class="bar bar-blue" style="{{barStyleReading}}"></div>
+                <span class="bar-label"></span>
               </div>
-              <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
-                <div  class="progress score-bar-indicator">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': readingscoretotalpercentage + '%'}"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
-                </div>
+
+              <div class="bar-labels">
+                <span class="bar-label">36</span>
+                <span class="bar-label">30</span>
+                <span class="bar-label">24</span>
+                <span class="bar-label">18</span>
+                <span class="bar-label">12</span>
+                <span class="bar-label">6</span>
+                <span class="bar-label">1</span>
               </div>
-              <div class="col-md-1 score-max" style="font-size:11px">{{scoreRangeMax}}</div>
-            </div>
+            </div> <!-- /.goal-bar -->
+          </div>
+        </div>
+        <!--COMPOSITE-->
+        <div class="" style="width:20%;float:left">
+          <div id="total-score-section" style="text-align:center;background-color:#b0aac2;height:100%">
+            <div class="bold font-exlg" style="color:white">{{totalScores.TotalCompositeScore}}</div>
+            <div style="padding-bottom:5px;color:white">COMPOSITE</div>
+          </div>
+          <div class="bar-container">
+            <div class="goal-bar">
+              <div class="bar-wrap">
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+
+                <div class="bar bar-purple" style="{{barStyleComposite}}"></div>
+                <span class="bar-label"></span>
+              </div>
+
+              <div class="bar-labels">
+                <span class="bar-label">36</span>
+                <span class="bar-label">30</span>
+                <span class="bar-label">24</span>
+                <span class="bar-label">18</span>
+                <span class="bar-label">12</span>
+                <span class="bar-label">6</span>
+                <span class="bar-label">1</span>
+              </div>
+            </div> <!-- /.goal-bar -->
           </div>
         </div>
       </div>
-      <div class="col-md-6" style="padding-left:0">
-        <!--COMPOSITE-->
-        <div class="col-md-3 section-border-right">
-          <div id="total-score-section" style="text-align:center;margin-bottom:20px;height:80px">
-              <div class="bold font-exlg">{{totalScores.TotalCompositeScore}}</div>
-              <div>COMPOSITE</div>
-          </div>
-          <div class="section-height">
-            <div class="row">
-              <div class="col-md-1 score-min" style="font-size:11px">{{scoreRangeMin}}</div>
-              <div class="col-md-10 score-bar">
-                <div class="progress progress-bar-height">
-                  <div class="progress-bar" role="progressbar" ng-style="{'width': '100%'}"></div>
-                </div>
-              </div>
-              <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
-                <div  class="progress score-bar-indicator">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': compositescoretotalpercentage + '%'}"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
-                </div>
-              </div>
-              <div class="col-md-1 score-max" style="font-size:11px">{{scoreRangeMax}}</div>
-            </div>
-          </div>
-        </div>
+      <div style="width:12.5%;float:left;padding-bottom:50px;padding-left:10px">
         <!--STEM-->
-        <div class="col-md-3 section-border-right">
-          <div id="total-score-section" style="text-align:center;margin-bottom:20px;height:80px">
+        <div class="" style="width:100%;">
+          <div id="total-score-section" style="text-align:center;height:100%">
               <div class="bold font-exlg">{{totalScores.TotalStemScore}}</div>
-              <div>STEM</div>
+              <div style="padding-bottom:5px">STEM</div>
           </div>
-          <div class="section-height">
-            <div class="row">
-              <div class="col-md-1 score-min" style="font-size:11px">{{scoreRangeMin}}</div>
-              <div class="col-md-10 score-bar">
-                <div class="progress progress-bar-height">
-                  <div class="progress-bar" role="progressbar" ng-style="{'width': '100%'}"></div>
-                </div>
+          <div class="bar-container">
+            <div class="goal-bar">
+              <div class="bar-wrap" style="background-color:#c2d4d8">
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+
+                <div class="bar bar-green" style="{{barStyleStem}}"></div>
+                <span class="bar-label"></span>
               </div>
-              <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
-                <div  class="progress score-bar-indicator">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': stemscoretotalpercentage + '%'}"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
-                </div>
+
+              <div class="bar-labels">
+                <span class="bar-label">36</span>
+                <span class="bar-label">30</span>
+                <span class="bar-label">24</span>
+                <span class="bar-label">18</span>
+                <span class="bar-label">12</span>
+                <span class="bar-label">6</span>
+                <span class="bar-label">1</span>
               </div>
-              <div class="col-md-1 score-max" style="font-size:11px">{{scoreRangeMax}}</div>
-            </div>
+            </div> <!-- /.goal-bar -->
           </div>
         </div>
+      </div>
+      <div style=";width:25%;float:left;padding-bottom:50px;padding-left:10px">
         <!--WRITING-->
-        <div class="col-md-3 section-border-right">
-          <div id="total-score-section" style="text-align:center;margin-bottom:20px;height:80px">
+        <div class="" style="width:50%;float:left">
+          <div id="total-score-section" style="text-align:center;height:100%">
               <div class="bold font-exlg">{{totalScores.TotalWritingScore}}</div>
-              <div>WRITING</div>
+              <div style="padding-bottom:5px">WRITING</div>
           </div>
-          <div class="section-height">
-            <div class="row">
-              <div class="col-md-1 score-min" style="font-size:11px">{{scoreRangeMin}}</div>
-              <div class="col-md-10 score-bar">
-                <div class="progress progress-bar-height">
-                  <div class="progress-bar" role="progressbar" ng-style="{'width': '100%'}"></div>
-                </div>
+          <div class="bar-container">
+            <div class="goal-bar">
+              <div class="bar-wrap" style="border-top:0px;border-bottom:0px;background-color:#f2efe8">
+                <div style="position:absolute;text-align:center; margin-top:150px;padding-left:15px;padding-right:15px">The writing test score range is 2-12</div>
+                <hr class="bar-line" style="top:95%"/>
+                <hr class="bar-line" style="top:83.3%"/>
+                <hr class="bar-line" style="top:66.7%"/>
+                <!-- <hr class="bar-line" style="top:50%"/> -->
+                <!-- <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" /> -->
+
+                <div class="bar bar-blue" style="{{barStyleWriting}}"></div>
+                <span class="bar-label"></span>
               </div>
-              <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
-                <div  class="progress score-bar-indicator">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': writingscoretotalpercentage + '%'}"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
-                </div>
+
+              <div class="bar-labels">
+                <span class="bar-label"></span>
+                <span class="bar-label"></span>
+                <span class="bar-label"></span>
+                <span class="bar-label"></span>
+                <span class="bar-label">12</span>
+                <span class="bar-label">6</span>
+                <span class="bar-label" style="top:96.5%">2</span>
               </div>
-              <div class="col-md-1 score-max" style="font-size:11px">{{scoreRangeMax}}</div>
-            </div>
+            </div> <!-- /.goal-bar -->
           </div>
         </div>
         <!--ELA-->
-        <div class="col-md-3">
-          <div id="total-score-section" style="text-align:center;margin-bottom:20px;height:80px">
+        <div class="" style="width:50%;float:left">
+          <div id="total-score-section" style="text-align:center;height:100%">
               <div class="bold font-exlg">{{totalScores.TotalELAScore}}</div>
-              <div>ELA</div>
+              <div style="padding-bottom:5px">ELA</div>
           </div>
-          <div class="section-height">
-            <div class="row">
-              <div class="col-md-1 score-min" style="font-size:11px">{{scoreRangeMin}}</div>
-              <div class="col-md-10 score-bar">
-                <div class="progress progress-bar-height">
-                  <div class="progress-bar" role="progressbar" ng-style="{'width': '100%'}"></div>
-                </div>
+          <div class="bar-container">
+            <div class="goal-bar">
+              <div class="bar-wrap" style="background-color:#dbe9d8">
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+                <hr class="bar-line" />
+
+                <div class="bar bar-blue" style="{{barStyleELA}}"></div>
+                <span class="bar-label"></span>
               </div>
-              <div class="col-md-10 col-md-offset-1 score-bar-indicator-padding">
-                <div  class="progress score-bar-indicator">
-                  <div class="progress-bar score-bar-indicator-position" role="progressbar" ng-style="{'width': elascoretotalpercentage + '%'}"></div>
-                  <div class="progress-bar score-bar-indicator-mark" role="progressbar"></div>
-                </div>
+
+              <div class="bar-labels">
+                <span class="bar-label">36</span>
+                <span class="bar-label">30</span>
+                <span class="bar-label">24</span>
+                <span class="bar-label">18</span>
+                <span class="bar-label">12</span>
+                <span class="bar-label">6</span>
+                <span class="bar-label">1</span>
               </div>
-              <div class="col-md-1 score-max" style="font-size:11px">{{scoreRangeMax}}</div>
-            </div>
+            </div> <!-- /.goal-bar -->
           </div>
         </div>
       </div>
-      <div id="test-score-wording" class="col-md-6 col-md-offset-3">
+      <div id="test-score-wording" class="col-md-6 col-md-offset-6">
         <span class="bold">Student Name:</span> {{totalScores.studentName}}</br>
         <span class="bold">Student ID:</span> {{totalScores.studentid}}</br>
         <span class="bold">Grade:</span> {{totalScores.Grade}}</br>
