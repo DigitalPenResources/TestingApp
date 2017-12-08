@@ -1,0 +1,28 @@
+<div id="student-list-admin">
+  <div class="container page-padding">
+    <div class="row">
+      <div class="col-md-12 page-header">
+        Welcome {{teacherID}}
+      </div>
+      <div class="col-md-12 text-center font-md">
+        Select class you wish to view below.
+      </div>
+    </div>
+    <div class="row student-list-header">
+      <div class="col-md-6">
+        Class Name
+      </div>
+      <div class="col-md-6">
+        Class Type
+      </div>
+    </div>
+    <div class="row student-list-text text-center" ng-repeat="class in classArr" ng-click="selectClass(class)">
+      <div class="col-md-6">
+        {{class.classname}}
+      </div>
+      <div class="col-md-6">
+        {{class.classtype}}
+      </div>
+    </div>
+  </div>
+</div>

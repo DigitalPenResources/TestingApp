@@ -23,6 +23,10 @@ app.constant('CONSTANTS', {
       },
       answer: {
         insertStudentAnswer: 'insertStudentAnswer'
+      },
+      class: {
+        getActiveClasses: 'getActiveClasses',
+        getTestsForClass: 'getTestsForClass'
       }
     }
   }

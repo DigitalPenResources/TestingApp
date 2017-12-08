@@ -33,6 +33,28 @@ app.service('dataService', function($http, $q, CONSTANTS, $httpParamSerializerJQ
     });
   };
 
+  service.getActiveClasses = function (dataType, dataObj) {
+    var action = CONSTANTS.api.actions[dataType].getActiveClasses;
+    // var deferred = $q.defer();
+    return $http({
+      url: base + path + query + action,
+      method: 'GET',
+      params: dataObj,
+      paramSerializer: '$httpParamSerializerJQLike'
+    });
+  };
+
+  service.getTestsForClass = function (dataType, dataObj) {
+    var action = CONSTANTS.api.actions[dataType].getTestsForClass;
+    // var deferred = $q.defer();
+    return $http({
+      url: base + path + query + action,
+      method: 'GET',
+      params: dataObj,
+      paramSerializer: '$httpParamSerializerJQLike'
+    });
+  };
+
   service.getScoringRange = function (dataType, dataObj) {
     var action = CONSTANTS.api.actions[dataType].getScoringRange;
     // var deferred = $q.defer();

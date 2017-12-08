@@ -1,4 +1,4 @@
-app.controller('LoginPageController', function($scope, $state, dataService, studentService, adminService) {
+app.controller('LoginPageController', function($scope, $state, dataService, studentService, adminService, teacherService) {
 
   // $scope.login = function(username) {
   //   console.log(username);
@@ -26,6 +26,9 @@ app.controller('LoginPageController', function($scope, $state, dataService, stud
       } else if (response.data[0].role==="admin") {
         adminService.set(response.data[0].userid);
         $state.go('studentListAdmin');
+      } else if (response.data[0].role==="teacher") {
+        teacherService.set(response.data[0].userid);
+        $state.go('classList');
       }
     });
   };
