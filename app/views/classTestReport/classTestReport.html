@@ -8,27 +8,74 @@
         <div>Class Name: {{class.classname}}, Class Type: {{class.classtype}}</div>
       </div>
       <div class="" ng-repeat="test in testArr">
-        <div class="col-md-8 col-md-offset-2" style="border:1px solid black" ng-click="showDetails=!showDetails">
-          Test Name: {{test.testname}}, Section: {{test.testsection}}, Questions: {{test.testquestions}}
+        <div class="col-md-12" ng-click="showDetails=!showDetails; getResults(test)">
+          <div style="border:1px solid black;padding:5px">
+            Test Name: {{test.testName}}, Section: {{test.SectionName}}, Questions: {{test.Questions}}
+          </div>
           <div ng-show="showDetails">
             <div>
-              <div class="col-md-3">
-                <div class="row">
-                  safsd
-                </div>
-                <div ng-repeat="question in test.questions">
-                  <div class="col-md-12">
-                    <div class="row">
-                      {{question.questionNumber}}: {{question.questionAnswer}}, {{question.questionDifficulty}}
+              <!-- <div class="col-md-12" style="background-color:grey;text-align:center;color:white">
+                Students
+              </div> -->
+              <div class="col-md-12" style="border-left:1px solid black; border-right:1px solid black">
+                <div class="col-md-10 col-md-offset-2">
+                  <div class="col-md-2" style="border-left:1px solid black; border-right:1px solid black">
+                    <div class="col-md-6">
+                      Ans.
+                    </div>
+                    <div class="col-md-6">
+                      Time
+                    </div>
+                  </div>
+                  <div class="col-md-2" style="border-left:1px solid black; border-right:1px solid black">
+                    <div class="col-md-6">
+                      Ans.
+                    </div>
+                    <div class="col-md-6">
+                      Time
+                    </div>
+                  </div>
+                  <div class="col-md-2" style="border-left:1px solid black; border-right:1px solid black">
+                    <div class="col-md-6">
+                      Ans.
+                    </div>
+                    <div class="col-md-6">
+                      Time
+                    </div>
+                  </div>
+                  <div class="col-md-2" style="border-left:1px solid black; border-right:1px solid black">
+                    <div class="col-md-6">
+                      Ans.
+                    </div>
+                    <div class="col-md-6">
+                      Time
+                    </div>
+                  </div>
+                  <div class="col-md-2" style="border-left:1px solid black; border-right:1px solid black">
+                    <div class="col-md-6">
+                      Ans.
+                    </div>
+                    <div class="col-md-6">
+                      Time
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-9">
-                <div ng-repeat="student in test.students | limitTo: 3 ">
-                  <div class="col-md-2" style="text-align:center">
-                    {{student.studentName}}
-                    <!-- <div class="row"> -->
+              <div class="col-md-12" style="border:1px solid black">
+                <div class="col-md-2">
+                  <div ng-repeat="student in test.students | limitTo: 1">
+                    <div class="row" style="visibility:hidden">
+                      .
+                    </div>
+                    <div class="row" ng-repeat="answer in student.studentAnswers">
+                      {{answer.questionNumber}}: {{answer.questionAnswer}}, {{answer.questionDifficulty}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-10">
+                  <div ng-repeat="student in test.students | limitTo: 3">
+                    <div class="col-md-2" style="text-align:center;border-right:1px solid black; border-left:1px solid black">
+                      <div style="background-color:grey;margin-right:-15px;margin-left:-15px;color:white">{{student.studentName}}</div>
                       <div ng-repeat="answer in student.studentAnswers">
                         <div class="row">
                           <div class="col-md-12">
@@ -41,42 +88,30 @@
                           </div>
                         </div>
                       </div>
-                    <!-- </div> -->
-                  </div>
-                  <!-- <div ng-repeat="answer in student.studentAnswers">
-                    <div class="row">
-                      <div class="col-md-2">
-                        {{answer.questionNumber}}
-                      </div>
-                      <div class="col-md-2">
-                        {{answer.studentAnswer}}
-                      </div>
-                      <div class="col-md-2">
-                        {{answer.studentDuration}}
-                      </div>
                     </div>
-                  </div> -->
+                  </div>
                 </div>
               </div>
             </div>
             <div ng-if="test.students.length>3">
-              <div class="col-md-3">
-                <div class="row">
-                  safsd
-                </div>
-                <div ng-repeat="question in test.questions">
-                  <div class="col-md-12">
-                    <div class="row">
-                      {{question.questionNumber}}: {{question.questionAnswer}}, {{question.questionDifficulty}}
+              <!-- <div class="col-md-12" style="background-color:grey;text-align:center;color:white">
+                Students Continued...
+              </div> -->
+              <div class="col-md-12" style="border:1px solid black">
+                <div class="col-md-2">
+                  <div ng-repeat="student in test.students | limitTo: 1">
+                    <div class="row" style="visibility:hidden">
+                      .
+                    </div>
+                    <div class="row" ng-repeat="answer in student.studentAnswers">
+                      {{answer.questionNumber}}: {{answer.questionAnswer}}, {{answer.questionDifficulty}}
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-9">
-                <div ng-repeat="student in test.students | limitTo: (3-test.students.length) ">
-                  <div class="col-md-2" style="text-align:center">
-                    {{student.studentName}}
-                    <!-- <div class="row"> -->
+                <div class="col-md-10">
+                  <div ng-repeat="student in test.students | limitTo: (3-test.students.length)">
+                    <div class="col-md-2" style="text-align:center;border-right:1px solid black; border-left:1px solid black">
+                      <div style="background-color:grey;margin-right:-15px;margin-left:-15px;color:white">{{student.studentName}}</div>
                       <div ng-repeat="answer in student.studentAnswers">
                         <div class="row">
                           <div class="col-md-12">
@@ -89,11 +124,12 @@
                           </div>
                         </div>
                       </div>
-                    <!-- </div> -->
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>

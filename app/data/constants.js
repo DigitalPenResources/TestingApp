@@ -11,7 +11,9 @@ app.constant('CONSTANTS', {
         getStudentSubScores: 'getStudentSubScores',
         getStudentAnswers: 'getStudentAnswers',
         getStudentSectionData: 'getStudentSectionData',
-        getStudentTestList: 'getStudentTestList'
+        getStudentTestList: 'getStudentTestList',
+        getStudentTestAnswersTest: 'getStudentTestAnswersTest',
+        getStudentTestAnswers: 'getStudentTestAnswers'
       },
       login: {
         loginUser: 'loginUser'

@@ -132,6 +132,28 @@ app.service('dataService', function($http, $q, CONSTANTS, $httpParamSerializerJQ
     });
   };
 
+  service.getStudentTestAnswersTest = function(dataType, dataObj) {
+    var action = CONSTANTS.api.actions[dataType].getStudentTestAnswersTest;
+    // var deferred = $q.defer();
+    return $http({
+      url: base + path + query + action,
+      method: 'GET',
+      params: dataObj,
+      paramSerializer: '$httpParamSerializerJQLike'
+    });
+  };
+
+  service.getStudentTestAnswers = function(dataType, dataObj) {
+    var action = CONSTANTS.api.actions[dataType].getStudentTestAnswers;
+    // var deferred = $q.defer();
+    return $http({
+      url: base + path + query + action,
+      method: 'GET',
+      params: dataObj,
+      paramSerializer: '$httpParamSerializerJQLike'
+    });
+  };
+
 
   service.getProjectedScore = function(dataType, dataObj) {
     var action = CONSTANTS.api.actions[dataType].getProjectedScore;
