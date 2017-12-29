@@ -37,6 +37,42 @@ button:focus {
   font-size: 45px;
 }
 
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.width-10 {
+  width: 10%
+}
+
+.width-90 {
+  width: 90%
+}
+
+.width-50 {
+  width: 50%
+}
+
+.border-right {
+  border-right: 1px solid black
+}
+
+.border-left {
+  border-left: 1px solid black
+}
+
+.border {
+  border: 1px solid black
+}
+
+.text-center {
+  text-align: center;
+}
+
 #subscore-background {
   padding: 10px 20px 20px 20px;
   background: repeating-linear-gradient(-45deg, #e6e6e6, #e6e6e6 1px, white 1px, white 10px);
@@ -944,10 +980,71 @@ button:focus {
       top: -75px;
   }
 
-    .goal-bar .bar-info .bar-info-inner {
-      padding: 10px;
-      background: rgb(140, 197, 41);
-      border-radius: 3px;
-      color: white;
-      text-align: center;
-    }
+  .goal-bar .bar-info .bar-info-inner {
+    padding: 10px;
+    background: rgb(140, 197, 41);
+    border-radius: 3px;
+    color: white;
+    text-align: center;
+  }
+
+  /*classTestReport*/
+
+  .test-table-header {
+    border: 1px solid black;
+    padding: 5px 20px;
+    background-color: #b0aac2
+  }
+
+  .test-table-header i {
+    float: right;
+    line-height: 25px;
+  }
+
+  .second-header {
+    border-right: 1px solid black;
+    padding: 0;
+    border-left: 1px solid black;
+  }
+
+  .blank {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    height: 32px;
+    margin-left: -25px
+  }
+
+  .question-cell {
+    display: table-cell;
+    vertical-align: middle
+  }
+
+  .test {
+    display: inline-block;
+    margin-bottom: -1px
+  }
+
+  .student-header {
+    background-color: grey;
+    color: white;
+    padding: 5px
+  }
+
+  .answer-wrong {
+    width: 50%;
+    float: left;
+    border-right: 1px solid black;
+    background-color: #cbd7f1
+  }
+
+  .duration-wrong {
+    width: 50%;
+    float: left;
+    background-color: #cbd7f1
+  }
+
+  .answer {
+    width: 50%;
+    float: left;
+    border-right: 1px solid black;
+  }
