@@ -55,6 +55,17 @@ app.service('dataService', function($http, $q, CONSTANTS, $httpParamSerializerJQ
     });
   };
 
+  service.getQuestionSummary = function (dataType, dataObj) {
+    var action = CONSTANTS.api.actions[dataType].getQuestionSummary;
+    // var deferred = $q.defer();
+    return $http({
+      url: base + path + query + action,
+      method: 'GET',
+      params: dataObj,
+      paramSerializer: '$httpParamSerializerJQLike'
+    });
+  };
+
   service.getScoringRange = function (dataType, dataObj) {
     var action = CONSTANTS.api.actions[dataType].getScoringRange;
     // var deferred = $q.defer();

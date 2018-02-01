@@ -6,7 +6,10 @@
       </div>
       <div class="col-md-12 text-center font-md" style="margin-bottom:20px">
         <div>Class Name: {{class.classname}}, Class Type: {{class.classtype}}</div>
+        <button class="btn btn-primary" ng-click="showDetailedView=true; detailBtn=true" ng-hide="detailBtn">See Details</button>
+        <button class="btn btn-primary" ng-click="showDetailedView=false; detailBtn=false" ng-show="detailBtn">See Summary</button>
       </div>
+
       <div class="" ng-repeat="test in testArr">
         <div class="col-md-12" ng-click="showDetails=!showDetails; getResults(test)">
           <div class="test-table-header">
@@ -14,130 +17,133 @@
             <i class="fa fa-angle-double-down" ng-hide="showDetails"></i>
             <i class="fa fa-angle-double-up" ng-show="showDetails"></i>
           </div>
-          <div ng-show="showDetails">
-            <div>
-              <div class="col-md-12 second-header">
-                <div class="float-left width-10">
-                  <div class="col-md-12">
-                    <div class="row" style="visibility:hidden">
-                      .
-                    </div>
-                  </div>
-                </div>
-                <div class="width-90 float-left">
-                  <div class="width-10 float-left border-left text-center">
-                    <div class="width-50 float-left border-right">
-                      Ans.
-                    </div>
-                    <div class="width-50 float-left">
-                      Time
-                    </div>
-                  </div>
-                  <div class="width-10 float-left border-left text-center">
-                    <div class="width-50 float-left border-right">
-                      Ans.
-                    </div>
-                    <div class="width-50 float-left">
-                      Time
-                    </div>
-                  </div>
-                  <div class="width-10 float-left border-left text-center">
-                    <div class="width-50 float-left border-right">
-                      Ans.
-                    </div>
-                    <div class="width-50 float-left">
-                      Time
-                    </div>
-                  </div>
-                  <div class="width-10 float-left border-left text-center">
-                    <div class="width-50 float-left border-right">
-                      Ans.
-                    </div>
-                    <div class="width-50 float-left">
-                      Time
-                    </div>
-                  </div>
-                  <div class="width-10 float-left border-left text-center">
-                    <div class="width-50 float-left border-right">
-                      Ans.
-                    </div>
-                    <div class="width-50 float-left">
-                      Time
-                    </div>
-                  </div>
-                  <div class="width-10 float-left border-left text-center">
-                    <div class="width-50 float-left border-right">
-                      Ans.
-                    </div>
-                    <div class="width-50 float-left">
-                      Time
-                    </div>
-                  </div>
-                  <div class="width-10 float-left border-left text-center">
-                    <div class="width-50 float-left border-right">
-                      Ans.
-                    </div>
-                    <div class="width-50 float-left">
-                      Time
-                    </div>
-                  </div>
-                  <div class="width-10 float-left border-left text-center">
-                    <div class="width-50 float-left border-right">
-                      Ans.
-                    </div>
-                    <div class="width-50 float-left">
-                      Time
-                    </div>
-                  </div>
-                  <div class="width-10 float-left border-left text-center">
-                    <div class="width-50 float-left border-right">
-                      Ans.
-                    </div>
-                    <div class="width-50 float-left">
-                      Time
-                    </div>
-                  </div>
-                  <div class="width-10 float-left border-left text-center">
-                    <div class="width-50 float-left border-right">
-                      Ans.
-                    </div>
-                    <div class="width-50 float-left">
-                      Time
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12 border" style="padding:0;">
-                <div class="width-10 float-left" style="padding-left:10px">
-                  <div class="col-md-12" ng-repeat="student in test.students | limitTo: studentRows">
-                    <div class="row blank">
-                      <span style="visibility:hidden;">.</span>
-                    </div>
-                    <div class="row" ng-repeat="answer in student.studentAnswers">
-                      <div class="question-cell">Q: {{answer.questionNumber}}, {{answer.questionAnswer}},
-                        <div class="question-difficulty-icon easy test" ng-if="answer.questionDifficulty==='E'"></div>
-                        <div class="question-difficulty-icon med test" ng-if="answer.questionDifficulty==='M'"></div>
-                        <div class="question-difficulty-icon hard test" ng-if="answer.questionDifficulty==='H'"></div>
+          <!--summary view-->
+          <div ng-hide="showDetailedView">
+            <div ng-show="showDetails">
+              <div>
+                <!-- <div class="col-md-12 second-header">
+                  <div class="float-left width-10">
+                    <div class="col-md-12">
+                      <div class="row" style="visibility:hidden">
+                        .
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="width-90 float-left">
-                  <div ng-repeat="student in test.students">
-                    <div class="width-10 float-left text-center border-left">
-                      <div class="student-header">{{student.studentName}}</div>
-                      <div ng-repeat="answer in student.studentAnswers">
-                        <div ng-if="answer.studentAnswer!==answer.questionAnswer" class="answer-wrong">
-                          {{answer.studentAnswer}}
+                  <div class="width-90 float-left">
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.sss
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+                <div class="col-md-12 border" style="padding:0;">
+                  <div class="width-20 float-left" style="padding-left:10px">
+                    <div class="col-md-12" ng-repeat="student in test.students | limitTo: 1">
+                      <div class="row blank" style="height:140px">
+                        <span style="visibility:hidden;">.</span>
+                      </div>
+                      <div class="row" ng-repeat="answer in student.studentAnswers">
+                        <div class="question-cell">Q: {{answer.questionNumber}}, Incorrect: {{answer.incorrectAnswer}}, Correct: {{answer.correctAnswer}}
+                          <!-- <div class="question-difficulty-icon easy test" ng-if="answer.questionDifficulty==='E'"></div>
+                          <div class="question-difficulty-icon med test" ng-if="answer.questionDifficulty==='M'"></div>
+                          <div class="question-difficulty-icon hard test" ng-if="answer.questionDifficulty==='H'"></div> -->
                         </div>
-                        <div ng-if="answer.studentAnswer===answer.questionAnswer" class="answer">
-                          {{answer.studentAnswer}}
-                        </div>
-                        <div ng-if="answer.studentAnswer!==answer.questionAnswer" class="duration-wrong">
-                          {{answer.studentDuration}}
-                        </div>
-                        <div ng-if="answer.studentAnswer===answer.questionAnswer" class="width-50 float-left">
-                          {{answer.studentDuration}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="width-80 float-left">
+                    <div ng-repeat="student in test.students">
+                      <div class="float-left text-center border-left" style="width:5%">
+                        <div class="student-header" style="white-space:nowrap; height:140px;width:100%;"><div style="transform:rotate(-90deg);text-align:left"><span style="margin-left:-90px">{{student.studentName}}</span></div></div>
+                        <div ng-repeat="answer in student.studentAnswers">
+                          <div ng-if="answer.studentAnswer!==answer.questionAnswer" style="border-right: 1px solid black;background-color: red">
+                            {{answer.studentAnswer}}
+                          </div>
+                          <div ng-if="answer.studentAnswer===answer.questionAnswer" style="border-right: 1px solid black;background-color: #00B867">
+                            {{answer.studentAnswer}}
+                          </div>
+                          <!-- <div ng-if="answer.studentAnswer!==answer.questionAnswer" class="duration-wrong">
+                            {{answer.studentDuration}}
+                          </div>
+                          <div ng-if="answer.studentAnswer===answer.questionAnswer" class="width-50 float-left">
+                            {{answer.studentDuration}}
+                          </div> -->
                         </div>
                       </div>
                     </div>
@@ -146,6 +152,145 @@
               </div>
             </div>
           </div>
+
+          <!--end summary view-->
+
+          <!--detail view-->
+          <div ng-show="showDetailedView">
+            <div ng-show="showDetails">
+              <div>
+                <div class="col-md-12 second-header">
+                  <div class="float-left width-10">
+                    <div class="col-md-12">
+                      <div class="row" style="visibility:hidden">
+                        .
+                      </div>
+                    </div>
+                  </div>
+                  <div class="width-90 float-left">
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                    <div class="width-10 float-left border-left text-center">
+                      <div class="width-50 float-left border-right">
+                        Ans.
+                      </div>
+                      <div class="width-50 float-left">
+                        Time
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12 border" style="padding:0;">
+                  <div class="width-10 float-left" style="padding-left:10px">
+                    <div class="col-md-12" ng-repeat="student in test.students | limitTo: studentRows">
+                      <div class="row blank">
+                        <span style="visibility:hidden;">.</span>
+                      </div>
+                      <div class="row" ng-repeat="answer in student.studentAnswers">
+                        <div class="question-cell">Q: {{answer.questionNumber}}, {{answer.questionAnswer}},
+                          <div class="question-difficulty-icon easy test" ng-if="answer.questionDifficulty==='E'"></div>
+                          <div class="question-difficulty-icon med test" ng-if="answer.questionDifficulty==='M'"></div>
+                          <div class="question-difficulty-icon hard test" ng-if="answer.questionDifficulty==='H'"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="width-90 float-left">
+                    <div ng-repeat="student in test.students">
+                      <div class="width-10 float-left text-center border-left">
+                        <div class="student-header">{{student.studentName}}</div>
+                        <div ng-repeat="answer in student.studentAnswers">
+                          <div ng-if="answer.studentAnswer!==answer.questionAnswer" class="answer-wrong">
+                            {{answer.studentAnswer}}
+                          </div>
+                          <div ng-if="answer.studentAnswer===answer.questionAnswer" class="answer">
+                            {{answer.studentAnswer}}
+                          </div>
+                          <div ng-if="answer.studentAnswer!==answer.questionAnswer" class="duration-wrong">
+                            {{answer.studentDuration}}
+                          </div>
+                          <div ng-if="answer.studentAnswer===answer.questionAnswer" class="width-50 float-left" style="background-color:#00B867">
+                            {{answer.studentDuration}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end detail-->
         </div>
       </div>
     </div>

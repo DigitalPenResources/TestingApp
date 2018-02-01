@@ -1,4 +1,4 @@
-app.controller('ClassTestReportController', function($scope, $http, $httpParamSerializerJQLike, dataService, teacherService, classService) {
+app.controller('ClassTestReportController', function($scope, $state, $http, $httpParamSerializerJQLike, dataService, teacherService, classService) {
 
   //get userid of teacher
   $scope.teacherID=teacherService.get();
@@ -11,6 +11,7 @@ app.controller('ClassTestReportController', function($scope, $http, $httpParamSe
   $scope.testArr=[];
 
   dataService.getTestsForClass('class', {classid: $scope.class.idclass}).then(function (response) {
+    // console.log(response)
     response.data.forEach(function (test) {
       //create test arr
       $scope.testArr.push(test);
@@ -24,8 +25,10 @@ app.controller('ClassTestReportController', function($scope, $http, $httpParamSe
     //get student answers for each test
     $scope.testArr.forEach(function (test) {
       test.studentList=[];
+
       //get student answer for specific test
       dataService.getStudentTestAnswers('student', {testid: test.idtest, classid: $scope.class.idclass}).then(function (response) {
+        // console.log(response.data);
         $scope.answers=response.data;
         //create an array of unique student names
         $scope.answers.forEach(function (student) {
@@ -34,12 +37,15 @@ app.controller('ClassTestReportController', function($scope, $http, $httpParamSe
           }
         });
         sortStudents(test);
+
+
       });
     });
 
   }
 
   function sortStudents(test) {
+    // console.log(test)
     test.students=[];
     //create empty student object
     test.studentList.forEach(function (student) {
@@ -50,6 +56,8 @@ app.controller('ClassTestReportController', function($scope, $http, $httpParamSe
       test.students.forEach(function (student) {
         if (answer.studentName===student.studentName) {
           var studentAnsObj={
+            // incorrectAnswer: null,
+            // correctAnswer: null,
             questionNumber: answer.questionNumber,
             questionAnswer: answer.questionAnswer,
             questionDifficulty: answer.difflevel,
@@ -60,7 +68,20 @@ app.controller('ClassTestReportController', function($scope, $http, $httpParamSe
         }
       });
     });
-    console.log(test);
+
+    //get question summary
+    dataService.getQuestionSummary('class',{testid: test.idtest, classid: $scope.class.idclass}).then(function (response) {
+      $scope.questions=response.data;
+      //assign question summary to first student only
+      test.students[0].studentAnswers.forEach(function (studentAnswer) {
+        $scope.questions.forEach(function (question) {
+          if (studentAnswer.questionNumber===question.questionNumber) {
+            studentAnswer.incorrectAnswer=question.incorrectAnswer;
+            studentAnswer.correctAnswer=question.correctAnswer;
+          }
+        });
+      });
+    });
 
     //format student name if more than 15 characters to prevent name from 2 lines
     test.students.forEach(function (student) {
@@ -82,5 +103,11 @@ app.controller('ClassTestReportController', function($scope, $http, $httpParamSe
     $scope.studentRows=Math.ceil(studentCount/10);
     console.log($scope.studentRows);
   }
+
+  //show/hide detail page
+  $scope.showDetailedView=false;
+  $scope.detailBtn=false;
+
+
 
 });

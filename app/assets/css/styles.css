@@ -49,6 +49,14 @@ button:focus {
   width: 10%
 }
 
+.width-20 {
+  width: 20%;
+}
+
+.width-80 {
+  width: 80%
+}
+
 .width-90 {
   width: 90%
 }
@@ -1034,17 +1042,18 @@ button:focus {
     width: 50%;
     float: left;
     border-right: 1px solid black;
-    background-color: #cbd7f1
+    background-color: red
   }
 
   .duration-wrong {
     width: 50%;
     float: left;
-    background-color: #cbd7f1
+    background-color: red
   }
 
   .answer {
     width: 50%;
     float: left;
     border-right: 1px solid black;
+    background-color: #00B867;
   }

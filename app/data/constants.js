@@ -28,7 +28,8 @@ app.constant('CONSTANTS', {
       },
       class: {
         getActiveClasses: 'getActiveClasses',
-        getTestsForClass: 'getTestsForClass'
+        getTestsForClass: 'getTestsForClass',
+        getQuestionSummary: 'getQuestionSummary'
       }
     }
   }
